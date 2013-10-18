@@ -3,8 +3,8 @@
 %% Use the first of the following lines during production to
 %% easily spot "overfull boxes" in the output. Use the second
 %% line for the final version.
-%\documentclass[12pt,draft,letterpaper]{report}
-\documentclass[12pt,letterpaper]{report}
+\documentclass[12pt,draft,letterpaper]{report}
+%\documentclass[12pt,letterpaper]{report}
 
 %% Replace the title, name, advisor name, graduation date and dedication below with
 %% your own. Graduation months must be January, May or September.
@@ -13,11 +13,10 @@
 \newcommand{\thesisadvisor}{Professor Jonathan Goodman}
 \newcommand{\graddate}{Jan 1999}
 
-
-\email{williamdemeo@gmail.com}
-\urladdr{http://williamdemeo.org}
-\address{Department of Mathematics\\
-University of South Carolina\\Columbia 29208\\USA}
+%\urladdr{williamdemeo@gmail.com}
+%% \urladdr{http://williamdemeo.org}
+%% \address{Department of Mathematics\\
+%% University of South Carolina\\Columbia 29208\\USA}
 %% If you do not want a dedication, scroll down and comment out
 %% the appropriate lines in this file.
 \newcommand{\thesisdedication}{To my parents, with love and appreciation.}
@@ -64,7 +63,7 @@ University of South Carolina\\Columbia 29208\\USA}
 
 %% This inputs your auxiliary file with \usepackage's and \newcommand's:
 %% It is assumed that that file is called "definitions.tex".
-\input{definitions}
+\input{wjd_masters.def}
 
 %% Cross-referencing utilities. Use one or the other--whichever you prefer--
 %% but comment out both lines for final version.
@@ -167,7 +166,9 @@ University of South Carolina\\Columbia 29208\\USA}
 %%%%% Appendices start %%%%%%%%%%%%%%%%
 %% Comment out the following line if your thesis has no appendix
 \appendix
-\input{Appendix}
+%% \input{Appendix}
+
+
 %% Note: If your thesis has more than one appendix, NYU requires a "list of
 %% appendices" page before the body of the thesis. I don't provide the tools
 %% to create that here, so you're on your own for that one... Sorry.

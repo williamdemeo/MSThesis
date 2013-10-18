@@ -99,7 +99,7 @@ probabilities do not depend on time; i.e.,
 $p_n(\omega_n, B) = p(\omega_n, B)$. (This is the stochastic analogue of a
 conservative system.) 
 Next we assume that our state space $S$ is finite, and suppose for all states
-$i,j \in S$ that $p(i, j) \geq 0$, and $\Sigma_j p(i, j) = 1$ for all $i$. In
+$i,j \in S$ that $p(i, j) \geq 0$, and $\sum_j p(i, j) = 1$ for all $i$. In
 this case, equation~(\ref{eq:2.2}) takes a more intuitive form,
 \[
 P(X_{n+1}=j \mid X_n = i) =p(i,j),
@@ -113,7 +113,8 @@ If $\P$ is a matrix whose $(i, j)$ element is the transition probability
 $p(i, j)$ then P is a \emph{stochastic matrix}; that is, a matrix with elements
 $p_{ij}$ satisfying 
 \[
-\pij \geq 0, \quad \Sigma_j \pij =1, \quad (i, j =1, 2, \dots, d)
+\pij \geq 0, \quad \sum_j \pij =1, \quad (i, j =1, 2, \dots, d).
+\]
 We also refer to $\P$ as the transition probability matrix.
 
 Without loss of generality, we can further suppose our Markov chain is \emph{irreducible}. This
@@ -160,7 +161,7 @@ A measure $\pi$ is said to be a \emph{stationary measure} if
 \begin{equation}
 % Eqn 2.4
   \label{eq:2.4}
-\Sigma_x \pi(x) p(x,y) = \pi(x).
+\sum_x \pi(x) p(x,y) = \pi(x).
 \end{equation}
 \end{definition}
 
@@ -216,7 +217,9 @@ In what follows, we will measure rate of convergence using the function
 $\tau_x(\epsilon)$, defined as the first time after which the total variation
 distance is always less than $\epsilon$. That is, 
 \[
-\tau_x(\epsilon) = \min\{m : \Delta_x(n) \leq \epsilon \text{ for all } n\geq m\}.
+\tau_x(\epsilon) = \min\{m : \Delta_x(n) \leq \epsilon \text{ for all } n\geq
+m\}.
+\]
 
 To begin our consideration of the connection between convergence rates of Markov
 chains and eigenvalues, we first note that an aperiodic stochastic matrix $\P$ has real
@@ -226,22 +229,25 @@ where $d = |S|$ is the dimension of the state space. For an ergodic chain, the
 rate of convergence to the stationary distribution $\pi$ is bounded by a
 function of the \emph{subdominant} eigenvalue. By subdominant eigenvalue we mean that
 eigenvalue which is second largest in absolute value, and we denote this
-eigenvalue by $\lambda_{\max} = \max{\lambda_1, |\lambda_{d-1}|}. 
+eigenvalue by $\lambda_{\max} = \max{\lambda_1, |\lambda_{d-1}|}$. 
 The function bounding the rate of convergence of a Markov chain is given by the
-following theorem:
+following theorem ($\log$ denotes the natural logarithm):
 \begin{theorem}
 % Theorem 2.1.2
 \label{thm-2.1.2}
 The quantity $\tau_x(\epsilon)$ satisfies
-1. $\tau_x(\epsilon) \leq (1-\lambda_\max)^{-1}(\log \pi(x)^{-1} + \log \epsilon^{-1})$;
-2. $\max_{x \in S} \tau_x(\epsilon) \geq \frac{1}{2} \lambda_\max(1-\lambda_\max)^{-1} \log(2\epsilon)^{-1}$.
+\begin{enumerate}
+\item 
+$\tau_x(\epsilon) \leq (1-\lambda_{\max})^{-1}(\log \pi(x)^{-1} + \log \epsilon^{-1})$;
+\item $\max_{x \in S} \tau_x(\epsilon) \geq \frac{1}{2} \lambda_{\max}(1-\lambda_{\max})^{-1} \log(2\epsilon)^{-1}$.
+\end{enumerate}
 \end{theorem}
 As this theorem shows, if we have an upper bound on the subdominant eigenvalue, then we have
 an upper bound on the function $\tau_x(\epsilon)$. In what follows, we will
 derive an approximation to the 
 % 11.txt
 subdominant eigenvalue and supply error bounds. Together, an approximation and error bounds
-for $\lambda_\max$  provide enough information to make Theorem~\ref{thm-2.1.2} useful.
+for $\lambda_{\max}$  provide enough information to make Theorem~\ref{thm-2.1.2} useful.
 
 \section{Functions on the State Space}
 % Sec 2.2
@@ -264,23 +270,23 @@ distribution $\pi$---then $X_n$ is a stationary process.
 Furthermore, for each $i$, $\phi_i(X_n)$ is a stationary stochastic process with
 \emph{mean}
 \[
-\E_\pi\phi_i = \Sigma_{x\in S} \pi(x)\phi_i(x)
+\E_\pi\phi_i = \sum_{x\in S} \pi(x)\phi_i(x)
 \]
 and \emph{autocovariance function}
 \begin{align}
 % Eqn 2.5
 \C_\pi (\phi_i(X_n),  \phi_i (X_{n+s})) 
-&= \E_\pi[(\phi_i(X_n) - \E_\pi\phi_i)(\phi_i(X_{n+s}) - \E_\pi\phi_i)]\nonumber\\
-&= \Sigma_{x, y\in S} \P_\pi(X_n = x, X_{n+s} = y) (\phi_i(x)- \E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i)
+&= \E_\pi[(\phi_i(X_n) - \E_\pi\phi_i)(\phi_i(X_{n+s}) - \E_\pi\phi_i)]\\
+&= \sum_{x, y\in S} \P_\pi(X_n = x, X_{n+s} = y) (\phi_i(x)- \E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).\nonumber
 \end{align}
-which, by the definition of conditional probability, we can write as,
+By the definition of conditional probability, we can write~(\ref{eq:2.4}) as follows:
 \[
-\Sigma_{x, y\in S} \P_\pi(X_n = x) \P_\pi(X_{n+s} = y\mid X_n = x) (\phi_i(x)-
+\sum_{x, y\in S} \P_\pi(X_n = x) \P_\pi(X_{n+s} = y\mid X_n = x) (\phi_i(x)-
 \E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).
 \]
 Equivalently,
 \[
-\Sigma_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).
+\sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).
 \]
 Here $p^s_{xy}$ denotes the element in row $x$ and column $y$ of $\P^s$, the
 $s$th power of the transition probability matrix. 
@@ -290,19 +296,19 @@ $\phi_i$ at time $n$ and $\phi_j$ at time $n+s$ as
 % Eqn 2.6
 \C_\pi (\phi_i(X_n),  \phi_j (X_{n+s})) 
 &= \E_\pi[(\phi_i(X_n) - \E_\pi\phi_i)(\phi_j(X_{n+s}) - \E_\pi\phi_j)]\nonumber\\
-&= \Sigma_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\E_\pi\phi_i)(\phi_j(y) - \E_\pi\phi_j).
+&= \sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\E_\pi\phi_i)(\phi_j(y) - \E_\pi\phi_j).
 \end{align}
 Now let $\<\Phi\>$ denote the matrix of mean vectors whose $j$th column is 
 $\E_\pi\phi_j\one$, where $\one = (1,\dots, 1)^t$,
 and let $\Pi = \diag(\pi(\omega_1),\dots, \pi(\omega_d))$ be the $d \times d$
 diagonal matrix with stationary probabilities $\pi(\omega)$
 on the main diagonal and zeros elsewhere. 
-Finally, denoting by $C(s)$ the $p \times p$ covariance matrix
-whose $(i,j)$ element is $C_\pi(\phi_i(X_n), \phi_j(X_{n+s}))$, we have
+Finally, denoting by $\C(s)$ the $p \times p$ covariance matrix
+whose $(i,j)$ element is $\C_\pi(\phi_i(X_n), \phi_j(X_{n+s}))$, we have
 \begin{align*}
-C(0) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_n) - \<\Phi\>)^t\\
+\C(0) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_n) - \<\Phi\>)^t\\
 &= (\Phi - \<\Phi\>)^t\Pi (\Phi-\<\Phi\>), \\
-C(s) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_{n+s}) - \<\Phi\>)^t\\
+\C(s) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_{n+s}) - \<\Phi\>)^t\\
 &= (\Phi - \<\Phi\>)^t \Pi \P^s (\Phi - \<\Phi\>).
 \end{align*}
 
@@ -312,10 +318,10 @@ $\M = \Pi^{1/2}\P\Pi^{-1/2}$.
 As is easily verified, this allows us to write the covariance matrix as
 \begin{align}
 \label{eq:2.7}
-C(s) &= 
+\C(s) &= 
 (\Phi - \<\Phi\>)^t \Pi^{\frac{1}{2}t}\M^s\Pi^{\frac{1}{2}}(\Phi - \<\Phi\>)\nonumber\\
 &=\Psi^t \M^s \Psi,  % Eqn 2.7
-\end{align*}
+\end{align}
 %% \\Phi\Phi‘M’\\Phi\Phi (2.7)
 where we have defined $\Psi = \Pi^{\frac{1}{2}}(\Phi - \<\Phi\>)$. Recall that
 our main motivation is that for out-of-core problems traditional eigenvalue
@@ -341,11 +347,11 @@ process satisfies the \emph{detailed balance} condition).
 \begin{proof}
   \begin{align*}
   \M \text{ is symmetric } 
-& \Leftrightarrow 
+& \quad \Longleftrightarrow  \quad
  (\Pi^{1/2}\P\Pi^{-1/2})^t = \Pi^{1/2}\P\Pi^{-1/2}\\
-& \Leftrightarrow 
+& \quad \Longleftrightarrow  \quad
  \Pi^{-\frac{1}{2}t}\P^t\Pi^{\frac{1}{2}t} = \Pi^{1/2}\P\Pi^{-1/2}\\
-& \Leftrightarrow 
+& \quad \Longleftrightarrow  \quad
  \P^t\Pi^t = \Pi\P.
   \end{align*}
 Elementwise, the final equality is $\pi_i\pij = \pi_j\pji$. 

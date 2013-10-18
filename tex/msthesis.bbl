@@ -1,0 +1,12 @@
+\def\cprime{$'$} \def\cprime{$'$}
+  \def\ocirc#1{\ifmmode\setbox0=\hbox{$#1$}\dimen0=\ht0 \advance\dimen0
+  by1pt\rlap{\hbox to\wd0{\hss\raise\dimen0
+  \hbox{\hskip.2em$\scriptscriptstyle\circ$}\hss}}#1\else {\accent"17 #1}\fi}
+\begin{thebibliography}{1}
+
+\bibitem{Durret:1996}
+R.~Durrett.
+\newblock {\em Probability: Theory and Examples}.
+\newblock Duxbury Press, second edition, 1996.
+
+\end{thebibliography}

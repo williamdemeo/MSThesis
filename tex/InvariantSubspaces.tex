@@ -73,7 +73,7 @@ and thus $\lambda(M) = \lambda(P)$.
 %% We qualified the foregoing by stating that the facts are only theoretically
 %% useful. This
 We noted above that Facts~\ref{fact:3.1.1} and~\ref{fact:3.1.2} are
-\emph{theoretically} useful. Speaking practically, however, 
+theoretically useful. Speaking practically now,
 %% This is because 
 when choosing observables on the state space we may not be sure that
 they will satisfy the 
@@ -82,17 +82,18 @@ they will satisfy the
 % -------------16.txt---------------------------------------------------
 %
 %
-primary assumption underlying these facts. %Facts 3.1.1 and 3.1.2. 
+primary assumption underlying the two facts. %Facts 3.1.1 and 3.1.2. 
 Recall the assumption: $\ran(\Psi)$ is an invariant
 subspace for $\M$ where $\Psi = \Pi^{1/2}(\Phi - \<\Phi\>)$. It may well be the
-case that there is a $\psi_j\in \ran(\Psi)$ such that 
-$M\psi_j \notin \ran(\Psi)$, thereby violating the assumption. 
-However, lacking an invariant subspace, we 
-might hope that our observables at least provide an \emph{approximate invariant subspace}.
+case that there exists $\psi_j\in \ran(\Psi)$ such that 
+$\M\psi_j \notin \ran(\Psi)$, thereby violating the assumption. 
+Even if we are lacking an invariant subspace, however, for some applications it
+is reasonable to expect that observables can be chosen to provide at least
+an \emph{approximate invariant subspace}, which is defined as follows:
 \begin{definition}
 %% Definition 3.2.1
-If the columns of $\Psi\in \R^{d\times p}$ are independent and the 
-\emph{residual matrix} $\E = \M\Psi - \Psi \T$ is small for some 
+If the columns of $\Psi\in \R^{d\times p}$ are independent and the norm of the
+\emph{residual matrix} $\E = \M\Psi - \Psi \T$ is small for some  
 $\T \in \R^{p\times p}$, then
 $\ran(\Psi)$ defines an \emph{approximate invariant subspace}. 
 \end{definition}
@@ -101,8 +102,8 @@ eigenvalues of $\M$, we recall a theorem from Golub and Van Loan~\cite{Golub:199
 \begin{theorem}
 % Theorem 3.2.1
 \label{thm:3.2.1}  
-Suppose $\M \in R^{d\times d}$ and $T \in \R^{p\times p}$ are symmetric and let
-$E = \M\Q - \Q\T$, where $\Q \in \R^{d\times p}$ is orthonormal 
+Suppose $\M \in R^{d\times d}$ and $\T \in \R^{p\times p}$ are symmetric and let
+$\E = \M\Q - \Q\T$, where $\Q \in \R^{d\times p}$ is orthonormal 
 (i.e., $\Q^t\Q = \I$). Then there exist $\mu_1,\dots, \mu_p \in \lambda(\T)$ and
 $\lambda_1, \dots, \lambda_p \in \lambda(\M)$ such that
 \[
@@ -199,7 +200,7 @@ establishes that the minimizing $\T$ is that which annihilates the
 second term in~(\ref{eq:3.1}), that is, $\T = \Q^t\M\Q$.
 
 The second equality in Theorem~\ref{thm:3.2.2} is a consequence of the polar decomposition, in
-which $\Q = \Psi \Z^{-1} = \Psi(\Psi^t\Psi)^{-1/2}$. Therefore,
+which $\Q = \Psi \Z^{-1} = \Psi(\Psi^t\Psi)^{-1/2}$. Thus,
 $\T = (\Psi^t\Psi)^{-1/2}\Psi^t \M^t \Psi (\Psi^t\Psi)^{-1/2}$
 is the minimizer, as claimed.
 \end{proof}
@@ -311,7 +312,7 @@ That is, we must choose $\psi_2$ so that
 \end{equation}
 Clearly, Equation~(\ref{eq:3.4}) implies 
 $\nabla \rho(\psi_1) \in \ran\{\psi_1, \M\psi_1\}$.
-Therefore, if $\ran\{\psi_1, \psi_2\} = \ran\{\psi_1, \M\psi_1\}$, 
+Thus, if $\ran\{\psi_1, \psi_2\} = \ran\{\psi_1, \M\psi_1\}$, 
 then~(\ref{eq:3.5}) is satisfied.
 %
 %
@@ -319,10 +320,8 @@ then~(\ref{eq:3.5}) is satisfied.
 %
 %
 In general, having chosen $\Psi_k = [\psi_1 \; \cdots \; \psi_k]$ so that
-\[
-\ran\{\psi_1, \psi_2, \dots, \psi_k\} = \ran\{\psi_1, \M\psi_1, \dots,
-\M\psi_k\},
-\]
+$\ran\{\psi_1, \psi_2, \dots, \psi_k\} = \ran\{\psi_1, \M\psi_1, \dots,
+\M\psi_k\}$,
 we must chose $\psi_{k+1}$ so that for any nonzero vector $a\in \R^k$,
 \begin{equation}
 \label{eq:3.6}
@@ -339,7 +338,10 @@ and therefore,
 \ran(\M\Psi_k) \cup \ran(\Psi_k) = \ran\{\psi_1, \M\psi_1, \dots, \M^k\psi_1\}.
 \]
 Thus, the requirement~(\ref{eq:3.6}) is satisfied when 
-$\ran\{\psi_1, \psi_2, \dots, \psi_k\} = \ran\{\psi_1, \M\psi_1, \dots, \M^k\psi_1\}$.
+\[
+\ran\{\psi_1, \psi_2, \dots, \psi_k\} = \ran\{\psi_1, \M\psi_1, \dots,
+\M^k\psi_1\}.
+\]
 
 In conclusion, the $p$-dimensional approximate invariant subspace that is most suitable
 for our objective is

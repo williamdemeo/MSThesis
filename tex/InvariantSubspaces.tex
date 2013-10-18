@@ -1,0 +1,256 @@
+\chapter{Invariant and Approximate Invariant Subspaces}
+
+\section{Invariant Subspaces}
+Definition 3.1.1 A subspace S Q R" with the property that
+
+1:ES'=Ma:€S
+
+is said to be invariant for M.
+
+Recall that, having chosen observables <I> = ((151, . . . , qfip), we constructed the covariance
+matrix C(s) = \II‘M"\II. If the column space of \II, which we denote by ran(\II), is an invariant
+subspace for M, the definition implies Mifij E  That is, for each 111,- there exists a vector
+t of coeﬂicients such that M1/Jj = f=1t,-1/)5,-. This is true for all j and, putting each vector of
+coefficients into a matrix T, we see that M\II = \IIT. Conversely, M\II = IIIT implies that M1/Jj is a
+
+linear combination of columns of \II, so ran(\II) is invariant. We have thus proved the following
+% 15.txt
+Fact 3.1.1 The subspace ran(\II) is invariant for M if and only if there exists T E R”? such that
+
+M\II = \IIT.
+
+Consequently,
+
+Fact 3.1.2 )\(T) Q ).(M)
+
+Proof of 3.1.2:
+
+z\E)\(T) _=_ 3v€R"3Tv=).v
+<=> \IITv = A\IIv
+<=> M\II-u = /\\IIv
+< /\ E /\(M)
+
+The second ¢> follows from fact 3.1.1.
+Facts 3.1.1 and 3.1.2 are theoretically useful. To see why, write the equation of fact 3.1.1
+
+as follows:
+
+\IIT = M\II
+\II‘\IIT = \II‘M\II
+T = (\1:'~1r)-‘\1:'M\1:
+
+In this form, we recognize that T = C‘1(0)C(1). That is, using only the covariance of observables
+on the state space, we can generate a matrix T with the property A(T) (_Z ).(M). Recalling that
+M = H1/2Pl'I‘1/2, we see that M is similar to our original stochastic matrix P, and thus ).(M) =
+
+).(P).
+
+\section{Approximate Invariant Subspace}
+
+We qualiﬁed the foregoing by stating that the facts are only theoretically useful. This
+
+is because when choosing observables of the state space we aren't sure that they will satisfy the
+% 16.txt
+primary assumption underlying facts 3.1.1 and 3.1.2. Recall the assumption: ran(\II) is an invariant
+subspace for M, where ‘II = H1/2(<I> —  It may well be the case that there is a 1p; 6 ran(\II) such
+that M1/zj ¢ ran(\II), thereby violating the assumption. However, lacking an invariant subspace, we
+
+might hope that our observables at least provide an approximate invariant subspace.
+
+Deﬁnition 3.2.1 If the columns of ‘II E R“? are independent and the residual matrix E E
+
+M\II —— \IIT is small for some T 6 R7”, then ran(\II) deﬁnes an approximate invariant subspace.
+
+To see how an approximate invariant subspace can be useful in approximating eigenvalues of M,
+we extract a theorem from Golub and Van Loan 
+% Theorem 3.2.1
+\begin{theorem}
+\label{thm-3.2.1}  
+Suppose M 6 Rd” and T 6 RP"? are symmetric and let E E MQ — QT, where Q 6 Rd"? satisﬁes
+
+Q‘Q = I. Then there exist p1,... ,;z,, E A(T) and A1,. . . , A,, E A(M) such that
+ll‘k - Akl S \/§|lE"
+
+fork=1,...,p.
+\end{theorem}
+
+If the subspace ran(Q) is an approximate invariant subspace, then the deﬁnition implies that
+there is a choice T rendering the error IIEII2 small, and thus, the eigenvalues of T provide a good
+approximation to those of M.
+
+When considering the preceding ideas, it becomes apparent that their application will
+present new — but hopefully less prohibitive — problems. As these problems summarize the rt of
+the paper, now is a good time to examine them. First, the preceding theorem assumes a matrix Q
+whose columns form an orthonormal basis for the approximate invariant subspace. For our problem,
+derivation of such a Q is tricky, and we must prepare for this. Next, having an approximate invariant
+
+subspace at our disposal merely tells us that there exists some matrix T which makes the error
+% 17.txt
+"EH2 small. We must discover the form of such a T. Moreover, it is natural to seek that T which
+minimizes IIEII2 for a given approximate invariant subspace. Finally, in order to apply these ideas
+to real examples of our eigenvalue problem, we must ﬁnd a practical way to generate the most
+appropriate approximate invariant subspace. We now address each of these issues in the order
+raised.
+
+Recall the matrix I1 E III/2(<I> — (<I>)). The columns of this matrix, though independent
+(by choice of independent observables), are not necessarily orthonormal. However, consider the
+polar decomposition ‘II = QZ where Q‘Q = I and Z2 = \Il‘\II is symmetric positive semideﬁnite.1
+
+Note that Z = (\II‘\II)l/2 is nonsingular, so Q has the form
+Q = ~1:z-1 = \II(\II‘\II)“/2
+
+and it is clear that ran(Q) = ran(\II). Perhaps ra.n(Q) is a. useful approximation to the invariant
+subspace for M. If ran(Q) is not itself invariant, we have the error E = MQ — QT. It is easy to
+show, as we do in the following proof, that the T which minimizes HE“; is T = Q‘MQ. This yields
+
+the following,
+Theorem 3.2.2
+
+If \I1 = QZ is the polar decomposition of \II, then the matrix
+T = Q‘MQ = (\1:*\1:)-1/’\1:‘M\I:(\Ir‘\I:)-1/2
+minimizes IIEII2 = IIMQ - QTII2
+
+Proof:
+We prove the result by establishing the following
+
+(Hal: Given M 6 Rd” suppose Q 6 Rd"? satisﬁes Q'Q =1. Then,
+
+min ||MQ — QTII2 = H(1- QQ')MQll2
+
+TERI‘?
+
+‘Recall that the polar decomposition is derived from the SVD, \II = UZJV‘, by letting Q = UV‘ and Z = VEV‘.
+
+% 18.txt
+and T = Q’MQ is the minimizer.
+To verify the claim, observe the following application of the Pythagorean theorem:
+
+For any T E R.”"” we have
+
+IIMQ — QT||§ = IIMQ - QQ'MQ + QQ'MQ - QT|l§
+||(I - QQ’)MQ + Q(Q'MQ - T) H3
+
+||(1 - QQ‘)MQ||§ + |lQ(Q'MQ - T)||§ (3-1)
+
+2 l|(I — QQ')MQ||§
+
+Equality (3.1) holds since I — QQ' projects MQ onto the subspace orthogonal to ran(Q). Thus,
+the two terms in the expression on the right are orthogonal, and the Pythagorean theorem yields
+equality. The concluding inequality establishes that the minimizing T is that which annihilates the
+second term in (3.1); i.e. T = Q‘MQ.
+
+The second equality in Theorem 3.2.2 is a consequence of the polar decomposition, in
+
+which Q = \IIZ“ = \I:(~I:‘\I:)-1/2. Therefore,
+T = (x1z'x1:)-1/2x1:‘M~1:(\1:*~1z)—1/2
+
+is the minimizer.
+
+3.3 The Krylov Subspace
+
+Suppose the columns of a matrix Q E R“? provide an orthonormal basis for an approxi-
+
+mate invariant subspace. Then we have seen,
+1. T = Q'MQ minimizes ||E||2 = ||MQ — QT||2 and
+2. E|p.1,...,p,, E z\(T) and /\1,...,A, 6 »\(M) such that
+
+ll-‘I: - Ml S \/§|lE||2
+
+% 19.txt
+19
+fork=1,...,p.
+
+Given an approximate invariant subspace ran(Q) of dimension 1), these facts tell us what matrix we
+should use to approximate p elements of M’s spectrum. Now all we lack is a. description of ran(Q).
+That is, we have not speciﬁed which approximate invariant subspace would best suit our objective
+
+of approximating the subdominant eigenvalue A,,.a2:(M). 'I‘o do so requires the following deﬁnition:
+
+Deﬁnition 3.3.1 The Raleigh quotient of a symmetric matrix M and a nonzero vector 3 is
+
+p(2:, M) E (:z:‘Ma:)/(z‘a:).
+
+We will also denote this by p(z) when the context makes clear what matrix is involved.
+
+To ﬁnd the approximate invariant subspace most appropriate for our problem, we choose
+each dimension successively, providing justiﬁcation at each step. Thus, start with one observable
+42 on the state space, and let zpl E 111/ 2(¢ — E,,¢). That is, 1/:1 represents a centered (mean zero)
+observable whose ith coordinate is weighted by . First notice that the deﬁnition (which comes
+directly from the deﬁnition of ‘II following equation (2.7)) is such that 1/)1 is a constant vector if
+and only if :15 is oonstant on the state space, in which case 1/); E 0. This fact provides one reason
+observables that are constant on the state space are not interesting. Second, recall that the row
+sums of the matrix P are all one and, therefore, the eigenvector corresponding to the eigenvalue
+Ao(P) = 1 is the constant vector. By deﬁnition of M E 1'11/2Pl'I‘1/2, we see that the constant vector
+is also the eigenvector corresponding to A0  This will play an important role in what follows, as
+it allows us to focus primarily on the subdominant eigenvalue z\max(M) E max{}q (M), [A44 
+rather than on A0  (which we already know is 1).
+
+Now, notice that
+
+lP(¢1,M)l 5 max |P(x,M)l = »\max(M) (3-2)
+% 20.txt
+where the max is taken over all non-constant vectors. Since our interest centers on An-.3_x(M), we
+would like a. 1/11 which makes the left hand side of (3.2) large. This would be achieved if 1/)1 were to
+lie in the space spanned by, say, the first two eigenvectors of the Markov chain (sometimes referred
+to as the slowest modes of the process). However, this subspace spans only two dimensions of the
+entire d-dimensional space, and it is more likely that ¢1, at best, only comes close to lying in the
+subspace of interest. Now, given 1/11, a judicious choice for the second dimension l/)2, and hence
+W; E [1/)1 1/:2], would be that which makes max,,¢o |p(\II2a)| is as large as possible. To establish that
+
+this is indeed the pertinent objective, note the following:
+
+   
+
+_ a‘\1:5Mx1:2a
+I;1;g<Ip(\I'2a,M)l = 13:3: ————a,W§q,2a
+= M
+mrggf,mIp(z. )1
+5 maxlp(z,M)l (3-3)
+= ).,,m(M)
+
+Again, the max on the right side of (3.3) is over non-constant vectors. In words, we wish to chose
+\II-2 = [1/:1 ¢2] so that there is a vector a 6 R2 making |p(\II2a,M)| close to )«max(M).
+
+Now, p(1/11) changes most rapidly in the direction of the gradient Vp(¢1).
+
+W0  (iiiiiiv---viiiléi)
+= ,,;,l (Mam — p<¢.)«m (3.4)
+
+So, to maximize the left hand side of (3.3), ‘I12 should be chosen so that the subspace ra.n(\II2)
+
+contains the gradient vector. That is, we must choose 1/22 so that
+
+VP(¢'1) E F3l1{¢1y¢2} E F-'%!1(‘I’2) (3-5)
+
+Clearly, equation (3.4) implies Vp(1/:1) E ran{z/11,M1,b1}. Therefore, if ran{1/:1,1/)2} = ra.n{¢1,M¢1},
+
+then (3.5) is satisﬁed.
+% 21.txt
+In general, having chosen \II,, E [1/)1 - -- 1/11,] so that
+
+ran{'pl9¢21' " 1¢k} = ran{¢1vM1[)la ' ‘ ' vMk—11/’k}
+
+we must chose 1/1;.“ so that, for any non-zero vector u 6 R",
+
+VP(‘I’I:a) 6 ra‘n{¢11 ‘21 - ° - 31/Jk-F1} 
+Now,
+vp<~I~.a) = gmm — P(‘I’kﬂ)‘I’k“)
+
+and therefore,
+
+Vp(‘II;,a.) E ran(M\II;,) U ra.n(\IIk) = ra.n{¢1, M1/)1, . . . , Mktﬁl}
+
+Thus, requirement (3.6) is met when ran{1/:1, 1/:2, . . . , 1/4+1} = ran{1/)1, M1/:1, . . . , Mk:/11}.
+
+In conclusion, the p-dimensional approximate invariant subspace which is most suitable
+
+for our objective is
+
+/C(Mn/mp) 2 ran{«/:1,M¢1,... ,M"“«/21}
+
+This is known as the K rylov subspace. Therefore, in answer to the problem posed at the outset
+of this section, if we take the columns of Q to be an orthonormal basis for IC(M,z/)1, p), then the
+
+eigenvalues of T = Q‘MQ should provide good estimates of p extremal eigenvalues of M.
+
+% 22.txt

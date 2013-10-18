@@ -1,0 +1,41 @@
+Chapter 6
+
+Conclusion
+
+We conclude by noting a few aspects of the special cases to which the foregoing applies.
+We are interested in the subdominant eigenvalue of a large transition probability matrix. The
+
+foregoing can be used to approximate these eigenvalues when the following conditions are satisﬁed:
+o The Markov chain is reversible (detailed balance condition).
+
+0 We can easily simulate realizations of the chain as well as functions (observables) of these
+
+realizations.
+
+When these conditions hold, we can side step the traditional Lanczos algorithm, and get at the
+values of the Lanczos coeﬂicients via the variational properties of observables on the state space.
+There are many ideas in this paper that should be expanded upon in future studies. Per-
+haps most obvious is the desire to ﬁnd analogous techniques for non-reversible (i.e. non-symmetric)
+Markov chains. This is a considerable problem since the Lanczos methods described above are no
+longer applicable. Perhaps the Amoldi algorithm ([1], algorithm 6.9), or the non-symmetric Lanczos
+
+algorithm can also be usefully specialized for stochastic matrices.
+
+% 41.txt
+41
+
+When applying the Lanczos algorithm, we usually choose a single starting vector (in the
+present context, an observable), perform the algorithm for a number of steps, and gather results.
+Then we do the same with a new starting vector and compare the results to those obtained with
+the ﬁrst vector. Proceeding in this way for a number of starting vectors, we can provide statistical
+evidence that we have, indeed, located the eigenvalues of interest. However, when there are two
+observables 451, :15; of particular interest, perhaps we would beneﬁt by considering both observables
+simultaneously. Future studies might develop an algorithm which incorporates both observables,
+
+again via ¢.- = H1/2(¢.' - E,.¢.-). In this case, a Lanczos algorithm would be based on the space
+
+Ic*(M,¢1,¢»2.p) 2 ran{«/»mz»2,M«/»1,M«/:2, . . .,MP—‘¢1.M"—‘«/22}
+
+The Lanczos coeﬁicients would then involve not only the autocovariances C, (¢,<(n),¢,-(n + m)),
+
+but also the cross-covariances C, (¢.~(n), ¢j(n + m)) (deﬁned in (2.6)).

@@ -1,0 +1,13 @@
+\newcommand\S{\ensuremath{\mathcal{S}}}
+\newcommand\F{\ensuremath{\mathcal{F}}}
+\newcommand\C{\ensuremath{\operatorname{C}}}
+\newcommand\P{\ensuremath{\operatorname{P}}}
+\newcommand\M{\ensuremath{\operatorname{M}}}
+\newcommand\E{\ensuremath{\operatorname{E}}}
+\newcommand\pij{\ensuremath{p_{ij}}}
+\newcommand\pji{\ensuremath{p_{ji}}}
+\renewcommand\phi{\ensuremath{\varphi}}
+\newcommand\<{\ensuremath{\langle}}
+\renewcommand\>{\ensuremath{\rangle}}
+\newcommand\diag{\ensuremath{\operatorname{diag}}}
+\newcommand\one{\ensuremath{\mathbf{1}}}

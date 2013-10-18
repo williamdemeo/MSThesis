@@ -1,0 +1,42 @@
+11
+
+subdominant eigenvalue and supply error bounds. Together, an approximation and error bounds
+
+for Am“ provide enough information to make Theorem 2.1.2 useful.
+
+2.2 Functions on the State Space
+
+Recall that X,.(w) = w,. 6 S denotes the state in which the Markov chain exists at time
+11. Suppose that 11> = {¢1, . . . , ¢,,} is a collection of p observables, or functions deﬁned on the state
+space S. Furthermore, let these observables be real valued, so ¢.~ : S —> R. It is often useful, as we
+will see below, to assume that none of the observables is a constant function. Suppose now that
+the state space S is ﬁnite with at possible states. Then, since an observable is simply a map of the
+state space, we can think of each ¢,- as a vector of d real numbers — the d values that it takes on at
+the different states.
+
+Now assume the Markov chain is irreducible, and let 1r denote its stationary distribution.
+If we start the chain from its stationary distribution - i.e. suppose X0 has distribution 1r - then
+X,. is a stationary process. Furthermore, for each i, ¢,(X,.) is a stationary stochastic process with
+
+mean
+
+E.¢.- = Z) vr(x)¢.(z)
+
+165
+
+and autocovariance function
+
+Cir (¢i(Xn)v ¢i (Xn+a))
+
+E7!’  ‘ E1r¢i) (¢i(Xn+a) " E1r¢i)l
+
+Z Pn(Xn = z1X7I+S = y)  — E1r¢i)  _ E1r¢i)
+
+z,yES
+(2.5)
+
+which, by the deﬁnition of conditional probability, we can write as,
+
+2 P«(X.. = z)P.(X..+.. = y I X. = 1)(¢s($) — Em) (my) ~ Em)
+1.1165
+

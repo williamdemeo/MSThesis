@@ -1,0 +1,40 @@
+34
+
+the simulation of the Markov chain in state i, and then take one step of the proposition Markov
+chain to arrive in state j. That is, choose j according to the mass function p(z', -). Next, compute
+1r(j)/1r(i). If 7r(j)/1r(i) 2 1, accept j as the new state. If1r(j)/1r(i') < 1, then with probability
+1r(j)/7r(z') accept j as the new state; otherwise, with probability 1 — 1r(j)/1r(i), take i as the new
+state. Performing each of these tasks produces one step of the Markov chain represented by the
+
+transition probability matrix K.
+
+5.3 The Ising Model
+
+Returning to the Ising model considered in section 5.1, we consider how the Metropolis
+algorithm is applied to such a mode]. Again, start the simulated chain in state X0 = 1' and let
+
+X1 = j be a state chosen according to p(i, -), where p(i, j) = p(j,i). Next, compute
+
+7"(‘7j)/7"(‘7i) = eXP{-ﬁlH(<7j) - H(0i)l}
+
+Suppose the energy H (Uj) of the new state satisﬁes H (U,-) 3 H (05). Then 1r(a_,-)/1r(a,-) Z 1 and we
+
+move to state j. On the other hand, if H(aj) > H(a;), then 1r(aj)/7r(a,-) < 1 and we take
+
+j with probability e-M"
+
+X1 (5.8)
+
+i with probability 1 — e-W’
+where AH E H (0,) — H (:75) is the change in energy from state j to state 1'.
+There are many ways to choose a proposition matrix P. The simplest derives from the
+so called Glauber dynamics, which proceeds as follows: choose one of the 11. sites at random with
+probability 1/n — let .9 denote the chosen site — and change the position of this site; i.e., multiply
+
+its value by -1. The resulting state j is the permutation of -1’s and +1’s given by
+
+-0,-(k) if]: = .9
+a,~(Ic)= (k=1,...,d)
+
+a,-(Ic) if]: 95 s
+

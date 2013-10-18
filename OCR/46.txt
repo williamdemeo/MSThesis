@@ -1,0 +1,55 @@
+E(i,j+k) = flip;
+and
+end
+end
+E=E’;
+
+Z display first 64 states
+Z E(1:64,:)
+
+Z compute energy of each state
+H = zeros(states,1);
+for i=1:states
+
+for j=1:d-1
+H(i) = H(i) - E(i,j)tE(i,j+1);
+end
+end
+
+disp(’building Hetropolis transition matrix...')
+
+for i=1:states
+for j=i+1:states
+if not(A(i,j)==0)
+if(H(j)>H(i))
+alt = A(i,j)t(1-exp(-beta*(H(j)-H(i))));
+A(i,i) I A(i,i)+a1t;
+A(i,j) = A(i,j)-alt;
+elseif(H(j)<H(i))
+alt = A(j,i)t(1-exp(—beta#(H(i)-H(j))));
+A(j,j) = A(j,j)+a1t:
+A(j,i) = A(j,i)-alt;
+end
+end
+end
+end
+
+disp(’...done’)
+
+check=0;
+for i=1:states
+
+check = check + (not(sum(A(i,1:states))<.99));
+end
+
+Z if not all rows sum to 1, print check = (# of rows with aum=1)
+
+if not(check==states)
+
+check
+
+error(’Row sums are not all 1’)
+end
+
+46
+

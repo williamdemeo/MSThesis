@@ -1,0 +1,22 @@
+Chapter 1
+
+Introduction
+
+The rate at which a Markov chain converges to a given probability distribution has long
+been an active area of research. This is not surprising considering this problem’s relevance to the ar-
+eas of statistics, statistical mechanics, and computer science. Markov Chain Monte Carlo (MCMC)
+algorithms provide important examples. These algorithms come in handy when we encounter a
+complicated probability distribution from which we want to draw random samples. In statistical
+mechanics, we might wish to estimate the phase average of a function on the state space. Goodman
+and Sokal [6] examine Monte Carlo methods in this context. Examples from statistics occur in the
+Bayesian paradigm when we are forced to simulate an unwieldy posterior distribution (see, e.g.,
+Geman and Geman 
+
+To implement the MCMC algorithm, we invent a Markov chain that converges to the
+desired distribution (this is often accomplished using the Metropolis algorithm described in Chap-
+ter 5). Realizations of the chain will eventually represent samples from this distribution. Sometimes
+“eventually” — meaning all but ﬁnitely many terms of the chain — is just not enough. We need
+more practical results. In particular, we want to know how many terms of the chain should be
+
+discarded before we are sampling from a distribution that is close (in total variation distance) to
+

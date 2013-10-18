@@ -1,0 +1,43 @@
+29
+
+recurrence for 0114.1 is equally straight forward, though the ﬁnal form is not as neat:
+
+2
+0tj+1 ¢Ij+1M'1j+1
+
+1
+§(M¢15 - 11111;‘ - ﬂj—1<Ij—1)'M(Mqj - Otjqj - /3j—1qj—1)
+J
+
+1
+§(q;-M-“*4; — 2a,~q;M*q,- — 2x3;+’_1q;--1M*q,- + «I? + 2a,-5,51 + am (4.10)
+J
+From (4.9), q;~M2q,~ = oz? + ﬂf + ﬂ}_1 and, upon plugging this into (4.10), we arrive at
+1
+a,~+1 = E(q§»M3q_,,- — (1? — 2ozJ~ﬁJ2 — 2ﬂj_1q;»_1M2qj + ﬁ2_1) (4.11)
+J
+
+The expressions above involve the higher order Lanczos vectors qj. In the present context,
+these vectors will not be readily available. However, another recursion — this time relating forms
+involving q,-+1 to forms involving qj and qj__1 — will make these expressions accessible by induction
+on our initial observable. The general forms of interest are q;+1M"qj+1 and qj-+1M"qJ~. Again, we
+
+begin with the simpler of the two:
+
+¢I;'+1Mk9j = ij(Mqj - Otjqj - ﬂj—1t1j—1)'M"¢1j
+= i(<1§M"“¢Ij - C‘j‘I_;'Mk‘Ij - ﬂj—1q§M"qj-1)
+The second is,
+‘I_;'+1Mkqj+1 = ﬂi?(M<Ij - Otjqj - .3j—1<Ij—1)‘Mk(Mqj — Orjqj - ﬂj—1¢1j—1)
+
+1
+ﬁ(‘1§M'°"<1:‘ + °‘:2"I§M'°<J:' + ﬁ?—z<Ii—1M"<I:‘—1
+J
+—2a,-q;-M*+‘q,~ + 2am,--1q;-M*q,--1 — zza,--1q;-M*+‘q]--1) (4.12)
+
+The point of all this is that each pair of coeﬂicients (oz,-+1, /3,-) can be expressed as a
+function of the covariance between ¢(n) and ¢(n+ m), for m = 0, . . . , 21' + 1. Since the expressions
+are based on four recurrence relations, they become quite complicated as 1' gets large. However,
+deﬁning these recursions in a. computer program is trivial, and we use this fact in Section 5.4 when
+
+applying the foregoing to a particular problem.
+

@@ -1,0 +1,9 @@
+A Lanczos Procedure for Approximating Eigenvalues of Large
+
+Stochastic Matrices
+
+Copyright 1998
+
+by
+William J. De Meo
+

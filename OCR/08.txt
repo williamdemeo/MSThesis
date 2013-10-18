@@ -1,0 +1,30 @@
+If P is a matrix whose (i, j)th element is the transition probability p(i, 1') then P is a stochastic
+
+matriar, that is, a matrix with elements pgj satisfying
+
+Pij 20: zjpij =1: (i7j=1121"‘)d)
+
+We also refer to P as the transition probability matrix.
+
+Without loss of generality, we can further suppose our Markov chain is irreducible. This
+means that, for any states 2', 1‘, starting in state i the chain will make a transition to state 1' at
+some future time with positive probability. This state of affairs is often described by saying that
+all states communicate. We lose no generality with this assumption because any reducible Markov
+chain can be factored into irreducible classes of states which can each be studied separately.
+
+The ﬁnal two conditions we place on the Markov chains considered below will cost us
+some generality. Nonetheless, there remain many examples of chains meeting these conditions,
+thus making the present study worthwhile. Furthermore, it may be the case that, with a little
+more work, we will be able to drop these conditions in future studies. The first condition is that
+the chain is aperiodic. If we let I, = {n 2 1 : p"(:c,a:) > 0}, we call a Markov chain aperiodic if,
+for any state 2:, the greatest common divisor of I, is 1. The second assumption is that our chain is
+
+reversible. This characterization is understood in terms of the following deﬁnition.
+Deﬁnition 2.1.3 A measure a is called reversible if it satisﬁes
+
+;4(w)p(I. y) = u(y)p(y. w)
+
+for all :c and y.
+
+We call a Markov chain reversible if its stationary distribution (deﬁned in Section 2.1.2) is reversible.
+

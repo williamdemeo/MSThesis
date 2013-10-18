@@ -1,0 +1,25 @@
+40
+
+Chapter 6
+
+Conclusion
+
+We conclude by noting a few aspects of the special cases to which the foregoing applies.
+We are interested in the subdominant eigenvalue of a large transition probability matrix. The
+
+foregoing can be used to approximate these eigenvalues when the following conditions are satisﬁed:
+o The Markov chain is reversible (detailed balance condition).
+
+0 We can easily simulate realizations of the chain as well as functions (observables) of these
+
+realizations.
+
+When these conditions hold, we can side step the traditional Lanczos algorithm, and get at the
+values of the Lanczos coeﬂicients via the variational properties of observables on the state space.
+There are many ideas in this paper that should be expanded upon in future studies. Per-
+haps most obvious is the desire to ﬁnd analogous techniques for non-reversible (i.e. non-symmetric)
+Markov chains. This is a considerable problem since the Lanczos methods described above are no
+longer applicable. Perhaps the Amoldi algorithm ([1], algorithm 6.9), or the non-symmetric Lanczos
+
+algorithm can also be usefully specialized for stochastic matrices.
+

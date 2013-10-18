@@ -1,0 +1,62 @@
+T[i*n1anc+i] = a1pha(i+1);
+if((temp = betasq(i+1))>HACmEPS#10)
+{
+
+T[i#n1anc+i+1] = sqrt(temp);
+
+i++;
+}
+else
+
+f1ag=1;
+
+}
+
+/t Last column */
+if(f1ag!=1 it ((temp= betasq(n1anc-1))>HACHEPSt10))
+
+{
+T[n1anc#n1anc-2] = sqrt(temp);
+T[n1anctn1anc-1] = a1pha(n1anc);
+printf("\nbeta(1) = %1f\nbeta(Zd) = Zlf (last beta)",
+T[1],(nlanc-1),T[nlanc*n1anc-2]);
+}
+else
+{
+printf("\nApproximate invariant space reached at step %d.",i);
+printf("\nbeta(1) = Z1f\nbeta(Zd) = Zlf (last accurate beta)“.
+T[1],i,T[itn1anc+i—1]);
+printf("\nbeta(Zd)“2: Zlf (first spurious resu1t)“,i+1,temp);
+}
+
+printf("\nThe matrix T is: \n");
+matprint(T,n1anc,n1anc);
+
+}
+
+else
+
+{
+
+printf("\nmain(): Approximate invariant space reached at first step.“);
+
+49
+
+printf("\na1pha(1) - Z1f\nbeta(1)”2: Zlf (first spurious result)“, T[O], temp);
+
+}
+ofp = fopen("Tmat.m","v“);
+check(ofp);
+mat1aburite(T,n1anc,n1anc,ofp);
+fc1ose(ofp);
+}
+void read_name(char tname)
+{
+int c, i = 0;
+while ((c = getchar()) != EOF it c != ’ ’ it c !- ’\n’)
+name[i++] = c;
+name[i] = ’\0’;
+}
+
+/#t* end 1anczos.c *#*/
+

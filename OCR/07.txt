@@ -1,0 +1,31 @@
+The Markov chain that we will study on this space is simply X" (w) = w,., the coordinate maps.
+Then, by the Kolmogorov extension theorem, there exists a unique probability measure P,, on
+(9,?) so that the X" (w) have ﬁnite dimensional distributions (2.3).
+
+If instead of p, we begin with the initial distribution 6,, i.e. point mass at 2:, then we
+denote the probability measure by P3. With such measures deﬁned for each 2:, we can in turn
+
+deﬁne distributions P,,, given any initial distribution p, by
+
+PM = / u<da.->P.(A>
+
+That the foregoing construction — which, recall, was derived merely from an initial distri-
+bution p and a sequence p,, of transition probabilities — satisﬁes Deﬁnition (2.2) of a Markov chain
+is not obvious, and a proof can be found in 
+
+To state the converse of the foregoing, if X,, is a Markov chain with transition probabilities
+p,, and initial distribution p, then its ﬁnite dimensional distributions are given by (2.3). Proof of
+this is also found in 
+
+Now that we have put the theory on a ﬁrm, if abstract, foundation, we can bring the
+discussion down to earth by making the forgoing a little more concrete. First, we specialize our
+study of Markov chains by assuming that our chain is temporally homogeneous, which means that
+the transition probabilities do not depend on time; i.e. p,,(w,,, B) E p(w,., B). (This is the stochastic
+analogue of a conservative system.) Next we assume that our state space S is ﬁnite, and suppose
+for all states 1', j E S that p(i, j) Z 0, and E, p(z', j) = 1 for all i. In this case, equation (2.2) takes
+
+a more intuitive form:
+P(Xn+l =j I X7: = 7:) =P(iaj)
+
+and our transition probabilities become
+

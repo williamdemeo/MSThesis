@@ -1,0 +1,53 @@
+47
+
+disp(’computing eigenvalues of tpm...’)
+cput = cputime;
+
+evals = eig(A);
+
+ecput = tputime - cput;
+
+disp(’the CPU time (in secs) for computing eigenvalues of tpm: ’)
+
+ecput
+ZZZ end tpm.m
+
+/¥#*##¥###*##*#l####¥#‘###$ﬂ###ﬁi##*U3*#**#*##**##¥***ll¥#*##¥ii
+
+* 1anczos.c main program for computing Lanczos coefficients *
+3 #
+* Created by William J. De Heo #
+t on 1/7/98 *
+# Last modified 1/10/98 #
+
+*¥#######**3It¥*#¥¥¥#**##**¥##¥#####**####*#*###*##**###¥##*##*/
+
+#inc1ude <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#inc1ude "prototypes.h"
+
+/# Machine constants on dino (Sun Ultra 1 at Courant) t/
+#define HACHEPS 1.15828708535533604981e-16
+
+#define SQRTEPS 1.07623746699106147048e-08
+
+ﬂdefine HAX_NAH 100
+
+void read_name(char *);
+
+/* Prototypes from the file functions.c ¥/
+
+double a1pha(int j);
+
+double betasq(int j);
+
+double form1(int j, int k);
+
+double form2(int j, int k);
+
+double moment(doub1e ‘data, long n, double tave, double tvar, double tcov, long k);
+
+/# external variables to be used by functions */
+double *phi,tcov, tvar, tave;
+

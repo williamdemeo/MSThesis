@@ -1,0 +1,39 @@
+20
+
+where the max is taken over all non-constant vectors. Since our interest centers on An-.3_x(M), we
+would like a. 1/11 which makes the left hand side of (3.2) large. This would be achieved if 1/)1 were to
+lie in the space spanned by, say, the first two eigenvectors of the Markov chain (sometimes referred
+to as the slowest modes of the process). However, this subspace spans only two dimensions of the
+entire d-dimensional space, and it is more likely that ¢1, at best, only comes close to lying in the
+subspace of interest. Now, given 1/11, a judicious choice for the second dimension l/)2, and hence
+W; E [1/)1 1/:2], would be that which makes max,,¢o |p(\II2a)| is as large as possible. To establish that
+
+this is indeed the pertinent objective, note the following:
+
+   
+
+_ a‘\1:5Mx1:2a
+I;1;g<Ip(\I'2a,M)l = 13:3: ————a,W§q,2a
+= M
+mrggf,mIp(z. )1
+5 maxlp(z,M)l (3-3)
+= ).,,m(M)
+
+Again, the max on the right side of (3.3) is over non-constant vectors. In words, we wish to chose
+\II-2 = [1/:1 ¢2] so that there is a vector a 6 R2 making |p(\II2a,M)| close to )«max(M).
+
+Now, p(1/11) changes most rapidly in the direction of the gradient Vp(¢1).
+
+W0  (iiiiiiv---viiiléi)
+= ,,;,l (Mam — p<¢.)«m (3.4)
+
+So, to maximize the left hand side of (3.3), ‘I12 should be chosen so that the subspace ra.n(\II2)
+
+contains the gradient vector. That is, we must choose 1/22 so that
+
+VP(¢'1) E F3l1{¢1y¢2} E F-'%!1(‘I’2) (3-5)
+
+Clearly, equation (3.4) implies Vp(1/:1) E ran{z/11,M1,b1}. Therefore, if ran{1/:1,1/)2} = ra.n{¢1,M¢1},
+
+then (3.5) is satisﬁed.
+

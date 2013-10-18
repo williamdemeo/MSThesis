@@ -1,0 +1,40 @@
+32
+
+Markov chain with transition probability matrix K whose elements Ic(:::, y) satisfy
+
+2«<z>k<x.y) = «<2»
+
+I
+
+By Deﬁnition 2.1.4 this means that the Markov chain has stationary distribution 7r. Since the
+drain is ergodic, we know that it will eventually converge to the desired distribution. So, our main
+problem — the rate at which such a Markov chain will converge — is clearly at issue in the application
+of the Metropolis algorithm. Moreover, as we will see below, the Metropolis algorithm ensures that
+the Markov chain has the desired stationary distribution by requiring that the chain satisfy the
+stronger condition of reversibility; i.e. detailed balance. Therefore, Markov chains produced by the
+Metropolis algorithm satisfy the assumptions of this paper, which fact conﬁrms that our theory
+
+can be used to bound convergence rates of all such chains.
+
+5.2 Description of the Metropolis Algorithm
+
+The following explains how the Metropolis Algorithm is carried out. The exposition is
+similar to that given in Hammersley and Handscomb’s book Monte Carlo Methods 
+To begin, choose an arbitrary symmetric Markov chain; that is, a Markov chain whose
+
+transition probability matrix P is symmetric. P is called the proposition matrix, and its elements,
+P071"), Satisfy
+pa, 1) 2 0. pm‘) = pm). 2,-pm‘) = 1 vi e S (5-4)
+
+Using P, we will derive a new transition probability matrix K which satisﬁes
+
+Z vr(z')k(='.:') = arm (5.5)
+
+I
+
+For 1' aé j deﬁne
+
+kw) = p<-yum")/«<¢> it nu)/1r(='> <1 (5.6)
+
+P(i,J') if 7r(J')/7r(i) Z1
+

@@ -1,0 +1,35 @@
+2.1.2 A Convergence Theorem
+
+In succeeding arguments, we use some results concerning the asymptotic behavior of
+
+Markov diains. These results require a few more deﬁnitions.
+
+Deﬁnition 2.1.4 A measure 1r is said to be a stationary measure if
+
+Z«(z)p<z.y> = we) (2.4)
+
+2
+Equation 2.4 says P,,(X1 = y) = 1r(y), and by induction that P,,(X,, = y) = 7r(y) for all n 2 1. If 1r
+is a probability measure, then we call 1r a stationary distribution. It represents an equilibrium for
+the chain in the sense that, if X0 has distribution 1r, then so does X,. for all 11..
+
+When the Markov chain is irreducible and aperiodic, the distribution of the state at time
+n converges pointwise to 1r as n —> oo, regardless of the initial state. It is convenient to state
+this convergence result in terms of the Markov chain's transition probability matrix P. Before
+doing so, we note that irreducibility of a Markov chain is equivalent to irreducibility (in the usual
+matrix theory sense) of its transition probability matrix. Furthermore, it turns out that a transition
+probability matrix of an aperiodic Markov chain falls into that class of matrices often called acyclic,
+but for simplicity we will call such stochastic matrices aperiodic. With this terminology, we can
+
+state the convergence theorem in terms of the transition probability matrix P.
+
+Theorem 2.1.1
+
+Suppose P is irreducible, aperiodic, and has stationary distribution 7r. Then as n —> oo,
+p"(i,J') -> #0")
+
+The symbol p"(i, j) is to be understood as the (ij) element of the nth power of P.
+A Markov chain whose transition probability matrix satisﬁes the hypotheses of Theo-
+
+rem 2.1.1 is called ergodic. If we simulate an ergodic chain for sufﬁciently many steps, having
+

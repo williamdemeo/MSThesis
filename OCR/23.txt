@@ -1,0 +1,33 @@
+23
+
+Equivalently,
+0 0  0 -—h1
+1 0  0 —h2
+HE   3 ; =\II“M\II (4.1)
+0 "hl1—1
+1 —h,;
+
+H is a companion matrix which means that its characteristic polynomial is p(:r) = 2:‘ + 23:1 h,-:r"‘1.
+Since H is similar to M, ﬁnding the eigenvalues of M is equivalent to ﬁnding the roots of p(a:).
+However, this is of little practical use since ﬁnding h, constructing 12(1), and ﬁnding its roots is
+probably a harder problem than the one we started with. Instead, the value of decomposition (4.1)
+derives from its upper Hessenberg form. We exploit this property below.
+
+Let ‘II = QR be the QR decomposition of \II. Since ‘I! is assumed nonsingular,
+~II;‘M~r.: = (R"Q‘)M(QR) = H
+Therefore,
+Q‘MQ = RHR-1 2 T
+
+Since R and R“1 are both upper triangular and H is upper Hessenberg, T = R.HR'1 is also upper
+Hessenberg. Furthermore, since M is symmetric, it is clear that T‘ = Q‘MQ = T. That is, T is
+
+an upper Hessenberg matrix that is symmetric. Therefore, T is tridiagonal and we can write it as
+
+follows:
+
+T =    (4.2)
+
+ﬁd—1
+
+0  174-1 ad
+

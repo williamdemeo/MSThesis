@@ -1,0 +1,36 @@
+16
+
+primary assumption underlying facts 3.1.1 and 3.1.2. Recall the assumption: ran(\II) is an invariant
+subspace for M, where ‘II = H1/2(<I> —  It may well be the case that there is a 1p; 6 ran(\II) such
+that M1/zj ¢ ran(\II), thereby violating the assumption. However, lacking an invariant subspace, we
+
+might hope that our observables at least provide an approximate invariant subspace.
+
+Deﬁnition 3.2.1 If the columns of ‘II E R“? are independent and the residual matrix E E
+
+M\II —— \IIT is small for some T 6 R7”, then ran(\II) deﬁnes an approximate invariant subspace.
+
+To see how an approximate invariant subspace can be useful in approximating eigenvalues of M,
+
+we extract a theorem from Golub and Van Loan 
+
+Theorem 3.2.1
+Suppose M 6 Rd” and T 6 RP"? are symmetric and let E E MQ — QT, where Q 6 Rd"? satisﬁes
+
+Q‘Q = I. Then there exist p1,... ,;z,, E A(T) and A1,. . . , A,, E A(M) such that
+ll‘k - Akl S \/§|lE"
+
+fork=1,...,p.
+
+If the subspace ran(Q) is an approximate invariant subspace, then the deﬁnition implies that
+there is a choice T rendering the error IIEII2 small, and thus, the eigenvalues of T provide a good
+approximation to those of M.
+
+When considering the preceding ideas, it becomes apparent that their application will
+present new — but hopefully less prohibitive — problems. As these problems summarize the rt of
+the paper, now is a good time to examine them. First, the preceding theorem assumes a matrix Q
+whose columns form an orthonormal basis for the approximate invariant subspace. For our problem,
+derivation of such a Q is tricky, and we must prepare for this. Next, having an approximate invariant
+
+subspace at our disposal merely tells us that there exists some matrix T which makes the error
+

@@ -1,0 +1,60 @@
+37
+
+TABLE 1: ESTIMATES or /\,m(K) = 0.998746 USING ¢1
+
+  
+   
+  
+  
+  
+ 
+
+     
+ 
+
+        
+  
+  
+
+    
+   
+    
+ 
+
+      
+   
+   
+
+   
+
+sim. # /32
+1 0.995107 0.006960 0.995220 0.600243
+2 0.995099 0.005891 0.994863 0.477393
+3 0.994862 0.009671 0.994925 N/ A
+4 0.995321 0.009319 0.995654 N/A
+5 0.994787 0.004872 0.405446 0.994742
+
+number of desired Lauczos coeﬁicients. That is, the observable could have come from a simulation
+of any reversible Markov chain and not just our special Metropolis chain. The output of this
+program is a T matrix containing the maximum number of Lauczos coeﬂicients (up to the number
+requested by the user) before an approximate invariant subspace was reached. The eigenvalues of
+the nonzero part of this matrix, in accordance with the foregoing theory, should well approximate
+
+eigenvalues of the Markov chain’s stochastic matrix.
+
+5.4.2 Results
+
+Table 1 shows the results of 5 simulations each of 100,000 iterations (discarding the ﬁrst
+5,000 observations) for the one dimensional Ising lattice with 10 nodes and [7 = 1. Displayed is
+the estimate of the ﬁrst Lauczos coeﬂicient a1 (which is the eigenvalue estimate after one step; i.e.
+).m,x(T1)), along with its error bound ﬁl. Appearing in the third column is the largest eigenvalue of
+the 2 x 2 matrix T2, A0 (T2), and ﬁg appears in the fourth column when it is was computable. When
+it was not computable, it was probably because an approximate invariant subspace was reached
+at the ﬁrst step, so ﬁg involved expressions which were close to machine epsilon and, thus, could
+not be computed accurately. Table 2 shows the same information when using a second observable,
+¢2 E ¢§ (i.e. the number of +1’s squared).
+
+The true value of the subdominant eigenvalue for this problem is /\max(K) = 0.998746,
+
+and the next largest is A2(K) = 0.993303. These were computed directly from the transition matrix
+

@@ -1,0 +1,45 @@
+12
+
+Z 7r($)P1y (MI) - Em.-) (¢:(1I) - E1r¢i)
+
+:c,y€S
+
+Here pgy denotes the element in row :1: and column y of P’, the sth power of the transition probability
+
+matrix. Similarly, we deﬁne the cross-covariance between the function ¢,- at time n and q5,- at time
+
+n+sas
+
+E1!’  _ E7r¢:') (¢i(Xn+a) " E1r¢i)l (2-6)
+
+C1r(¢i(Xn)a (#1 (Xn+a))
+
+Z) vr(x)p;,, (¢.-(w) — Em.-) (my) — Em)
+
+z,yES
+
+Now let (<I>) denote the matrix of mean vectors whose jth column is E,,¢,-1, where 1 = (1, . . . , 1)‘,
+and let H = diag(1r(w1), . . . , 1r(wd)), be the d X d diagonal matrix with stationary probabilities 1r(w)
+on the main diagonal, and zeros elsewhere. Finally, denoting by C(s) the p X p covariance matrix
+
+whose (i,j)th element is C, (qﬁ,-(X,.),¢_,< (X,.+,)), we have
+
+0(0) = E(‘1’(Xn) - (‘I>))(‘I’(Xn) - (‘PW
+= (‘P-(‘1’))‘1'1(<1’-(‘I>))
+0(8) = E(<I>(Xn) — (‘I>))(‘1’(Xn+a) - (‘1’))’
+
+(‘P - (‘1’))'1'IP‘(<1> — (<1>))
+
+Below, we will also ﬁnd it useful to have at our disposal a new matrix that is similar to the
+transition probability matrix. We have in mind the matrix M E Ill/2PI'I‘1/2. As is easily veriﬁed,
+
+this allows us to write the covariance matrix as
+
+can = <<I>—<<I>>)°n%*M*n%<<I>—<<I>>>
+
+\II‘M’\II (2.7)
+
+where we have deﬁned ‘II E 111/ 2(<I> —  Recall that our main motivation is that, for out-of-core
+
+problems, traditional eigenvalue algorithms are inadequate. With this fact, and the form (2.7) in
+

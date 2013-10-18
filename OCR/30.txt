@@ -1,0 +1,22 @@
+30
+
+Chapter 5
+
+An Application: Convergence to
+
+Gibbs Measure on the Ising Lattice
+
+5.1 Physical Motivation
+
+Before considering the details of the Metropolis algorithm, it helps to understand the
+setting in which it was developed. To do so we consider an typical example, the Ising model.
+Consider a model of a system consisting of 71 “sites”, each site taking values in {-1, +1}. It might
+help to imagine these sites as equally spaced points on a line or a circle, though we are not restricted
+to such cases. Then our state space 5' consists of all possible n—dimensional permutations of -1’s
+and +1’s. We reprent this as S’ = {-1, +1}", and note that |S| = 2". We can think ofeach site as
+a node existing in one of two possible positions, say “on" or “off”. Each state 1' E S is represented
+by a unique permutation a.- of —1’s and +1’s. Let a,-(k) = :|:l denote the position (on or off) of
+the kth node when the system is in state 1'. An observable ¢ = qS(a,-) on this space is a function of
+
+the permutations 47,-, 1' 6 {1,. . . , 2"}.
+

@@ -1,0 +1,38 @@
+15
+
+Fact 3.1.1 The subspace ran(\II) is invariant for M if and only if there exists T E R”? such that
+
+M\II = \IIT.
+
+Consequently,
+
+Fact 3.1.2 )\(T) Q ).(M)
+
+Proof of 3.1.2:
+
+z\E)\(T) _=_ 3v€R"3Tv=).v
+<=> \IITv = A\IIv
+<=> M\II-u = /\\IIv
+<$ /\ E /\(M)
+
+The second ¢> follows from fact 3.1.1.
+Facts 3.1.1 and 3.1.2 are theoretically useful. To see why, write the equation of fact 3.1.1
+
+as follows:
+
+\IIT = M\II
+\II‘\IIT = \II‘M\II
+T = (\1:'~1r)-‘\1:'M\1:
+
+In this form, we recognize that T = C‘1(0)C(1). That is, using only the covariance of observables
+on the state space, we can generate a matrix T with the property A(T) (_Z ).(M). Recalling that
+M = H1/2Pl'I‘1/2, we see that M is similar to our original stochastic matrix P, and thus ).(M) =
+
+).(P).
+
+3.2 Approximate Invariant Subspace
+
+We qualiﬁed the foregoing by stating that the facts are only theoretically useful. This
+
+is because when choosing observables of the state space we aren't sure that they will satisfy the
+

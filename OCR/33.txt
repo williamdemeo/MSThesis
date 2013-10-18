@@ -1,0 +1,39 @@
+33
+
+For 2' = j deﬁne
+
+kw) = pm) (1—  p(-3;"), where J. = {j = 2‘ 7‘ an nu)/«(='> < 1}
+
+Notice that 1r(i) > 0 implies k(i,j) _>_ 0 and
+
+;k<«',j> = pow)  { (1 —  pm) +  +]§§p<«",:')
+= P(is'5) + 2 P(i1.1') + Z P(iy.7') (5-7)
+jel.» jug
+
+Equation (5.7) shows that, for each i, 2, k(z', j) = 1, which fact conﬁrms that K is a stochastic
+
+matrix.
+
+Next we check that K satisﬁes the detailed balance condition. First suppose that 1r(z') =
+
+1r(j). Then (5.4), (5.6), and symmetry of P imply
+k(i,J') = p(i2.7') = p(jvi) = k(j1i)
+
+and, since 1r(i) = 1r(j), the detailed balance condition, 1r(i)k(i,j) = 7r(j)k(i,j), clearly holds. Now
+
+suppose that 1r(i) > 1r(j). Then (5.4) and (5.6) imply k(j,i) =p(j, 1') and
+k(i,J') = P(iyJ')7r(J')/7r(i) = P(J3i)7r(J')/7r(i) = k(.1'» i)7r(J')/1r(i)
+
+That is, 1r(i)lc(i,j) = 1r(j)k(i,j), as we set out to prove.
+To complete the justification of the Metropolis algorithm, we note that the detailed balance
+condition, 7r(i)k(i, j) = 1r(j)k(i, j), implies that 1r is indeed the stationary distribution for a Markov
+
+chain with transition probability matrix K. To see this notice that
+
+27r(i)k(i..7') = Zﬂijlkiiajl = 1r(J') Z/€(i,J‘) = 7r(J')
+
+I i
+We now summarize the tasks performed when implementing the Metropolis algorithm.
+
+First, pick as a proposition matrix any symmetric stochastic matrix and denote it by P. Begin
+

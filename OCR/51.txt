@@ -1,0 +1,55 @@
+51
+
+double form14,alphal,alpha1sq,form12,form13;
+if(j==0)
+
+return (doub1e)0;
+else if(j==1)
+{
+
+/# printf("\nvar = %1f, cov(%d) = %1f \n“,*var,k,cov[k]);t/
+
+return (cov[k])/(*var); /* the only real value */
+}
+else if(j>1)
+{
+
+return ((double)1/betasq(j-1))
+
+* ( form1(j-1,k+2)
++ pow(a1pha(j-1),2)*form1(j-1,k)
++ 2t(a1pha(j-1) t sqrt(betasq(j-2)) * form2(j-1,k)
+- a1pha(j-1)*form1(j-1,k+1)
+- sqrt(betasq(j—2))#form2(j-1,k+1) )
++ betasq(j-2)*form1(j-2,k)):
+}
+}
+
+double form2(int j, int k)
+{
+/* form2 is never called with j < 1 */
+if(j==1)
+return (doub1e)0;
+else if(j>1)
+return
+(pov(betasq(j-1),—.5)) 3
+(form1(j-1,k+1) - a1pha(j-1)*form1(j-1,k)
+- sqrt(betasq(j-2)) # form2(j—1,k));
+}
+
+/* moment() function for computing var and cov(k)
+arguments:
+data = a nxi array of doubles
+n = length of data[]
+ave =(on exit)= the average of data[]
+var =(on exit)= the variance of data[]
+cov =(on exit)= the covariance of data[i] and data[i+j] for i-1,...,k
+k = the max lag for cov above
+*/
+double moment(double tdata, long n, double tave, double tvar, double tcov, int k)
+{
+/* Centered about data[0] algorithm: #/
+
+long i,j;
+double avel, ave2;
+

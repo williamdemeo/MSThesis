@@ -1,0 +1,25 @@
+Chapter 2
+
+Markov Chains
+
+2.1 General Theory
+
+This review of Markov chain theory can be found in any good probability text. The present
+
+discussion is most similar to that of Durrett [3], to which we refer the reader desiring greater detail.
+
+2.1.1 The Basic Setup
+
+Heuristically, a Markov chain is a stochastic process with a lack of memory property. Here
+this means that the future of the process, given its past behavior and its present state, depends only
+on its present state. This is the probabilistic analogue of a familiar property of classical particle
+systems. Given the position and velocities of all particles at time t, the equations of motion can be
+completely solved for the future evolution of the system. Thus, information describing the behavior
+of the process prior to time t is superﬂuous. To be a bit more precise, if technical, we need the
+
+following deﬁnitions.
+
+Deﬁnition 2.1.1 Let (S, 8) be a measurable space. A sequence X,., n 2 0, of random variables
+
+taking values in S is said to be a Markov chain with respect to the ﬁltration a(Xo, . . . ,X,,) if for
+

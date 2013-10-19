@@ -1,68 +1,91 @@
 \chapter{Lanczos Procedures}
 
 The following will review the usual procedure for generating an orthonormal basis for
-lC(M, «/11, p), and conclude by showing that, for our problem, we can find the matrix Q‘MQ without
-actually carrying out this procedure. Note that this conclusion is essential since the procedure
+$\sK(\M, \psi_1, p)$, 
+and conclude by showing that, for our problem, we can find the matrix 
+$\Q^t\M\Q$
+without actually carrying out this procedure. Note that this conclusion is essential since the procedure
+requires matrix vector multiplication---an operation we have assumed impossible for large enough $d$.
 
-requires matrix vector multiplication - an operation we have assumed impossible for large enough :1.
-
-4.1 The General Lanczos Algorithm
-Let 21;“) E M"¢ and consider the d x :1 matrix
-«I 2 [«/»,M«/»,  ,M"“¢] 2 [«b‘°>,«/»“’,...,¢<‘-‘>1
-
-Notice that M\II = [1/:(1),... ,1/;(d'1),Md¢r] and, assuming for the moment that \I1 is non-singular,
-
-we can compute the vector h = —\II‘1M"1/J. Thus,
-
-M\II = \II[e2,. . . ,e,1, —h] E IIIH
-
-
-% 23.txt
-23
-
+\section{The General Lanczos Algorithm}
+% Sec 4.1
+\label{sec:gener-lancz-algor}
+Let $\psip{k} =  \M^k \psi$ and consider the $d\times d$ matrix
+\[
+\Psi = [\psi, \M\psi, \dots, \M^{d-1}\psi] = [\psip{0}, \psip{1}, \dots, \psip{d-1}]
+\]
+Notice that $\M\Psi = [\psip{1}, \psip{2}, \dots, \psip{d-1}, \M^d \psi]$,
+and assuming for the moment that $\Psi$ is nonsingular,
+we can compute the vector $h = -\Psi^{-1}\M^d \psi$. Thus,
+\begin{equation}
+\label{eq:1}
+\M\Psi = \Psi [e_2,\dots,e_d,-h],  
+\end{equation}
+where $e_j$ is the column vector with 1 in
+the $j$th position and zeros elsewhere. We define $H = [e_2,\dots,e_d,-h]$,
+so~(\ref{eq:1}) becomes $\M\Psi = \Psi H$.
+%
+%
+% ----------------- 23.txt ----------------------------------------------
+%
+%
 Equivalently,
-0 0  0 -—h1
-1 0  0 —h2
-HE   3 ; =\II“M\II (4.1)
-0 "hl1—1
-1 —h,;
-
-H is a companion matrix which means that its characteristic polynomial is p(:r) = 2:‘ + 23:1 h,-:r"‘1.
-Since H is similar to M, ﬁnding the eigenvalues of M is equivalent to ﬁnding the roots of p(a:).
-However, this is of little practical use since ﬁnding h, constructing 12(1), and ﬁnding its roots is
+\begin{equation}
+  \label{eq:4.1}
+H = 
+\begin{pmatrix}
+0 & 0      & \cdots & 0 & -h_1 \\
+1 & 0      & \cdots & 0 & -h_2\\
+  & \ddots &        &   & \vdots \\
+  &        & \ddots & 0 & -h_{d-1}\\
+  &        &        & 1 & -h_{d}
+\end{pmatrix} = \Psi^{-1} \M \Psi.
+\end{equation}
+$\H$ is a \emph{companion matrix} which means that its characteristic polynomial
+is $p(x) = x^d + \sum_{i=1}^d h_i x^{i-1}$.
+Since $\H$ is similar to $\M$, finding the eigenvalues of $\M$ is equivalent to
+finding the roots of $p(x)$. However, this is of little practical use since
+finding $h$, constructing $p(x)$, and finding its roots is 
 probably a harder problem than the one we started with. Instead, the value of decomposition (4.1)
-derives from its upper Hessenberg form. We exploit this property below.
+derives from its \emph{upper Hessenberg form}. We exploit this property below.
 
-Let ‘II = QR be the QR decomposition of \II. Since ‘I! is assumed nonsingular,
-~II;‘M~r.: = (R"Q‘)M(QR) = H
-Therefore,
-Q‘MQ = RHR-1 2 T
+Let $\Psi = \Q\R$ be the QR decomposition of $\Psi$. Since $\Psi$ is assumed nonsingular,
+\[
+\Psi_d^{-1}\M \Psi_d = (\R^{-1}\Q^t)\M(\Q\R) = \H
+\]
+Therefore, $\Q^t\M\Q = \R\H\R^{-1}$.  Let $\T \R\H\R^{-1}$.  Then, since $\R$
+and $\R^{-1}$ are both upper triangular and $\H$ is upper Hessenberg $\T = \R\H\R^{-1}$ is also upper
+Hessenberg. Furthermore, since $\M$ is symmetric, it is clear that 
+$\T^t =\Q^t\M\Q = T$. Thus, $\T$ is both upper Hessenberg and symmetric. Therefore,
+$\T$ is tridiagonal and we can write it as follows:
+\begin{equation}
+  \label{eq:4.2}
+T = 
+\begin{pmatrix}
+\alpha_1 & \beta_1 &      0 & \cdots & 0 \\
+\beta_1  & \alpha_2 & \ddots &        & \vdots\\
+         & \ddots & \ddots & \ddots   &\\
+\vdots   &       &  \ddots & \ddots & \beta_{d-1}\\
+0  &   \cdots    &   & \beta_{d-1} &\alpha_d
+\end{pmatrix}.
+\end{equation}
+%
+%
+% ------------ 24.txt ----------------------------------------------
+%
+%
+Equating columns $j$ on both sides of $\M\Q = \Q\T$ yields
+\begin{equation}
+\label{eq:4.3}
+\M q_j = \beta_{j-1}q_{j-1}+\alpha_j q_j + \beta_j q_{j+1}
+\end{equation}
+Since the columns of $\Q$ are orthonormal, multiplying both sides 
+of~(\ref{eq:4.3})
+by $q_j$ and $q_{j+1}$ yields
+$\alpha_j = q_j^t \M q_j$ and $\beta_j = q_{j+1}^t \M q_j$.
+The foregoing justifies what is called the \emph{Lanczos algorithm}, which is performed as follows:
 
-Since R and R“1 are both upper triangular and H is upper Hessenberg, T = R.HR'1 is also upper
-Hessenberg. Furthermore, since M is symmetric, it is clear that T‘ = Q‘MQ = T. That is, T is
-
-an upper Hessenberg matrix that is symmetric. Therefore, T is tridiagonal and we can write it as
-
-follows:
-
-T =    (4.2)
-
-ﬁd—1
-
-0  174-1 ad
-
-
-% 24.txt
-24
-
-Equating columns j on both sides of MQ = QT yields
-M113‘ = B,-—1qj—1 + 0:91 + ﬁjqj+1 (43)
-
-Since the columns of Q are orthonormal, multiplying both sides of (4.3) by q_,- and q,-+1 yields
-oz, = q§Mq,- and ﬂj = q;-+1Mq,-.
-The foregoing justifies what is called the Lanczos algorithm, performed as follows:
-
-The Lanczos algorithm for (partial) reduction to symmetric tridiaganal form
+\emph{The Lanczos algorithm for (partial) reduction to symmetric tridiaganal form}
 
 91 = ¢/||¢||2, [30 = 0, 40 = 0
 
@@ -70,30 +93,30 @@ for j=1top
 
 z=Mq_,-
 
-5:‘ = ||Z||2
+5:^t = ||Z||2
 if 5, = 0, quit
 ¢Ij+1 = 2/51
 
 end for
 
 The qj computed by the Lanczos algorithm are often called the Lanczos vectors. If the
-loop in the algorithm is terminated because ﬁg = 0, this indicates that an exact invariant subspace
+loop in the algorithm is terminated because fig = 0, this indicates that an exact invariant subspace
 has been computed, and is given by ran{q1 - - - qk}. Otherwise, we usually halt the algorithm after
-p steps, in which case the algorithm converg to approximations of at most 12 eigenvalues.‘
+p steps, in which case the algorithm converg to approximations of at most 12 eigenvalues.^t
 
 Note that equation (4.3) results from the equation MQ = QT. The latter equation holds
 since, starting with d vectors in our subspace, Q is a d Xd matrix whose columns form an orthonormal
 
-basis for all of R‘, which is clearly an invariant “sub” space. The Lanczos algorithm above, however,
+basis for all of R^t, which is clearly an invariant “sub” space. The Lanczos algorithm above, however,
 
-‘A detailed discussion of such convergence (and misconvergence) is given in 
+^tA detailed discussion of such convergence (and misconvergence) is given in 
 
 % 25.txt
 25
 
 proceeds for only p steps, producing a d x p matrix Q, whose columns form an orthonormal basis
 for the approximate invariant subspace IC(M, ¢, p), and a p X p matrix T, = Q'MQ. In that case,
-IIMQ = QTp|[g =  is non-zero and gives the error bound described in Theorem 3.2.1. Now,
+\PsiMQ = QTp|[g =  is non-zero and gives the error bound described in Theorem 3.2.1. Now,
 
 writing the full d x :1 matrix T of (4.2) as
 
@@ -106,7 +129,7 @@ writing the full d x :1 matrix T of (4.2) as
 
 allows us to describe the error bound ||E||-2 in terms of the submatrix Tm, and, hence, in terms of
 
-ﬁzz-
+fizz-
 Theorem 4.1.1
 
 HT, and T,“ are the matrices appearing in (4.4), and if the p columns of Q are computed by the
@@ -128,7 +151,7 @@ Notice that the Lanczos algorithm requires the computation of Mqj. Throughout th
 paper we have assumed that M 6 Rd“, and that d is so large as to make the matrix vector
 multiplication Mqj impossible. Now, the Lanczos algorithm constructs an orthonormal basis for
 the Krylov subspace. For our purposes, this construction is not essential. What is essential is that
-we ﬁnd a way to generate the Lanczos coejﬁcients oz,-, ﬁj, (j = 1, . . . , p), and whence the matrix
+we find a way to generate the Lanczos coejficients oz,-, fij, (j = 1, . . . , p), and whence the matrix
 T, without performing the operation Mqj required by the Lanczos algorithm. We now address this
 problem.
 
@@ -139,14 +162,14 @@ forward:
 
 01 = qiMq1
 
-I/1‘M1/I
+I/1^tM1/I
 ¢’¢
 
 and now the special properties of the Markov chain setting play an important role. For, regard the
 
 following
 
-¢‘M«/2 = (¢ — E.¢)‘II%‘MII%(¢ - Em)
+¢^tM«/2 = (¢ — E.¢)^t\Psi%^tM\Psi%(¢ - Em)
 
 Cw (d>(n), ¢(" + 1)) (4-5)
 
@@ -156,7 +179,7 @@ W1!’ = (<15 - E«¢)'H(¢ - E«¢)
 
 Varn (¢(")) (4-6)
 
-Recall that the deﬁnition of M implies H%‘MI'I% = HP, and this justiﬁes equation (4.5). Putting
+Recall that the definition of M implies H%^tMI'I% = HP, and this justifies equation (4.5). Putting
 
 % 27.txt
 27
@@ -164,7 +187,7 @@ Recall that the deﬁnition of M implies H%‘MI'I% = HP, and this justiﬁes eq
 these equations together, we have a. nice form for :11:
 
 _ c, (run), an + 1))
-"‘ ' Ta:,(¢(n))
+"^t ' Ta:,(¢(n))
 
 The next Lanczos coeﬂicient, B1, is only slightly more complicated.
 
@@ -176,13 +199,13 @@ The next Lanczos coeﬂicient, B1, is only slightly more complicated.
 
 (4.7)
 
-Again recalling the deﬁnition M E 111/ 2P1'I‘1/2, a. simple manipulation veriﬁes
+Again recalling the definition M E 111/ 2P1'I^t1/2, a. simple manipulation verifies
 
-1'li‘M’l'[% = HP’, whereby it follows that
+1'li^tM’l'[% = HP’, whereby it follows that
 
-(«s — E,,¢)‘HP”(¢ — Em)
+(«s — E,,¢)^tHP”(¢ — Em)
 
-"‘M2"‘ (¢ — E,¢)*n<¢ — Em)
+"^tM2"^t (¢ — E,¢)*n<¢ — Em)
 
 C: (¢("), ¢(n + 2))
 V3-Ur 
@@ -190,7 +213,7 @@ V3-Ur
 Inserting the last expression into equation (4.7) gives
 
 _ c,(¢(n).¢<n+2)) c,(¢<n>,¢(n+1)> ’ "’
-"“ jvar,<¢<n)> "(jvar,<¢<n)) ‘)
+"“ jvar,<¢<n)> "(jvar,<¢<n)) ^t)
 
 Notice that we can estimate these expressions of oz; and ﬂl by running simulations of the Markov
 chain. To do so, we run the Markov chain starting from a random initial state, compute the value of
@@ -200,14 +223,14 @@ and variance of the observable.
 Before generalizing this for the jth Lanczos coefficient, we consider one more coeﬂicient
 in detail. Recall that the second basis element q; in the Lanczos algorithm is given by 1;; =
 
-(Mql — oz1q1)/ﬁl. From this we can derive an expression for (12 which, though not as neat as those
+(Mql — oz1q1)/fil. From this we can derive an expression for (12 which, though not as neat as those
 
 % 28.txt
 28
 
 for oz; and [31, is nonetheless tractable.
 
-I12 ‘IiMq2
+I12 ^tIiMq2
 
 1
 [7(M91 — 0t1¢I1)tM(M¢I1 - 11191)
@@ -217,18 +240,18 @@ I12 ‘IiMq2
 = f,§(qiM3q1 - 2a1qlM2<11 + a’9iM¢11)
 1
 1
-= —2(<1iM3q1 - 2015i ‘ all (4-8)
+= —2(<1iM3q1 - 2015i ^t all (4-8)
 
 1.
 The last equality follows from equation (4.7), which can be written as q{M2q1 = off’ + (if. The
-preceding paragraphs deﬁne all but one of the quantities in the expression (4.8). The one remaining
+preceding paragraphs define all but one of the quantities in the expression (4.8). The one remaining
 is q§M3q1, which can also be expressed in terms of covariances of <15, and the analysis is almost
 
 identical to that for q{M2q1:
 
-(¢ — E,¢)'IIP3(¢ — Em)
+(¢ — E,¢)'\PsiP3(¢ — Em)
 
-"lM3"‘ (¢ — E,¢s)‘H(¢ - Em»)
+"lM3"^t (¢ — E,¢s)^tH(¢ - Em»)
 
 Cu (¢(")a ¢(n + 3))
 Varn(¢(n))
@@ -239,21 +262,21 @@ Lanczos vectors q,~ — vectors we do not wish to compute. Recall that the only 
 handle is our initial observable. Therefore, we must also establish a recurrence among the q,-’s, thus
 making them available inductively from our observable vector.
 
-To begin with the ﬂfs, recall that ﬁj E ||Mqj — ajq_.,- — ,H_,~_1q,-_;|[2. Whence,
+To begin with the ﬂfs, recall that fij E ||Mqj — ajq_.,- — ,H_,~_1q,-_;|[2. Whence,
 
-Bf (M411 — °‘j‘Ij - ﬁj-1qj—1)’(MlIj - Otjqj - 51-19141)
+Bf (M411 — °^tj^tIj - fij-1qj—1)’(MlIj - Otjqj - 51-19141)
 
-q;-M291‘ - 0? - B,z_1 (4-9)
+q;-M291^t - 0? - B,z_1 (4-9)
 
-Some simple algebra and the deﬁnitions aj E q§Mqj and ﬁJ~_1 E q;-Mq,--1 prove equality (4.9). The
+Some simple algebra and the definitions aj E q§Mqj and fiJ~_1 E q;-Mq,--1 prove equality (4.9). The
 % 29.txt
-recurrence for 0114.1 is equally straight forward, though the ﬁnal form is not as neat:
+recurrence for 0114.1 is equally straight forward, though the final form is not as neat:
 
 2
 0tj+1 ¢Ij+1M'1j+1
 
 1
-§(M¢15 - 11111;‘ - ﬂj—1<Ij—1)'M(Mqj - Otjqj - /3j—1qj—1)
+§(M¢15 - 11111;^t - ﬂj—1<Ij—1)'M(Mqj - Otjqj - /3j—1qj—1)
 J
 
 1
@@ -261,7 +284,7 @@ J
 J
 From (4.9), q;~M2q,~ = oz? + ﬂf + ﬂ}_1 and, upon plugging this into (4.10), we arrive at
 1
-a,~+1 = E(q§»M3q_,,- — (1? — 2ozJ~ﬁJ2 — 2ﬂj_1q;»_1M2qj + ﬁ2_1) (4.11)
+a,~+1 = E(q§»M3q_,,- — (1? — 2ozJ~fiJ2 — 2ﬂj_1q;»_1M2qj + fi2_1) (4.11)
 J
 
 The expressions above involve the higher order Lanczos vectors qj. In the present context,
@@ -272,19 +295,19 @@ on our initial observable. The general forms of interest are q;+1M"qj+1 and qj-+
 begin with the simpler of the two:
 
 ¢I;'+1Mk9j = ij(Mqj - Otjqj - ﬂj—1t1j—1)'M"¢1j
-= i(<1§M"“¢Ij - C‘j‘I_;'Mk‘Ij - ﬂj—1q§M"qj-1)
+= i(<1§M"“¢Ij - C^tj^tI_;'Mk^tIj - ﬂj—1q§M"qj-1)
 The second is,
-‘I_;'+1Mkqj+1 = ﬂi?(M<Ij - Otjqj - .3j—1<Ij—1)‘Mk(Mqj — Orjqj - ﬂj—1¢1j—1)
+^tI_;'+1Mkqj+1 = ﬂi?(M<Ij - Otjqj - .3j—1<Ij—1)^tMk(Mqj — Orjqj - ﬂj—1¢1j—1)
 
 1
-ﬁ(‘1§M'°"<1:‘ + °‘:2"I§M'°<J:' + ﬁ?—z<Ii—1M"<I:‘—1
+fi(^t1§M'°"<1:^t + °^t:2"I§M'°<J:' + fi?—z<Ii—1M"<I:^t—1
 J
-—2a,-q;-M*+‘q,~ + 2am,--1q;-M*q,--1 — zza,--1q;-M*+‘q]--1) (4.12)
+—2a,-q;-M*+^tq,~ + 2am,--1q;-M*q,--1 — zza,--1q;-M*+^tq]--1) (4.12)
 
 The point of all this is that each pair of coeﬂicients (oz,-+1, /3,-) can be expressed as a
 function of the covariance between ¢(n) and ¢(n+ m), for m = 0, . . . , 21' + 1. Since the expressions
 are based on four recurrence relations, they become quite complicated as 1' gets large. However,
-deﬁning these recursions in a. computer program is trivial, and we use this fact in Section 5.4 when
+defining these recursions in a. computer program is trivial, and we use this fact in Section 5.4 when
 
 applying the foregoing to a particular problem.
 

@@ -46,14 +46,17 @@
 \newcommand\C{\ensuremath{\operatorname{C}}}
 \renewcommand\P{\ensuremath{\operatorname{P}}}
 \newcommand\M{\ensuremath{\operatorname{M}}}
+\newcommand\H{\ensuremath{\operatorname{H}}}
 \newcommand\T{\ensuremath{\operatorname{T}}}
 \newcommand\I{\ensuremath{\operatorname{I}}}
 \newcommand\Q{\ensuremath{\operatorname{Q}}}
+\newcommand\R{\ensuremath{\operatorname{R}}}
 \newcommand\Z{\ensuremath{\operatorname{Z}}}
 \newcommand\E{\ensuremath{\operatorname{E}}}
 \newcommand\U{\ensuremath{\operatorname{U}}}
 \newcommand\V{\ensuremath{\operatorname{V}}}
 \newcommand\ran{\ensuremath{\operatorname{ran}}}
+\newcommand\psip[1]{\ensuremath{\psi^{(#1)}}}
 \newcommand\pij{\ensuremath{p_{ij}}}
 \newcommand\pji{\ensuremath{p_{ji}}}
 %\renewcommand\phi{\ensuremath{\varphi}}

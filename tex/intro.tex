@@ -1,66 +1,88 @@
-The rate at which a Markov chain converges to a given probability distribution has long
-been an active area of research. This is not surprising considering this problem’s relevance to the ar-
-eas of statistics, statistical mechanics, and computer science. Markov Chain Monte Carlo (MCMC)
-algorithms provide important examples. These algorithms come in handy when we encounter a
-complicated probability distribution from which we want to draw random samples. In statistical
-mechanics, we might wish to estimate the phase average of a function on the state space. Goodman
-and Sokal [6] examine Monte Carlo methods in this context. Examples from statistics occur in the
-Bayesian paradigm when we are forced to simulate an unwieldy posterior distribution (see, e.g.,
-Geman and Geman 
+The rate at which a Markov chain converges to a given probability distribution
+has long been an active area of research. This is not surprising considering
+this problem's relevance to the areas of statistics, statistical mechanics, and
+computer science. Markov Chain Monte Carlo (MCMC) algorithms provide important
+examples. These algorithms come in handy when we encounter a complicated
+probability distribution from which we want to draw random samples. In
+statistical mechanics, we might wish to estimate the phase average of a function
+on the state space. Goodman and Sokal~\cite{GoodmanSokal:1989} examine Monte
+Carlo methods in this context. Examples from statistics occur in the Bayesian
+paradigm when we are forced to simulate an unwieldy posterior distribution (see,
+e.g., Geman and Geman~\cite{Geman:1984}.  
 
 To implement the MCMC algorithm, we invent a Markov chain that converges to the
-desired distribution (this is often accomplished using the Metropolis algorithm
-described in Chapter 5). Realizations of the chain will eventually represent
-samples from this distribution. Sometimes ``eventually'' -- meaning all but
-finitely many terms of the chain -- is just not enough. We need more practical
-results. In particular, we want to know how many terms of the chain should be 
-discarded before we are sampling from a distribution that is close (in total variation distance) to
-% 03.txt
-the distribution of interest. This is the purpose of bounding convergence rates for Markov chains.
+desired distribution (this is often accomplished using the \emph{Metropolis algorithm}
+described in Chapter~\ref{cha:an-appl-conv}). Realizations of the chain will
+eventually represent samples from this distribution. Sometimes
+``eventually''---meaning all but finitely many terms of the chain---is just not 
+enough. We need more practical results. In particular, we want to know how many
+terms of the chain should be discarded before we are sampling from a
+distribution that is close (in total variation distance) to 
+%
+%
+% ------------- 03.txt -----------------------------------------------------
+%
+%
+the distribution of interest. This is the purpose of bounding convergence rates
+for Markov chains. 
 
-Often the Markov chains encountered in this context satisfy a condition known in the
-physics literature as detailed balance. Probabilists call chains with this property reversible. This
-simply means that the chain has the same probability law whether time moves
-forward or 
-backward.\footnote{This is not a precise definition. In particular the chain must
-  have started from its stationary distribution. Full rigor is postponed until Section 2.1.}
-In this paper, we consider the rate at which such chains converge to a \emph{stationary distribution}.\footnote{This and other italicized terms are defined in Section 2.1.}
+Often the Markov chains encountered in this context satisfy a condition known in
+the physics literature as \emph{detailed balance}. Probabilists call chains with
+this property \emph{reversible}. This simply means that the chain has the same
+probability law whether time moves forward or backward.\footnote{This is not a
+precise definition. In particular the chain must have started from its
+stationary distribution. Full rigor is postponed until
+Section~\ref{sec:general-theory}.} 
+In this paper, we consider the rate at which such chains converge to
+a \emph{stationary distribution}. This and other italicized terms are
+defined in Section~\ref{sec:general-theory}.
 
-There are a number of different methods in common use for bounding convergence rates of
-Markov chains, and a good review of these methods with many references can be found in  More
-recently developed methods, employing logarithmic Sobolev inequalities, are reviewed in  Most
-of the bounds in common use involve the sub—dominant eigenvalue of the Markov chain's transition
-probability matrix, and thus require good approximations to such eigenvalues. In many applications,
-however, the transition probability matrix is so large that it becomes impossible to store even a
-single vector of the matrix in conventional computer memory. These so called out-of-core problems
-are not amenable to traditional eigenvalue algorithms\footnote{By ``traditional
-  eigenvalue algorithms'' we refer to those found, for example, in Golub and Van
-  Loan[5]. See also the book by Demmel [1] for a more recent discussion.}
-without modification. This paper develops 
-such a modification for the Markov chain eigenvalue problem. In particular it develops a method
-for approximating the first few eigenvalues of a transition probability matrix when we know the
-general structure of the underlying Markov chain. The method does not require storage of large
-matrices or vectors. Instead we need only simulate the Markov chain, and conduct a statistical
-analysis of the simulation.
+There are a number of different methods in common use for bounding convergence
+rates of Markov chains, and a good review of these methods with many references
+can be found in~\cite{Rosenthal:1995}.  More recently developed methods
+employing logarithmic Sobolev inequalities are reviewed in~\cite{Diaconis:1996}.  
+Most of the bounds in common use involve the subdominant eigenvalue of the
+Markov chain's transition probability matrix, and thus require good
+approximations to such eigenvalues. In many applications, however, the
+transition probability matrix is so large that it becomes impossible to store
+even a single vector of the matrix in conventional computer memory. These so
+called \emph{out-of-core} problems are not amenable to traditional eigenvalue
+algorithms without modification.\footnote{By ``traditional 
+  eigenvalue algorithms'' we mean those found, for example, in Golub and Van
+  Loan~\cite{Golub:1996}. See also the book by Demmel\cite{Demmel:1997} for more 
+  recent treatment.}
+In this paper we develop such a modification for the Markov chain eigenvalue
+problem. In particular we develop a method for approximating the first few
+eigenvalues of a transition probability matrix when we know the general
+structure of the underlying Markov chain. The method does not require storage
+of large matrices or vectors. Instead we need only simulate the Markov chain,
+and conduct a statistical analysis of the simulation.
 
-Here is a look at what follows. Section 2.1 contains a review of the relevant Markov chain
-theory. Readers conversant in the asymptotic theory of Markov chains might wish to at least skim
-Section 2.1, if only to become familiar with our notation. Section 2.2 describes functions on the state
+Here is a brief summary of the paper. Section~\ref{sec:general-theory} contains
+a review of the relevant Markov chain theory. Readers who already know the
+basics of asymptotic theory of Markov chains might wish to skim 
+Section\ref{sec:general-theory} if only to familiarize themselves with our
+notation. Section~\ref{sec:funct-state-space} describes functions on the state 
 % 04.txt
-space of the Markov process. This section and Chapter 3 develop the context in which we formulate
-the new ideas of the paper. In the last section of Chapter 3, Section 3.3, we present the familiar
-Krylov subspace and explain why this represents our best approximation to a subspace containing
-extremal eigenvectors of the transition probability matrix.\footnote{or, more
-  precisely, a similarity transformation of this matrix.} The first section of
-Chapter 4 describes the \emph{Lanczos algorithm} for generating an orthonormal basis
-for the Krylov subspace. As it stands, this algorithm is useless for an
-out-of-core problem such as ours since, by definition of such problems, 
-it requires too much data movement; all the computing time is spent swapping data between slow
-and fast memory (e.g. between the hard disk and cache). Therefore, we discuss alternatives to
-Lanczos and demonstrate that the \emph{Lanczos coeficients} are readily available through simulations of
-the Markov chain, which fact allows us to avoid the standard algorithm altogether. Following this
-is a chapter describing the Metropolis algorithm used to produce a reversible stochastic matrix.
-It is here that we experiment with the procedure described in Section 4.2 and approximate the
-extremal eigenvalues of the matrix, without storing any of its vectors. Finally, Chapter 6 concludes
-the paper.
+space of the Markov process. This section and Chapter~\ref{cha:invar-appr-invar}
+develop the context in which we formulate the new ideas of the paper. In the
+last section of Chapter~\ref{cha:invar-appr-invar},
+Section~\ref{sec:krylov-subspace}, we describe the \emph{Krylov subspace} and
+explain why this represents our best approximation to a subspace containing 
+extremal eigenvectors of the transition probability matrix (more
+  precisely, a similarity transformation of this matrix). The first section of
+Chapter~\ref{cha:lanczos-procedures} describes the \emph{Lanczos algorithm} for
+generating an orthonormal basis for the Krylov subspace. As it stands, this
+algorithm is useless for an out-of-core problem since, by
+definition of such problems, it requires too much data movement; all the
+computing time is spent swapping data between slow and fast memory (disk to ram
+to cache and back). We develop alternatives to the Lanczos algorithm and
+demonstrate that the \emph{Lanczos coefficients} of the algorithm can be
+obtained by simulations of the Markov chain, and this allows us to avoid
+the standard algorithm altogether. Following this is a chapter describing the
+Metropolis algorithm used to produce a reversible stochastic matrix. It is here
+that we experiment with the procedure described in
+Section~\ref{sec:lancz-proc-mark} and approximate the extremal eigenvalues of
+the matrix, without storing any of its vectors. Finally,
+Chapter~\ref{cha:conclusion} concludes the paper. 
 % 05.txt

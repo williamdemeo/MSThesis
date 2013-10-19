@@ -9,14 +9,36 @@ J.~Demmel.
 \newblock {\em Applied Numerical Linear Algebra}.
 \newblock Society for Industrial and Applied Mathematics, 1997.
 
+\bibitem{Diaconis:1996}
+P.~Diaconis and L.~Saloff-Coste.
+\newblock Logarithmic sobolev inequalities for finite markov chains.
+\newblock {\em The Annals of Applied Probability}, 6:695--750, 1996.
+
 \bibitem{Durret:1996}
 R.~Durrett.
 \newblock {\em Probability: Theory and Examples}.
 \newblock Duxbury Press, second edition, 1996.
 
+\bibitem{Geman:1984}
+S.~Geman and D.~Geman.
+\newblock Stochastic relaxation. gibbs distributions and the bayesian
+  restoration of images.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  6:721--741, 1984.
+
 \bibitem{Golub:1996}
 G.~Golub and Charles Van~Loan.
 \newblock {\em Matrix Computations}.
 \newblock Johns Hopkins University Press, third edition, 1996.
+
+\bibitem{GoodmanSokal:1989}
+G.~Goodman and A.~Sokal.
+\newblock Multigrid monte carlo method. conceptual foundations.
+\newblock {\em Physical Review D}, 40:2035--2071, 1989.
+
+\bibitem{Rosenthal:1995}
+J.~Rosenthal.
+\newblock Convergence rates for markov chains.
+\newblock {\em Siam Review}, 37:387--405, 1995.
 
 \end{thebibliography}

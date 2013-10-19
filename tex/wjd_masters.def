@@ -13,6 +13,8 @@
 \usepackage{scalefnt}
 \usepackage{verbatim}
 \usepackage{color}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{ifthen}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -44,6 +46,7 @@
 \newcommand\F{\ensuremath{\mathcal{F}}}
 \newcommand\R{\ensuremath{\mathbb{R}}}
 \newcommand\C{\ensuremath{\operatorname{C}}}
+\newcommand\bC{\ensuremath{\mathbf{C}}}
 \renewcommand\P{\ensuremath{\operatorname{P}}}
 \newcommand\M{\ensuremath{\operatorname{M}}}
 \newcommand\H{\ensuremath{\operatorname{H}}}
@@ -53,8 +56,10 @@
 \newcommand\R{\ensuremath{\operatorname{R}}}
 \newcommand\Z{\ensuremath{\operatorname{Z}}}
 \newcommand\E{\ensuremath{\operatorname{E}}}
+\newcommand\bE{\ensuremath{\mathbf{E}}}
 \newcommand\U{\ensuremath{\operatorname{U}}}
 \newcommand\V{\ensuremath{\operatorname{V}}}
+\newcommand\Var{\ensuremath{\mathbf{Var}}}
 \newcommand\ran{\ensuremath{\operatorname{ran}}}
 \newcommand\psip[1]{\ensuremath{\psi^{(#1)}}}
 \newcommand\pij{\ensuremath{p_{ij}}}

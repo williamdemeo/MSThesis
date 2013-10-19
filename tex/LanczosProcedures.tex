@@ -60,7 +60,7 @@ $\T^t =\Q^t\M\Q = T$. Thus, $\T$ is both upper Hessenberg and symmetric. Therefo
 $\T$ is tridiagonal and we can write it as follows:
 \begin{equation}
   \label{eq:4.2}
-T = 
+\T = 
 \begin{pmatrix}
 \alpha_1 & \beta_1 &      0 & \cdots & 0 \\
 \beta_1  & \alpha_2 & \ddots &        & \vdots\\
@@ -84,233 +84,266 @@ of~(\ref{eq:4.3})
 by $q_j$ and $q_{j+1}$ yields
 $\alpha_j = q_j^t \M q_j$ and $\beta_j = q_{j+1}^t \M q_j$.
 The foregoing justifies what is called the \emph{Lanczos algorithm}, which is performed as follows:
+         \begin{algorithm}
+           \caption{The Lanczos algorithm for (partial) reduction to symmetric tridiaganal form}
+           \begin{algorithmic}
+             \STATE $q_1 = \psi/\|\psi\|_2$, $\beta_0 = 0$, $q_0= 0$
+             \FOR $j = 1 \text{ to } p$
+             \STATE $z \leftarrow \M q_j$
+             \STATE $\alpha_j \leftarrow q_j^tz$
+             \STATE $z \leftarrow z - \alpha_j q_j - \beta_{j-1} q_{j-1}$
+             \STATE $\beta_j \leftarrow \|z\|_2$
+             \IF $\beta_j=0$ 
+             \STATE return
+             \ENDIF
+             \STATE $q_{j+1} = z/\beta_j$
+             \ENDFOR
+           \end{algorithmic}
+         \end{algorithm}
+The $q_j$ computed by the Lanczos algorithm are often called the \emph{Lanczos vectors}. If the
+loop in the algorithm is terminated because $\beta_{k}= 0$, this indicates that
+an exact invariant subspace has been computed, and is given by 
+$\ran\{q_1, \dots, q_k\}$. Otherwise, we usually halt the algorithm after 
+$p$ steps, in which case the algorithm converges to approximations of at most
+  $p$ eigenvalues.\footnote{A Detailed discussion of such convergence (and
+    misconvergence) is given in~\cite{Demmel:1997}.}
 
-\emph{The Lanczos algorithm for (partial) reduction to symmetric tridiaganal form}
+Note that Equation~(\ref{eq:4.3}) results from the equation $\M\Q = \Q\T$. The latter equation holds
+since, starting with $d$ vectors in our subspace, $\Q$ is a $d \times d$ matrix
+whose columns form an orthonormal basis for all of $\R^d$, which is clearly an
+invariant subspace. The Lanczos algorithm above, however, 
+%
+%
+% ------------ 25.txt ---------------------------------------------------------
+%
+%
+proceeds for only $p$ steps, producing a $d \times p$ matrix $\Q$, whose columns
+form an orthonormal basis for the \emph{approximate} invariant subspace 
+$\sK(\M, \psi, p)$, and a $p \times p$ matrix $\T, = \Q^t\M\Q$. In that case,
+$\|\M\Q - \Q\T_p\|_2 = \|\E\|_2$ is nonzero and gives the error bound described
+in Theorem~\ref{thm:3.2.1}. Now, writing the full $d \times d$ matrix $\T$
+of~(\ref{eq:4.2}) as
+\begin{equation}
+  \label{eq:4.4}
+\T = 
+\left( \begin{array}{c|c}
+\T_p & \T_{pu}^t \\
+ \hline
+\T_{pu} & \T_{u}
+\end{array}
+\right)
+=
+\left( \begin{array}{cccc|cccc}
+\alpha_1 & \beta_1 &      &                 & & && \\
+\beta_1 & \ddots  & \ddots&                 & & && \\
+        & \ddots  & \ddots  & \beta_{p-1}    &          & && \\
+        &         & \beta_{p-1}  & \alpha_{p} & \beta_{p}& && \\
+\hline
+        &         &             & \beta_{p}  & \alpha_{p+1} & \beta_{p+1} && \\
+        &         &             &           & \beta_{p+1}  & \ddots & \ddots &\\
+        &         &             &           &             & \ddots & \ddots &\beta_{d-1} \\
+        &         &             &           &             & \ddots & \beta_{d-1} &\alpha_{d}
+\end{array}
+\right)
+\end{equation}
+allows us to describe the error bound $\|\E\|_2$ in terms of the submatrix
+$\T_{pu}$, and hence in terms of $\beta_p$.
+\begin{theorem}
+%Theorem 4.1.1
+\label{thm:4.1.1}
+If $\T_p$ and $\T_{pu}$ are the matrices appearing in~(\ref{eq:4.4}), and if the $p$
+columns of $\Q$ are computed by the 
+Lanczos algorithm, then there exist $\mu_1, \dots, \mu_p \in \lambda(\T_p)$ and 
+$\lambda_1, \dots, \lambda_p \in \lambda(\M)$
+such that
+\[
+|\mu_k - \lambda_k| \leq \|\T_{pu}\|_2 = \beta_p, \quad \text{ for $k=1,\dots,p$.}
+\]
+\end{theorem}
+For a proof, see\cite[Page 365]{Demmel:1997}.
+%
+%
+% --------------- 26.txt -------------------------
+%
+%
+\section{A Lanczos Procedure for Markov Chains}
+Notice that the Lanczos algorithm requires the computation of $\M q_j$. Throughout this
+paper we have assumed that $\M \in \R^{d\times d}$, and that $d$ is so large as
+to make the matrix vector multiplication $\M q_j$ impossible. Now, the Lanczos
+algorithm constructs an orthonormal basis for the Krylov subspace. For our
+purposes, this construction is not essential. What is essential is that we find
+a way to generate the Lanczos coeficients $\alpha_i$, $\beta_j$, $(j = 1,\dots, p)$, and
+whence the matrix $\T$, without performing the operation $\M q_j$ required by the
+Lanczos algorithm. We now address this problem.
 
-91 = ¢/||¢||2, [30 = 0, 40 = 0
-
-for j=1top
-
-z=Mq_,-
-
-5:^t = ||Z||2
-if 5, = 0, quit
-¢Ij+1 = 2/51
-
-end for
-
-The qj computed by the Lanczos algorithm are often called the Lanczos vectors. If the
-loop in the algorithm is terminated because fig = 0, this indicates that an exact invariant subspace
-has been computed, and is given by ran{q1 - - - qk}. Otherwise, we usually halt the algorithm after
-p steps, in which case the algorithm converg to approximations of at most 12 eigenvalues.^t
-
-Note that equation (4.3) results from the equation MQ = QT. The latter equation holds
-since, starting with d vectors in our subspace, Q is a d Xd matrix whose columns form an orthonormal
-
-basis for all of R^t, which is clearly an invariant “sub” space. The Lanczos algorithm above, however,
-
-^tA detailed discussion of such convergence (and misconvergence) is given in 
-
-% 25.txt
-25
-
-proceeds for only p steps, producing a d x p matrix Q, whose columns form an orthonormal basis
-for the approximate invariant subspace IC(M, ¢, p), and a p X p matrix T, = Q'MQ. In that case,
-\PsiMQ = QTp|[g =  is non-zero and gives the error bound described in Theorem 3.2.1. Now,
-
-writing the full d x :1 matrix T of (4.2) as
-
-01 51
-/71
-
-(4.4)
-
-   
-
-allows us to describe the error bound ||E||-2 in terms of the submatrix Tm, and, hence, in terms of
-
-fizz-
-Theorem 4.1.1
-
-HT, and T,“ are the matrices appearing in (4.4), and if the p columns of Q are computed by the
-
-Lanczos algorithm, then there exist pl, . . . ,;t,, E /\(T,) and A1, . . . , A, E A(M) such that
-
-ill» - /\I=i S iiTP'4”2 = 512
-
-fork=1,...,p.
-
-For a proof, see page 365 of [1].
-
-% 26.txt
-26
-
-4.2 A Lanczos Procedure for Markov Chains
-
-Notice that the Lanczos algorithm requires the computation of Mqj. Throughout this
-paper we have assumed that M 6 Rd“, and that d is so large as to make the matrix vector
-multiplication Mqj impossible. Now, the Lanczos algorithm constructs an orthonormal basis for
-the Krylov subspace. For our purposes, this construction is not essential. What is essential is that
-we find a way to generate the Lanczos coejficients oz,-, fij, (j = 1, . . . , p), and whence the matrix
-T, without performing the operation Mqj required by the Lanczos algorithm. We now address this
-problem.
-
-Begin with the centered and weighted observable 1/1 = 111/ 2 (qS—E,,¢), and let q1 = 11;/||1/JH2.
-To simplify notation, let ¢(n) E ¢(X,.). The form of the first Lanczos coeﬂicient a1 is straight
-
+Begin with the centered and weighted observable 
+$\psi = \Pi^{1/2} (\phi - \bE_\pi\phi)$,
+and let $q_1 = \psi/\|\psi\|_2$.
+To simplify notation, let $\phi(n) = \phi(X_n)$. 
+The form of the first Lanczos coeﬂicient $\alpha_1$ is straight
 forward:
-
-01 = qiMq1
-
-I/1^tM1/I
-¢’¢
-
-and now the special properties of the Markov chain setting play an important role. For, regard the
-
-following
-
-¢^tM«/2 = (¢ — E.¢)^t\Psi%^tM\Psi%(¢ - Em)
-
-Cw (d>(n), ¢(" + 1)) (4-5)
-
+\[
+\alpha_1 = q_1^t \M q_1  = \frac{\psi^t\M\psi}{\psi^t\psi}.
+\]
+and now the special properties of the Markov chain setting play an important
+role. Indeed, we have
+\begin{align}
+\label{eq:4.5}
+\psi^t\M\psi &= (\phi - \bE_\pi\phi)^t\Pi^{\frac{1}{2}t}\M\Pi^{\frac{1}{2}}(\phi- \bE_\pi \phi)\nonumber\\
+&= \bC_\pi (\phi(n), \phi(n + 1)).
+\end{equation}
 and
-
-W1!’ = (<15 - E«¢)'H(¢ - E«¢)
-
-Varn (¢(")) (4-6)
-
-Recall that the definition of M implies H%^tMI'I% = HP, and this justifies equation (4.5). Putting
-
-% 27.txt
-27
-
-these equations together, we have a. nice form for :11:
-
-_ c, (run), an + 1))
-"^t ' Ta:,(¢(n))
-
-The next Lanczos coeﬂicient, B1, is only slightly more complicated.
-
-[31 = ||M91-0t1tI1||2
-
-[(Mq1 — 0l1¢11)i(M¢]1 - 0101)] 1/2
-
-[t1iM2¢I1 — ail 1/2
-
-(4.7)
-
-Again recalling the definition M E 111/ 2P1'I^t1/2, a. simple manipulation verifies
-
-1'li^tM’l'[% = HP’, whereby it follows that
-
-(«s — E,,¢)^tHP”(¢ — Em)
-
-"^tM2"^t (¢ — E,¢)*n<¢ — Em)
-
-C: (¢("), ¢(n + 2))
-V3-Ur 
-
-Inserting the last expression into equation (4.7) gives
-
-_ c,(¢(n).¢<n+2)) c,(¢<n>,¢(n+1)> ’ "’
-"“ jvar,<¢<n)> "(jvar,<¢<n)) ^t)
-
-Notice that we can estimate these expressions of oz; and ﬂl by running simulations of the Markov
-chain. To do so, we run the Markov chain starting from a random initial state, compute the value of
+\begin{align}
+\label{eq:4.6}
+\psi^t\psi &= (\phi - \bE_\pi\phi)^t\Pi(\phi- \bE_\pi \phi)\nonumber\\
+&= \Var_\pi(\phi(n)).
+\end{equation}
+Recall that the definition of $\M$ implies 
+$\Pi^{\frac{1}{2}t}\M\Pi^{\frac{1}{2}}= \Pi \P$, and this justifies 
+Equation~(\ref{eq:4.5}). Putting
+%
+%
+% -------------- 27.txt ------------------------------
+%
+%
+these equations together, we have a nice form for $\alpha_1$:
+\[
+\alpha_1= \frac{\bC_\pi (\phi(n), \phi(n + 1))}{\Var_\pi(\phi(n))}.
+\]
+The next Lanczos coefficient, $\beta_1$, is only slightly more complicated.
+\begin{align}
+\label{eq:4.7}
+\beta_1 &= \|\M q_1 - \alpha_1 q_1\|_2 \nonumber\\
+&= \bigl[(\M q_1 - \alpha_1 q_1)^t(\M q_1 - \alpha_1 q_1)\bigr]^{1/2}\nonumber\\
+&= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
+\end{align}
+Again recalling the definition $\M =\Pi^{1/2}\P\Pi^{1/2}, a simple manipulation verifies
+$\Pi^{\frac{1}{2}t}\M^s\Pi^{\frac{1}{2}} = \Pi \P^s$,
+whereby it follows that
+\begin{align*}
+q_1^t\M^2 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^2(\phi- \bE_\pi \phi)}
+{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\
+&= \frac{\bC_\pi (\phi(n), \phi(n + 2))}{\Var_\pi(\phi(n))}.
+\end{align*}
+Inserting the last expression into Equation~(\ref{eq:4.7}) gives
+\[
+\beta_1 = \left[\frac{\bC_\pi (\phi(n), \phi(n + 2))}{\Var_\pi(\phi(n))}
+-\bigl( \frac{\bC_\pi (\phi(n), \phi(n + 1))}{\Var_\pi(\phi(n))}\bigr)^2
+\right]^{1/2}.
+\]
+Notice that we can estimate these expressions of $\alpha_1$ and $\beta_1$ by
+running simulations of the Markov chain. 
+To do so, we run the Markov chain starting from a random initial state, compute the value of
 the observable at each step of the chain and, from the data, compute estimates of the covariances
 and variance of the observable.
 
-Before generalizing this for the jth Lanczos coefficient, we consider one more coeﬂicient
-in detail. Recall that the second basis element q; in the Lanczos algorithm is given by 1;; =
-
-(Mql — oz1q1)/fil. From this we can derive an expression for (12 which, though not as neat as those
-
-% 28.txt
-28
-
-for oz; and [31, is nonetheless tractable.
-
-I12 ^tIiMq2
-
-1
-[7(M91 — 0t1¢I1)tM(M¢I1 - 11191)
-1
-
-1
-= f,§(qiM3q1 - 2a1qlM2<11 + a’9iM¢11)
-1
-1
-= —2(<1iM3q1 - 2015i ^t all (4-8)
-
-1.
-The last equality follows from equation (4.7), which can be written as q{M2q1 = off’ + (if. The
-preceding paragraphs define all but one of the quantities in the expression (4.8). The one remaining
-is q§M3q1, which can also be expressed in terms of covariances of <15, and the analysis is almost
-
-identical to that for q{M2q1:
-
-(¢ — E,¢)'\PsiP3(¢ — Em)
-
-"lM3"^t (¢ — E,¢s)^tH(¢ - Em»)
-
-Cu (¢(")a ¢(n + 3))
-Varn(¢(n))
-
+Before generalizing this for the $j$th Lanczos coefficient, we consider one more coeﬂicient
+in detail. Recall that the second basis element $q_2$ in the Lanczos algorithm is given by 
+$q_2 = (\M q_1 — \alpha_1 q_1)/\beta_1$. 
+From this we can derive an expression for $\alpha_2$ which, while not as neat as those
+%
+%
+% ----------------- 28.txt ----------------------------------------------------------
+%
+%
+for $\alpha_1$ and $\beta_1$, is nonetheless tractable.
+\begin{align}
+\label{eq:4.8}
+\alpha_2 &= q_2^t \M q_2 \nonumber\\
+&= \frac{1}{\beta_1^2(\M q_1 - \alpha_1 q_1)^t\M (\M q_1 - \alpha_1 q_1)\nonumber\\
+&= \frac{1}{\beta_1^2(q_1^t\M^3 q_1 - 2\alpha_1 q_1^t\M^2 q_1 + \alpha_1^2q_1^t\M q_1 )\nonumber\\
+&= \frac{1}{\beta_1^2(q_1^t\M^3 q_1 - 2\alpha_1 \beta_1^2 + \alpha_1^3 )
+&= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
+\end{align}
+Equation~(\ref{eq:4.8}) follows from Equation~(\ref{eq:4.7}), which can be
+written as $q_1^t\M^2 q_1 = \alpha_1^2 + \beta_1^2$.  
+The preceding paragraphs define all but one of the quantities in the last
+exression of~(\ref{eq:4.8}). The one remaining
+is $q_1^t\M^3 q_1$, which can also be expressed in terms of covariances of $\phi$,
+and the analysis is almost identical to that for $q_1^t\M^2q_1$:
+\begin{align*}
+q_1^t\M^3 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^3(\phi- \bE_\pi \phi)}
+{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\
+&= \frac{\bC_\pi (\phi(n), \phi(n + 3))}{\Var_\pi(\phi(n))}.
+\end{align*}
 To generalize the foregoing for higher order Lanczos coeﬂicients requires a recurrence
-relation between (aj+1, ﬂj) and (aj, ﬂ,~_1). As we will see, such a relation involves higher order
-Lanczos vectors q,~ — vectors we do not wish to compute. Recall that the only “vector” we can
-handle is our initial observable. Therefore, we must also establish a recurrence among the q,-’s, thus
-making them available inductively from our observable vector.
+relation between $(\alpha_{j+1}, \beta_j)$ and $(\alpha_{j}, \beta_{j-1})$. 
+As we will see, such a relation involves higher order
+Lanczos vectors $q_j$---vectors we do not wish to compute. Recall that the only ``vector'' we can
+handle is our initial observable. Therefore, we must also establish a recurrence
+among the $q_j$'s, thus making them available inductively from our observable vector.
 
-To begin with the ﬂfs, recall that fij E ||Mqj — ajq_.,- — ,H_,~_1q,-_;|[2. Whence,
+To begin with the $\beta_j$'s, recall that 
+$\beta_j = \|\M q_j - \alpha_jq_j - \beta_{j-1}q_{j-1}\|_2$. 
+Whence,
+\begin{align}
+\label{eq:4.9}
+\beta_j^2 &= (\M q_j - \alpha_jq_j - \beta_{j-1}q_{j-1})^t(\M q_j - \alpha_jq_j - \beta_{j-1}q_{j-1})\nonumber\\
+&= q_j^t\M^2 q_j - \alpha_j^2 - \beta^2_{j-1}.
+\end{align}
+Some simple algebra and the definitions $\alpha_j = q_j^t\M q_j$ and
+$\beta_{j-1} = q_j^t \M q_{j-1}$ prove equality~(\ref{eq:4.9}).  The
+%
+%
+% -------------- 29.txt ------------------------------------------------------
+%
+%
+recurrence for $\alpha_{j+1}$ is equally straight forward, though the final form
+is not as neat as the expression above. Indeed,
+\begin{align}
+\label{eq:4.10}
+\alpha_{j+1} &= q_{j+1}^t \M q_{j+1} \nonumber\\
+&= \frac{1}{\beta_j^2}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M 
+  (\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})\nonumber\\
+&= \frac{1}{\beta_j^2}(q_j^t\M^3 q_j 
+    - 2\alpha_j q_j^t\M^2 q_j 
+    - 2\beta^2_{j-1} q_{j-1}^t\M^2 q_j 
+    + \alpha_1^3
+    + 2\alpha_j \beta^2_{j-1} + \beta^2_{j-1}).
+\end{align}
+From~(\ref{eq:4.9}), $\alpha_j^2 +\beta_j^2 + \beta^2_{j-1}$,
+and upon plugging this into~(\ref{eq:4.10}), we arrive at 
+\begin{equation}
+\label{eq:4.11}
+\alpha_{j+1}= \frac{1}{\beta_j^2}(q_j^t\M^3 q_j 
+    - \alpha_j^3
+    - 2\alpha_j\beta^2_{j}
+    - 2\beta_{j-1}q_{j-1}^t\M^2q_j + \beta^2_{j-1}).
+\end{equation}
 
-Bf (M411 — °^tj^tIj - fij-1qj—1)’(MlIj - Otjqj - 51-19141)
-
-q;-M291^t - 0? - B,z_1 (4-9)
-
-Some simple algebra and the definitions aj E q§Mqj and fiJ~_1 E q;-Mq,--1 prove equality (4.9). The
-% 29.txt
-recurrence for 0114.1 is equally straight forward, though the final form is not as neat:
-
-2
-0tj+1 ¢Ij+1M'1j+1
-
-1
-§(M¢15 - 11111;^t - ﬂj—1<Ij—1)'M(Mqj - Otjqj - /3j—1qj—1)
-J
-
-1
-§(q;-M-“*4; — 2a,~q;M*q,- — 2x3;+’_1q;--1M*q,- + «I? + 2a,-5,51 + am (4.10)
-J
-From (4.9), q;~M2q,~ = oz? + ﬂf + ﬂ}_1 and, upon plugging this into (4.10), we arrive at
-1
-a,~+1 = E(q§»M3q_,,- — (1? — 2ozJ~fiJ2 — 2ﬂj_1q;»_1M2qj + fi2_1) (4.11)
-J
-
-The expressions above involve the higher order Lanczos vectors qj. In the present context,
-these vectors will not be readily available. However, another recursion — this time relating forms
-involving q,-+1 to forms involving qj and qj__1 — will make these expressions accessible by induction
-on our initial observable. The general forms of interest are q;+1M"qj+1 and qj-+1M"qJ~. Again, we
-
+The expressions above involve the higher order Lanczos vectors $q_j$. In the present context,
+these vectors will not be readily available. However, another recursion---this time relating forms
+involving $q_{j+1}$ to forms involving $q_j$ and $q_{j-1} $---will make these
+expressions accessible by induction on our initial observable. The general forms
+of interest are $q_{j+1}^t\M^k q_{j+1}$ and $q^t_{j+1}\M^k q_j$. Again, we 
 begin with the simpler of the two:
-
-¢I;'+1Mk9j = ij(Mqj - Otjqj - ﬂj—1t1j—1)'M"¢1j
-= i(<1§M"“¢Ij - C^tj^tI_;'Mk^tIj - ﬂj—1q§M"qj-1)
+\begin{align*}
+  q_{j+1}^tM^kq_j &= 
+ \frac{1}{\beta_j}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k q_j\\
+ \frac{1}{\beta_j}(q_j^t\M^{k+1} q_j - \alpha_j q_j^t\M^{k} q_j -\beta_{j-1} q_j^t\M^k).
+\end{align*}
 The second is,
-^tI_;'+1Mkqj+1 = ﬂi?(M<Ij - Otjqj - .3j—1<Ij—1)^tMk(Mqj — Orjqj - ﬂj—1¢1j—1)
-
-1
-fi(^t1§M'°"<1:^t + °^t:2"I§M'°<J:' + fi?—z<Ii—1M"<I:^t—1
-J
-—2a,-q;-M*+^tq,~ + 2am,--1q;-M*q,--1 — zza,--1q;-M*+^tq]--1) (4.12)
-
-The point of all this is that each pair of coeﬂicients (oz,-+1, /3,-) can be expressed as a
-function of the covariance between ¢(n) and ¢(n+ m), for m = 0, . . . , 21' + 1. Since the expressions
-are based on four recurrence relations, they become quite complicated as 1' gets large. However,
-defining these recursions in a. computer program is trivial, and we use this fact in Section 5.4 when
-
-applying the foregoing to a particular problem.
-
-% 30.txt
-30
+\begin{align}
+\label{eq:4.12}
+  q_{j+1}^tM^kq_{j+1} 
+&=  \frac{1}{\beta_j^2}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k 
+  (\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})\nonumber\\
+&=  \frac{1}{\beta_j^2}(q_j^t\M^{k+2} q_j + \alpha^2_jq_j^t\M^{k} q_j 
+  + \beta^2_{j-1} q_{j-1}^t\M^k q_{j-1} 
+    - 2\alpha_jq_j^t\M^{k+1} q_j
+    + 2\alpha_j \beta_{j-1}q_j^t\M^k q_{j-1}
+    - 2\beta_{j-1}q_j^t \M^{k+1}q_{j-1}).
+\end{align}
+The point of all this is that each pair of coeﬂicients $(\alpha_{j+1}, \beta_j)$
+can be expressed as a function of the covariance between 
+$\phi(n)$ and $\phi(n+ m)$, for $m = 0, \dots, 2j+1$. Since the expressions
+are based on four recurrence relations, they become quite complicated as $j$ gets large. However,
+defining these recursions in a computer program is trivial, and we use this fact
+in Section~\label{sec:computations} % Sec 5.4
+when applying the foregoing to a particular problem.
+%
+%
+% ----------------- 30.txt ------------------------------------------------------
+%
+%
 

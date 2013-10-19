@@ -254,7 +254,7 @@ for $\alpha_1$ and $\beta_1$, is nonetheless tractable.
 &= \frac{1}{\beta_1^2}(\M q_1 - \alpha_1 q_1)^t\M (\M q_1 - \alpha_1 q_1)\nonumber\\
 &= \frac{1}{\beta_1^2}(q_1^t\M^3 q_1 - 2\alpha_1 q_1^t\M^2 q_1 + \alpha_1^2q_1^t\M q_1 )\nonumber\\
 &= \frac{1}{\beta_1^2}(q_1^t\M^3 q_1 - 2\alpha_1 \beta_1^2 + \alpha_1^3 )
-&= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
+%&= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
 \end{align}
 Equation~(\ref{eq:4.8}) follows from Equation~(\ref{eq:4.7}), which can be
 written as $q_1^t\M^2 q_1 = \alpha_1^2 + \beta_1^2$.  
@@ -330,8 +330,8 @@ The second is,
 &=  \frac{1}{\beta_j^2}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k 
   (\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})\nonumber\\
 &=  \frac{1}{\beta_j^2}(q_j^t\M^{k+2} q_j + \alpha^2_jq_j^t\M^{k} q_j 
-  + \beta^2_{j-1} q_{j-1}^t\M^k q_{j-1} 
-    - 2\alpha_jq_j^t\M^{k+1} q_j
+  + \beta^2_{j-1} q_{j-1}^t\M^k q_{j-1} - 2\alpha_jq_j^t\M^{k+1} q_j \nonumber\\
+& \qquad    
     + 2\alpha_j \beta_{j-1}q_j^t\M^k q_{j-1}
     - 2\beta_{j-1}q_j^t \M^{k+1}q_{j-1}).
 \end{align}

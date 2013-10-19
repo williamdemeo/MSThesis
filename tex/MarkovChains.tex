@@ -24,8 +24,8 @@ $\sigma(X_0, \dots, X_{n})$ if for all $B \in \S$,
 \begin{equation}
 % Eqn 2.1
 \label{eq:1}
-P(X_{n+1} \in B \mid \sigma(X_0, \dots, X_{n}))
-=P(X_{n+1} \in B \mid \sigma(X_{n})).
+\bP(X_{n+1} \in B \mid \sigma(X_0, \dots, X_{n}))
+=\bP(X_{n+1} \in B \mid \sigma(X_{n})).
 \end{equation}
 \end{definition}
 Equation~(\ref{eq:1}) merely states that if we know the present location or state of $X_{n}$,
@@ -43,7 +43,7 @@ We call $X_n$ a Markov chain with transition probabilities $p_n$ if
 \begin{equation}
 % Eqn 2.2
 \label{eq:2.2}
-P(X_{n+1} \in B \mid  \sigma(X_n)) = p_n(X_n, B)
+\bP(X_{n+1} \in B \mid  \sigma(X_n)) = p_n(X_n, B)
 \end{equation}
 The spaces $(S, \S)$ that we encounter below are standard Borel spaces, so the existence of the
 transition probabilities follows from the existence of regular conditional
@@ -55,7 +55,7 @@ transition probabilities. We can define a consistent set of finite dimensional d
 \begin{equation}
 % Eqn 2.3
 \label{eq:2.3}
-P(X_j\in B_j ,0 \leq j \leq n) = \int_{B_0} \mu(dx_0) \int_{B_1} p_0(x_0, dx_1) 
+\bP(X_j\in B_j ,0 \leq j \leq n) = \int_{B_0} \mu(dx_0) \int_{B_1} p_0(x_0, dx_1) 
 \int_{B_2} p_1(x_1, dx_2) \cdots 
 \int_{B_n} p_{n-1}(x_{n-1}, dx_n).
 \end{equation}
@@ -71,14 +71,14 @@ S^\omega  = \{(\omega_0, \omega_1, \dots) : \omega_i in S\}\quad \text{ and }
 \]
 % 07.txt
 The Markov chain that we will study on this space is simply $X_n(\omega) = \omega$, the coordinate maps.
-Then, by the Kolmogorov extension theorem, there exists a unique probability measure $P_\mu$ on
+Then, by the Kolmogorov extension theorem, there exists a unique probability measure $\bP_\mu$ on
 $(\Omega, \F)$ so that the $X_n(\omega)$ have finite dimensional distributions~(\ref{eq:2.3}).
 
 If instead of $\mu$, we begin with the initial distribution $\delta_x$, i.e., point mass at $x$, then we
-denote the probability measure by $P_x$. With such measures defined for each $x$, we can in turn
-define distributions $P_\mu$, given any initial distribution $\mu$, by
+denote the probability measure by $\bP_x$. With such measures defined for each $x$, we can in turn
+define distributions $\bP_\mu$, given any initial distribution $\mu$, by
 \[
-P_\mu(A) = \int \mu(dx)P_x(A).
+\bP_\mu(A) = \int \mu(dx)\bP_x(A).
 \]
 
 That the foregoing construction---which, recall, was derived merely from an
@@ -102,7 +102,7 @@ Next we assume that our state space $S$ is finite, and suppose for all states
 $i,j \in S$ that $p(i, j) \geq 0$, and $\sum_j p(i, j) = 1$ for all $i$. In
 this case, equation~(\ref{eq:2.2}) takes a more intuitive form,
 \[
-P(X_{n+1}=j \mid X_n = i) =p(i,j),
+\bP(X_{n+1}=j \mid X_n = i) =p(i,j),
 \]
 and our transition probabilities become
 \[
@@ -165,8 +165,8 @@ A measure $\pi$ is said to be a \emph{stationary measure} if
 \end{equation}
 \end{definition}
 
-Equation~(\ref{eq:2.4}) says $P_\pi(X_1 = y) = \pi(y)$, 
-and by induction that $P_\pi(X_n = y) = \pi(y)$ for all $n \geq 1$. 
+Equation~(\ref{eq:2.4}) says $\bP_\pi(X_1 = y) = \pi(y)$, 
+and by induction that $\bP_\pi(X_n = y) = \pi(y)$ for all $n \geq 1$. 
 If $\pi$ is a probability measure, then we call $\pi$ a stationary distribution. It
 represents an equilibrium for the chain in the sense that, if $X_0$ has
 distribution $\pi$, then so does $X_n$ for all $n$.
@@ -270,23 +270,23 @@ distribution $\pi$---then $X_n$ is a stationary process.
 Furthermore, for each $i$, $\phi_i(X_n)$ is a stationary stochastic process with
 \emph{mean}
 \[
-\E_\pi\phi_i = \sum_{x\in S} \pi(x)\phi_i(x)
+\bE_\pi\phi_i = \sum_{x\in S} \pi(x)\phi_i(x)
 \]
 and \emph{autocovariance function}
 \begin{align}
 % Eqn 2.5
-\C_\pi (\phi_i(X_n),  \phi_i (X_{n+s})) 
-&= \E_\pi[(\phi_i(X_n) - \E_\pi\phi_i)(\phi_i(X_{n+s}) - \E_\pi\phi_i)]\\
-&= \sum_{x, y\in S} \P_\pi(X_n = x, X_{n+s} = y) (\phi_i(x)- \E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).\nonumber
+\bC_\pi (\phi_i(X_n),  \phi_i (X_{n+s})) 
+&= \bE_\pi[(\phi_i(X_n) - \bE_\pi\phi_i)(\phi_i(X_{n+s}) - \bE_\pi\phi_i)]\\
+&= \sum_{x, y\in S} \bP_\pi(X_n = x, X_{n+s} = y) (\phi_i(x)- \bE_\pi\phi_i)(\phi_i(y) - \bE_\pi\phi_i).\nonumber
 \end{align}
 By the definition of conditional probability, we can write~(\ref{eq:2.4}) as follows:
 \[
-\sum_{x, y\in S} \P_\pi(X_n = x) \P_\pi(X_{n+s} = y\mid X_n = x) (\phi_i(x)-
-\E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).
+\sum_{x, y\in S} \bP_\pi(X_n = x) \bP_\pi(X_{n+s} = y\mid X_n = x) (\phi_i(x)-
+\bE_\pi\phi_i)(\phi_i(y) - \bE_\pi\phi_i).
 \]
 Equivalently,
 \[
-\sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\E_\pi\phi_i)(\phi_i(y) - \E_\pi\phi_i).
+\sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\bE_\pi\phi_i)(\phi_i(y) - \bE_\pi\phi_i).
 \]
 Here $p^s_{xy}$ denotes the element in row $x$ and column $y$ of $\P^s$, the
 $s$th power of the transition probability matrix. 
@@ -294,17 +294,17 @@ Similarly, we define the \emph{cross-covariance} between the function
 $\phi_i$ at time $n$ and $\phi_j$ at time $n+s$ as
 \begin{align}
 % Eqn 2.6
-\C_\pi (\phi_i(X_n),  \phi_j (X_{n+s})) 
-&= \E_\pi[(\phi_i(X_n) - \E_\pi\phi_i)(\phi_j(X_{n+s}) - \E_\pi\phi_j)]\nonumber\\
-&= \sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\E_\pi\phi_i)(\phi_j(y) - \E_\pi\phi_j).
+\bC_\pi (\phi_i(X_n),  \phi_j (X_{n+s})) 
+&= \bE_\pi[(\phi_i(X_n) - \bE_\pi\phi_i)(\phi_j(X_{n+s}) - \bE_\pi\phi_j)]\nonumber\\
+&= \sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\bE_\pi\phi_i)(\phi_j(y) - \bE_\pi\phi_j).
 \end{align}
 Now let $\<\Phi\>$ denote the matrix of mean vectors whose $j$th column is 
-$\E_\pi\phi_j\one$, where $\one = (1,\dots, 1)^t$,
+$\bE_\pi\phi_j\one$, where $\one = (1,\dots, 1)^t$,
 and let $\Pi = \diag(\pi(\omega_1),\dots, \pi(\omega_d))$ be the $d \times d$
 diagonal matrix with stationary probabilities $\pi(\omega)$
 on the main diagonal and zeros elsewhere. 
 Finally, denoting by $\C(s)$ the $p \times p$ covariance matrix
-whose $(i,j)$ element is $\C_\pi(\phi_i(X_n), \phi_j(X_{n+s}))$, we have
+whose $(i,j)$ element is $\bC_\pi(\phi_i(X_n), \phi_j(X_{n+s}))$, we have
 \begin{align*}
 \C(0) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_n) - \<\Phi\>)^t\\
 &= (\Phi - \<\Phi\>)^t\Pi (\Phi-\<\Phi\>), \\

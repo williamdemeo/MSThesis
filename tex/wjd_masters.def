@@ -17,7 +17,7 @@
 \usepackage{algorithmic}
 \usepackage{ifthen}
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
@@ -37,9 +37,9 @@
 \newtheorem*{remark}{Remark}
 \newtheorem*{remarks}{Remarks}
 \newtheorem*{notation}{Notation}
-\numberwithin{theorem}{section}
+\numberwithin{theorem}{chapter}
 \numberwithin{claim}{chapter}
-\numberwithin{equation}{section}
+\numberwithin{equation}{chapter}
 \numberwithin{conjecture}{chapter}
 \renewcommand\S{\ensuremath{\mathcal{S}}}
 \newcommand\sK{\ensuremath{\mathcal{K}}}
@@ -64,6 +64,7 @@
 % Changing to nicer matrix fonts
 \newcommand\C{\ensuremath{\mathrm{C}}}
 \renewcommand\P{\ensuremath{\mathrm{P}}}
+\newcommand\bP{\ensuremath{\mathbf{P}}}
 \newcommand\M{\ensuremath{\mathrm{M}}}
 \renewcommand\H{\ensuremath{\mathrm{H}}}
 \newcommand\T{\ensuremath{\mathrm{T}}}

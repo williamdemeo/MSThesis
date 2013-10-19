@@ -18,12 +18,12 @@ Notice that $\M\Psi = [\psip{1}, \psip{2}, \dots, \psip{d-1}, \M^d \psi]$,
 and assuming for the moment that $\Psi$ is nonsingular,
 we can compute the vector $h = -\Psi^{-1}\M^d \psi$. Thus,
 \begin{equation}
-\label{eq:1}
+\label{eq:10000}
 \M\Psi = \Psi [e_2,\dots,e_d,-h],  
 \end{equation}
 where $e_j$ is the column vector with 1 in
 the $j$th position and zeros elsewhere. We define $H = [e_2,\dots,e_d,-h]$,
-so~(\ref{eq:1}) becomes $\M\Psi = \Psi H$.
+so~(\ref{eq:10000}) becomes $\M\Psi = \Psi H$.
 %
 %
 % ----------------- 23.txt ----------------------------------------------
@@ -49,12 +49,12 @@ finding $h$, constructing $p(x)$, and finding its roots is
 probably a harder problem than the one we started with. Instead, the value of decomposition (4.1)
 derives from its \emph{upper Hessenberg form}. We exploit this property below.
 
-Let $\Psi = \Q\R$ be the QR decomposition of $\Psi$. Since $\Psi$ is assumed nonsingular,
+Let $\Psi = \Q\mR$ be the QR decomposition of $\Psi$. Since $\Psi$ is assumed nonsingular,
 \[
-\Psi_d^{-1}\M \Psi_d = (\R^{-1}\Q^t)\M(\Q\R) = \H
+\Psi_d^{-1}\M \Psi_d = (\mR^{-1}\Q^t)\M(\Q\mR) = \H
 \]
-Therefore, $\Q^t\M\Q = \R\H\R^{-1}$.  Let $\T \R\H\R^{-1}$.  Then, since $\R$
-and $\R^{-1}$ are both upper triangular and $\H$ is upper Hessenberg $\T = \R\H\R^{-1}$ is also upper
+Therefore, $\Q^t\M\Q = \mR\H\mR^{-1}$.  Let $\T \mR\H\mR^{-1}$.  Then, since $\mR$
+and $\mR^{-1}$ are both upper triangular and $\H$ is upper Hessenberg $\T = \mR\H\mR^{-1}$ is also upper
 Hessenberg. Furthermore, since $\M$ is symmetric, it is clear that 
 $\T^t =\Q^t\M\Q = T$. Thus, $\T$ is both upper Hessenberg and symmetric. Therefore,
 $\T$ is tridiagonal and we can write it as follows:
@@ -85,15 +85,16 @@ by $q_j$ and $q_{j+1}$ yields
 $\alpha_j = q_j^t \M q_j$ and $\beta_j = q_{j+1}^t \M q_j$.
 The foregoing justifies what is called the \emph{Lanczos algorithm}, which is performed as follows:
          \begin{algorithm}
-           \caption{The Lanczos algorithm for (partial) reduction to symmetric tridiaganal form}
+           \caption{Lanczos algorithm for partial reduction to symmetric
+             tridiaganal form}
            \begin{algorithmic}
              \STATE $q_1 = \psi/\|\psi\|_2$, $\beta_0 = 0$, $q_0= 0$
-             \FOR $j = 1 \text{ to } p$
+             \FOR{$j = 1, \dots, p$}
              \STATE $z \leftarrow \M q_j$
              \STATE $\alpha_j \leftarrow q_j^tz$
              \STATE $z \leftarrow z - \alpha_j q_j - \beta_{j-1} q_{j-1}$
              \STATE $\beta_j \leftarrow \|z\|_2$
-             \IF $\beta_j=0$ 
+             \IF{$\beta_j=0$}
              \STATE return
              \ENDIF
              \STATE $q_{j+1} = z/\beta_j$
@@ -142,7 +143,7 @@ of~(\ref{eq:4.2}) as
         &         &             & \beta_{p}  & \alpha_{p+1} & \beta_{p+1} && \\
         &         &             &           & \beta_{p+1}  & \ddots & \ddots &\\
         &         &             &           &             & \ddots & \ddots &\beta_{d-1} \\
-        &         &             &           &             & \ddots & \beta_{d-1} &\alpha_{d}
+        &         &             &           &             &        & \beta_{d-1} &\alpha_{d}
 \end{array}
 \right)
 \end{equation}
@@ -160,7 +161,7 @@ such that
 |\mu_k - \lambda_k| \leq \|\T_{pu}\|_2 = \beta_p, \quad \text{ for $k=1,\dots,p$.}
 \]
 \end{theorem}
-For a proof, see\cite[Page 365]{Demmel:1997}.
+For a proof, see~\cite[Page 365]{Demmel:1997}.
 %
 %
 % --------------- 26.txt -------------------------
@@ -191,13 +192,13 @@ role. Indeed, we have
 \label{eq:4.5}
 \psi^t\M\psi &= (\phi - \bE_\pi\phi)^t\Pi^{\frac{1}{2}t}\M\Pi^{\frac{1}{2}}(\phi- \bE_\pi \phi)\nonumber\\
 &= \bC_\pi (\phi(n), \phi(n + 1)).
-\end{equation}
+\end{align}
 and
 \begin{align}
 \label{eq:4.6}
 \psi^t\psi &= (\phi - \bE_\pi\phi)^t\Pi(\phi- \bE_\pi \phi)\nonumber\\
 &= \Var_\pi(\phi(n)).
-\end{equation}
+\end{align}
 Recall that the definition of $\M$ implies 
 $\Pi^{\frac{1}{2}t}\M\Pi^{\frac{1}{2}}= \Pi \P$, and this justifies 
 Equation~(\ref{eq:4.5}). Putting
@@ -217,7 +218,7 @@ The next Lanczos coefficient, $\beta_1$, is only slightly more complicated.
 &= \bigl[(\M q_1 - \alpha_1 q_1)^t(\M q_1 - \alpha_1 q_1)\bigr]^{1/2}\nonumber\\
 &= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
 \end{align}
-Again recalling the definition $\M =\Pi^{1/2}\P\Pi^{1/2}, a simple manipulation verifies
+Again recalling the definition $\M =\Pi^{1/2}\P\Pi^{1/2}$, a simple manipulation verifies
 $\Pi^{\frac{1}{2}t}\M^s\Pi^{\frac{1}{2}} = \Pi \P^s$,
 whereby it follows that
 \begin{align*}
@@ -250,9 +251,9 @@ for $\alpha_1$ and $\beta_1$, is nonetheless tractable.
 \begin{align}
 \label{eq:4.8}
 \alpha_2 &= q_2^t \M q_2 \nonumber\\
-&= \frac{1}{\beta_1^2(\M q_1 - \alpha_1 q_1)^t\M (\M q_1 - \alpha_1 q_1)\nonumber\\
-&= \frac{1}{\beta_1^2(q_1^t\M^3 q_1 - 2\alpha_1 q_1^t\M^2 q_1 + \alpha_1^2q_1^t\M q_1 )\nonumber\\
-&= \frac{1}{\beta_1^2(q_1^t\M^3 q_1 - 2\alpha_1 \beta_1^2 + \alpha_1^3 )
+&= \frac{1}{\beta_1^2}(\M q_1 - \alpha_1 q_1)^t\M (\M q_1 - \alpha_1 q_1)\nonumber\\
+&= \frac{1}{\beta_1^2}(q_1^t\M^3 q_1 - 2\alpha_1 q_1^t\M^2 q_1 + \alpha_1^2q_1^t\M q_1 )\nonumber\\
+&= \frac{1}{\beta_1^2}(q_1^t\M^3 q_1 - 2\alpha_1 \beta_1^2 + \alpha_1^3 )
 &= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
 \end{align}
 Equation~(\ref{eq:4.8}) follows from Equation~(\ref{eq:4.7}), which can be

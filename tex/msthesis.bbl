@@ -4,6 +4,11 @@
   \hbox{\hskip.2em$\scriptscriptstyle\circ$}\hss}}#1\else {\accent"17 #1}\fi}
 \begin{thebibliography}{1}
 
+\bibitem{Demmel:1997}
+J.~Demmel.
+\newblock {\em Applied Numerical Linear Algebra}.
+\newblock Society for Industrial and Applied Mathematics, 1997.
+
 \bibitem{Durret:1996}
 R.~Durrett.
 \newblock {\em Probability: Theory and Examples}.

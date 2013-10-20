@@ -1,7 +1,7 @@
 MSThesis
 ========
 
-**Masters Thesis:** Approximating eigenvalues of large stochastic matrices<br/>
+**Masters Thesis:** A Lanczos Procedure for Approximating Eigenvalues of Large Stochastic Matrices<br/>
 **Author:** William DeMeo<br/>
 **Advisor:** Jonathan Goodman<br/>
 **Institution:** Courant Institute of Mathematical Sciences, NYU<br/>

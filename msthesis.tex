@@ -209,7 +209,7 @@ Committee in charge:\\
 %%%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%
 %% Comment out the following lines if you do not want to acknowledge
 %% anyone's help...
-\section*{Acknowledgements}\addcontentsline{toc}{section}{Acknowledgements}
+\section*{Acknowledgments}\addcontentsline{toc}{section}{Acknowledgments}
 %%% 
 %%% \input{acknowledge}
 %%%
@@ -781,7 +781,7 @@ $\C(s) = \Psi^t \M \Psi$.
 If the column space of $\Psi$, which we denote by $\ran(\Psi)$, is an invariant
 subspace for $\M$, the definition implies $\M\psi_j \in \ran(\Psi)$.
 That is, for each $\psi_i$ there exists a vector
-$t$ of coeﬂicients such that $\M \psi_j = \sum_{i=1}^p t_i \psi_{ij}$. 
+$t$ of coefficients such that $\M \psi_j = \sum_{i=1}^p t_i \psi_{ij}$. 
 This is true for all $j$ and, putting each vector of
 coefficients into a matrix $\T$, we see that 
 $\M \Psi = \Psi \T$. Conversely, $\M\Psi = \Psi \T$ implies that $\M\psi_j$ is a
@@ -919,7 +919,7 @@ Recall the matrix $\Psi = \Pi^{1/2}(\Phi — \<\Phi\>)$. The columns of this
 matrix, though independent (by choice of independent observables), are not
 necessarily orthonormal. However, consider the polar decomposition 
 $\Psi = \Q \Z$, where $\Q^t\Q = \I$ and $\Z^2 = \Psi^t\Psi$ is a symmetric
-positive semidefinite matrix.\footnote{Recall that the polar decompostion is
+positive semidefinite matrix.\footnote{Recall that the polar decomposition is
   derived from the singular value decomposition, $\Psi = \U\Sigma \V^t$, by
   letting $\Q = \U \V^t$ and $\Z = \V\Sigma \V^t$.}
 %% ‘Recall that the polar decomposition is derived from the SVD, \Psi = UZJV‘, by letting Q = UV‘ and Z = VEV‘.
@@ -1023,7 +1023,7 @@ Notice that the definition
 %% (which comes directly from the definition of ^tII
 %% following equation (2.7)) is such that 1/)1 is a constant vector if 
 (which comes from the definition of $\Psi$ following Equation~(\ref{eq:2.7})) 
-is such that $\psi_1$ is a constant vector if and only if $\phi$ is oonstant on the
+is such that $\psi_1$ is a constant vector if and only if $\phi$ is constant on the
 state space, in which case $\psi_1$ is the constant zero function. 
 %% This fact
 %% provides one reason observables that are constant on the state space are not
@@ -1225,7 +1225,7 @@ $\alpha_j = q_j^t \M q_j$ and $\beta_j = q_{j+1}^t \M q_j$.
 The foregoing justifies what is called the \emph{Lanczos algorithm}, which is performed as follows:
          \begin{algorithm}
            \caption{The Lanczos algorithm for partial reduction to symmetric
-             tridiaganal form.}
+             tridiagonal form.}
            \begin{algorithmic}
              \STATE $q_1 = \psi/\|\psi\|_2$, $\beta_0 = 0$, $q_0= 0$
              \FOR{$j = 1, \dots, p$}
@@ -1314,7 +1314,7 @@ paper we have assumed that $\M \in \R^{d\times d}$, and that $d$ is so large as
 to make the matrix vector multiplication $\M q_j$ impossible. Now, the Lanczos
 algorithm constructs an orthonormal basis for the Krylov subspace. For our
 purposes, this construction is not essential. What is essential is that we find
-a way to generate the Lanczos coeficients $\alpha_i$, $\beta_j$, $(j = 1,\dots, p)$, and
+a way to generate the Lanczos coefficients $\alpha_i$, $\beta_j$, $(j = 1,\dots, p)$, and
 whence the matrix $\T$, without performing the operation $\M q_j$ required by the
 Lanczos algorithm. We now address this problem.
 
@@ -1322,7 +1322,7 @@ Begin with the centered and weighted observable
 $\psi = \Pi^{1/2} (\phi - \bE_\pi\phi)$,
 and let $q_1 = \psi/\|\psi\|_2$.
 To simplify notation, let $\phi(n) = \phi(X_n)$. 
-The form of the first Lanczos coeﬂicient $\alpha_1$ is straight
+The form of the first Lanczos coefficient $\alpha_1$ is straight
 forward:
 \[
 \alpha_1 = q_1^t \M q_1  = \frac{\psi^t\M\psi}{\psi^t\psi}.
@@ -1379,7 +1379,7 @@ To do so, we run the Markov chain starting from a random initial state, compute 
 the observable at each step of the chain and, from the data, compute estimates of the covariances
 and variance of the observable.
 
-Before generalizing this for the $j$th Lanczos coefficient, we consider one more coeﬂicient
+Before generalizing this for the $j$th Lanczos coefficient, we consider one more coefficient
 in detail. Recall that the second basis element $q_2$ in the Lanczos algorithm is given by 
 $q_2 = (\M q_1 — \alpha_1 q_1)/\beta_1$. 
 From this we can derive an expression for $\alpha_2$ which, while not as neat as those
@@ -1400,7 +1400,7 @@ for $\alpha_1$ and $\beta_1$, is nonetheless tractable.
 Equation~(\ref{eq:4.8}) follows from Equation~(\ref{eq:4.7}), which can be
 written as $q_1^t\M^2 q_1 = \alpha_1^2 + \beta_1^2$.  
 The preceding paragraphs define all but one of the quantities in the last
-exression of~(\ref{eq:4.8}). The one remaining
+expression of~(\ref{eq:4.8}). The one remaining
 is $q_1^t\M^3 q_1$, which can also be expressed in terms of covariances of $\phi$,
 and the analysis is almost identical to that for $q_1^t\M^2q_1$:
 \begin{align*}
@@ -1408,7 +1408,7 @@ q_1^t\M^3 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^3(\phi- \bE_\pi \phi)}
 {(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\[8pt]
 &= \frac{\bC_\pi (\phi(n), \phi(n + 3))}{\Var_\pi(\phi(n))}.
 \end{align*}
-To generalize the foregoing for higher order Lanczos coeﬂicients requires a recurrence
+To generalize the foregoing for higher order Lanczos coefficients requires a recurrence
 relation between $(\alpha_{j+1}, \beta_j)$ and $(\alpha_{j}, \beta_{j-1})$. 
 As we will see, such a relation involves higher order
 Lanczos vectors $q_j$---vectors we do not wish to compute. Recall that the only ``vector'' we can
@@ -1476,7 +1476,7 @@ The second is,
     + 2\alpha_j \beta_{j-1}q_j^t\M^k q_{j-1}
     - 2\beta_{j-1}q_j^t \M^{k+1}q_{j-1}).
 \end{align}
-The point of all this is that each pair of coeﬂicients $(\alpha_{j+1}, \beta_j)$
+The point of all this is that each pair of coefficients $(\alpha_{j+1}, \beta_j)$
 can be expressed as a function of the covariance between 
 $\phi(n)$ and $\phi(n+ m)$, for $m = 0, \dots, 2j+1$. Since the expressions
 are based on four recurrence relations, they become quite complicated as $j$ gets large. However,
@@ -1539,7 +1539,7 @@ The \emph{energy} of the system, when in state $i$, is defined by the Hamiltonia
 \[
 H(\sigma_i) = - \sum_{\<j k\>} \sigma_i(j)\sigma_i(k)
 \]
-where the sum runs over all neart neighbor pairs. In statistical mechanics one is often concerned
+where the sum runs over all nearest neighbor pairs. In statistical mechanics one is often concerned
 with the \emph{Gibbs measure} of state $i$, which is defined by
 \begin{equation}
 \label{eq:5.1}
@@ -1551,7 +1551,7 @@ For the Ising model, we put
 Z = \sum_{i=1}^{2^n}\exp\{-\beta H(\sigma_i)\}
 \end{equation*}
 so that $\pi$ is a probability measure. 
-Now, letting $k$ denote the so called \emph{Boltzman constant}, if a
+Now, letting $k$ denote the so called \emph{Boltzmann constant}, if a
 classical mechanical system is in thermal equilibrium with its surroundings with
 absolute temperature $T$, and is in state $i$ with energy $H(\sigma_i)$, then the
 probability density in phase-space of the point representing state $i$ is given by
@@ -1861,7 +1861,7 @@ iterations, and any
 % ---------------  37.txt  -----------------------------------------------
 %
 %
-number of desired Lauczos coefiicients. That is, the observable could have come from a simulation
+number of desired Lanczos coefficients. That is, the observable could have come from a simulation
 of any reversible Markov chain and not just our special Metropolis chain. The output of this
 program is a matrix T containing the maximum number of Lanczos coefficients (up
 to the number requested by the user) before an approximate invariant subspace
@@ -1927,7 +1927,7 @@ using the Matlab program {\tt tpm.m} listed in the Appendix. They should be very
 takes the Matlab routine {\tt eig()} just over 20 minutes of cpu time on a Sun
 Ultra Sparc to find all the eigenvalues of K.
 
-As montioned in Section~\ref{sec:gener-lancz-algor} (see
+As mentioned in Section~\ref{sec:gener-lancz-algor} (see
 Theorem~\ref{thm:4.1.1}), the $\beta$ coefficients provide conservative error 
 bounds on the eigenvalue estimates from the previous Lanczos
 step. Unfortunately, for this example $\beta$ appears to be too conservative as
@@ -1948,7 +1948,7 @@ converge to the eigenspace corresponding to the largest eigenvalue
 
 The matrix T was produced by the program {\tt lanczos.c} and its eigenvalues were computed
 by Matlab, both operations taking a few seconds. Granted, comparing a few seconds to the 20
-minutes it takes Matlab to compute all the eigenvales is not really fair, 
+minutes it takes Matlab to compute all the eigenvalues is not really fair, 
 since calling Matlab's {\tt eig()} routine is not always the
 %
 %
@@ -1989,7 +1989,7 @@ We can simulate realizations of the chain as well as functions of these
 realizations (observables on the state space).
 \end{itemize}
 When these conditions hold, we can avoid the traditional Lanczos algorithm, and
-estimate the values of the Lanczos coeﬂicients via the variational properties of
+estimate the values of the Lanczos coefficients via the variational properties of
 observables on the state space. 
 There are a number of ideas in this paper that could be expanded upon in future
 studies.  Perhaps most obvious would be to try to find analogous techniques for
@@ -2608,7 +2608,7 @@ J.~Demmel.
 
 \bibitem{Diaconis:1996}
 P.~Diaconis and L.~Saloff-Coste.
-\newblock Logarithmic sobolev inequalities for finite markov chains.
+\newblock Logarithmic {S}obolev inequalities for finite {M}arkov chains.
 \newblock {\em The Annals of Applied Probability}, 6:695--750, 1996.
 
 \bibitem{Durret:1996}
@@ -2618,7 +2618,7 @@ R.~Durrett.
 
 \bibitem{Geman:1984}
 S.~Geman and D.~Geman.
-\newblock Stochastic relaxation. gibbs distributions and the bayesian
+\newblock Stochastic relaxation. {G}ibbs distributions and the {B}ayesian
   restoration of images.
 \newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
   6:721--741, 1984.
@@ -2630,7 +2630,7 @@ G.~Golub and Charles Van~Loan.
 
 \bibitem{GoodmanSokal:1989}
 G.~Goodman and A.~Sokal.
-\newblock Multigrid monte carlo method. conceptual foundations.
+\newblock Multigrid {M}onte {C}arlo method. conceptual foundations.
 \newblock {\em Physical Review D}, 40:2035--2071, 1989.
 
 \bibitem{Hammersley:1964}
@@ -2645,7 +2645,7 @@ N.~Metropolis, A.~W. Rosenbluth, M.~N. Rosenbluth, A.~H. Teller, and E.~Teller.
 
 \bibitem{Rosenthal:1995}
 J.~Rosenthal.
-\newblock Convergence rates for markov chains.
+\newblock Convergence rates for {M}arkov chains.
 \newblock {\em Siam Review}, 37:387--405, 1995.
 
 \end{thebibliography}

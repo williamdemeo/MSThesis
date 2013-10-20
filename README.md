@@ -11,13 +11,15 @@ Master of Science in Mathematics in the Graduate Division of the New York Univer
 
 Files in the repository
 -----------------------
-The thesis is in the file **msthesis.pdf**.  
+The main document is **msthesis.pdf**.  It is the only file you need if you want to read the thesis.  
 
-All of the LaTeX source code is contained in a single file, **msthesis.tex**, which can be compiled with the following command:
+The other files in the repository are the LaTeX source code (msthesis.tex) and the computer programs (in the src directory) for running the simulations described in the thesis.
+
+All of the LaTeX source code is contained in a single file, msthesis.tex, which can be compiled with the following command
 
     pdflatex msthesis.tex
     
-This command will produce the file msthesis.pdf, assuming you have a resonably good installation of the TeXLive package or its equivalent. 
+to produce the msthesis.pdf file, assuming you have a resonably good installation of the TeXLive package or its equivalent. 
 
 The computer program files are in the **src** directory.  I have not tested them recently.  If you try them and encounter a problem, *please [submit an issue](https://github.com/williamdemeo/MSThesis/issues)*.
 

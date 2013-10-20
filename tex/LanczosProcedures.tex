@@ -231,7 +231,7 @@ q_1^t\M^2 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^2(\phi- \bE_\pi \phi)}
 Inserting the last expression into Equation~(\ref{eq:4.7}) gives
 \[
 \beta_1 = \left[\frac{\bC_\pi (\phi(n), \phi(n + 2))}{\Var_\pi(\phi(n))}
--\bigl( \frac{\bC_\pi (\phi(n), \phi(n + 1))}{\Var_\pi(\phi(n))}\bigr)^2
+-\left( \frac{\bC_\pi (\phi(n), \phi(n + 1))}{\Var_\pi(\phi(n))}\right)^2
 \right]^{1/2}.
 \]
 Notice that we can estimate these expressions of $\alpha_1$ and $\beta_1$ by
@@ -341,9 +341,9 @@ The point of all this is that each pair of coeﬂicients $(\alpha_{j+1}, \beta_j
 can be expressed as a function of the covariance between 
 $\phi(n)$ and $\phi(n+ m)$, for $m = 0, \dots, 2j+1$. Since the expressions
 are based on four recurrence relations, they become quite complicated as $j$ gets large. However,
-defining these recursions in a computer program is trivial, and we use this fact
-in Section~\label{sec:computations} % Sec 5.4
-when applying the foregoing to a particular problem.
+defining these recursions in a computer program is trivial, as we demonstrate
+in Section~\ref{sec:computations} % Sec 5.4
+by applying the foregoing to a particular problem.
 %
 %
 % ----------------- 30.txt ------------------------------------------------------

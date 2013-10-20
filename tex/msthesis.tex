@@ -160,15 +160,15 @@
 %% Introduction. If your thesis has no introduction, or chapter 1 is
 %% meant to be the introduction, then comment out the lines below.
 \section*{Introduction}\addcontentsline{toc}{section}{Introduction}
-\input{intro}
+\input{intro}  % Chapter 1
 %% If your thesis has different "Parts", use commands such as the following:
-%% %%\part{First Part\label{part:one}}%
-\input{MarkovChains}
-\input{InvariantSubspaces}
-\input{LanczosProcedures}
-%% %%\part{Second Part\label{part:two}}%
-%% \input{Application}
-%% \input{Conclusion}
+\part{Theory\label{part:one}}%
+\input{MarkovChains} % Chapter 2
+\input{InvariantSubspaces} % Chapter 3
+\input{LanczosProcedures} % Chapter 4
+\part{Application\label{part:two}}%
+\input{Application} % Chapter 5
+\input{Conclusion}
 
 %%%%% Appendices start %%%%%%%%%%%%%%%%
 %% Comment out the following line if your thesis has no appendix

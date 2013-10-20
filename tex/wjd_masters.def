@@ -69,6 +69,7 @@
 \renewcommand\H{\ensuremath{\mathrm{H}}}
 \newcommand\T{\ensuremath{\mathrm{T}}}
 \newcommand\I{\ensuremath{\mathrm{I}}}
+\newcommand\K{\ensuremath{\mathrm{K}}}
 \newcommand\Q{\ensuremath{\mathrm{Q}}}
 \newcommand\mR{\ensuremath{\mathrm{R}}}
 \newcommand\Z{\ensuremath{\mathrm{Z}}}

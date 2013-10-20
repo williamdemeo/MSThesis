@@ -36,6 +36,16 @@ G.~Goodman and A.~Sokal.
 \newblock Multigrid monte carlo method. conceptual foundations.
 \newblock {\em Physical Review D}, 40:2035--2071, 1989.
 
+\bibitem{Hammersley:1964}
+J.~M. Hammersley and D.~C. Handscomb.
+\newblock {\em Monte Carlo Methods}.
+\newblock Chapman and Hall, 1964.
+
+\bibitem{Metropolis:1953}
+N.~Metropolis, A.~W. Rosenbluth, M.~N. Rosenbluth, A.~H. Teller, and E.~Teller.
+\newblock Equations of state calculations by fast computing machines.
+\newblock {\em J. Chem. Phys.}, 21:1087--1092, 1953.
+
 \bibitem{Rosenthal:1995}
 J.~Rosenthal.
 \newblock Convergence rates for markov chains.

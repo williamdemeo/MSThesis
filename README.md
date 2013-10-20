@@ -39,3 +39,5 @@ All of the LaTeX source code is contained in a single file, msthesis.tex, which 
 to produce the msthesis.pdf file, assuming you have a reasonably good installation of the TeXLive package or its equivalent. 
 
 The computer program files are in the **src** directory.  I have not tested them recently.  If you try them and encounter a problem, *please [submit an issue](https://github.com/williamdemeo/MSThesis/issues)*.
+
+If you would like to download all the files in this repository as a single zip or tar file, please visit [this page](http://williamdemeo.github.io/MSThesis).

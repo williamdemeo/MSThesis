@@ -1,0 +1,2643 @@
+%% NYU PhD thesis format. Created by Jos Koiller 2007--2008.
+
+%% Use the first of the following lines during production to
+%% easily spot "overfull boxes" in the output. Use the second
+%% line for the final version.
+%\documentclass[12pt,draft,letterpaper]{report}
+\documentclass[12pt,letterpaper]{report}
+
+%% Replace the title, name, advisor name, graduation date and dedication below with
+%% your own. Graduation months must be January, May or September.
+\newcommand{\thesistitle}{A Lanczos Procedure for Approximating Eigenvalues of Large Stochastic Matrices}
+\newcommand{\thesisauthor}{William J. DeMeo}
+\newcommand{\thesisadvisor}{Professor Jonathan Goodman}
+\newcommand{\graddate}{Jan 1999}
+
+%\urladdr{williamdemeo@gmail.com}
+%% \urladdr{http://williamdemeo.org}
+%% \address{Department of Mathematics\\
+%% University of South Carolina\\Columbia 29208\\USA}
+%% If you do not want a dedication, scroll down and comment out
+%% the appropriate lines in this file.
+\newcommand{\thesisdedication}{To my parents, with love and appreciation.}
+
+%% The following makes chapters and sections, but not subsections,
+%% appear in the TOC (table of contents). Increase to 2 or 3 to
+%% make subsections or subsubsections appear, respectively. It seems
+%% to be usual to use the "1" setting, however.
+\setcounter{tocdepth}{1}
+
+%% Sectional units up to subsubsections are numbered. To number
+%% subsections, but not subsubsections, decrease this counter to 2.
+\setcounter{secnumdepth}{3}
+
+%% Page layout (customized to letter paper and NYU requirements):
+\setlength{\oddsidemargin}{.6in}
+\setlength{\textwidth}{5.8in}
+\setlength{\topmargin}{.1in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textheight}{8.3in}
+\setlength{\footskip}{.5in}
+
+%% Use the following commands, if desired, during production.
+%% Comment them out for final version.
+%\usepackage{layout} % defines the \layout command, see below
+%\setlength{\hoffset}{-.75in} % creates a large right margin for notes and \showlabels
+
+%% Controls spacing between lines (\doublespacing, \onehalfspacing, etc.):
+\usepackage{setspace}
+
+%% Use the line below for official NYU version, which requires
+%% double line spacing. For all other uses, this is unnecessary,
+%% so the line can be commented out.
+\doublespacing % requires package setspace, invoked above
+
+%% Each of the following lines defines the \com command, which produces
+%% a comment (notes for yourself, for instance) in the output file.
+%% Example:    \com{this will appear as a comment in the output}
+%% Choose (uncomment) only one of the three forms:
+%\newcommand{\com}[1]{[/// {#1} ///]}       % between [/// and ///].
+\newcommand{\com}[1]{\marginpar{\tiny #1}} % as (tiny) margin notes
+%\newcommand{\com}[1]{}                     % suppress all comments.
+
+%% This inputs your auxiliary file with \usepackage's and \newcommand's:
+%% It is assumed that that file is called "definitions.tex".
+%%
+%% \input{wjd_masters.def}
+\usepackage{enumerate,amsmath,amssymb,fancyhdr,mathrsfs,amsthm,url,stmaryrd}
+\usepackage[colorlinks=true,urlcolor=black,linkcolor=black,citecolor=black]{hyperref}
+\usepackage{relsize}
+\usepackage{marvosym}
+\usepackage{graphicx}
+\usepackage{enumerate} 
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{scalefnt}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{ifthen}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\newcounter{claim}
+\newtheorem{claim}[claim]{Claim}
+\newcounter{conjecture}
+\newtheorem{conjecture}[conjecture]{Conjecture}
+\newtheorem*{problem}{Problem}
+\newtheorem*{fact}{Fact}
+\newtheorem{case}{Case}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{remarks}{Remarks}
+\newtheorem*{notation}{Notation}
+\numberwithin{theorem}{chapter}
+\numberwithin{claim}{chapter}
+\numberwithin{equation}{chapter}
+\numberwithin{conjecture}{chapter}
+\renewcommand\S{\ensuremath{\mathcal{S}}}
+\newcommand\sK{\ensuremath{\mathcal{K}}}
+\newcommand\F{\ensuremath{\mathcal{F}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\bC{\ensuremath{\mathbf{C}}}
+
+\newcommand\C{\ensuremath{\mathrm{C}}}
+\renewcommand\P{\ensuremath{\mathrm{P}}}
+\newcommand\bP{\ensuremath{\mathbf{P}}}
+\newcommand\M{\ensuremath{\mathrm{M}}}
+\renewcommand\H{\ensuremath{\mathrm{H}}}
+\newcommand\T{\ensuremath{\mathrm{T}}}
+\newcommand\I{\ensuremath{\mathrm{I}}}
+\newcommand\K{\ensuremath{\mathrm{K}}}
+\newcommand\Q{\ensuremath{\mathrm{Q}}}
+\newcommand\mR{\ensuremath{\mathrm{R}}}
+\newcommand\Z{\ensuremath{\mathrm{Z}}}
+\newcommand\E{\ensuremath{\mathrm{E}}}
+\newcommand\U{\ensuremath{\mathrm{U}}}
+\newcommand\V{\ensuremath{\mathrm{V}}}
+
+\newcommand\bE{\ensuremath{\mathbf{E}}}
+\newcommand\Var{\ensuremath{\mathbf{Var}}}
+\newcommand\ran{\ensuremath{\operatorname{ran}}}
+\newcommand\psip[1]{\ensuremath{\psi^{(#1)}}}
+\newcommand\pij{\ensuremath{p_{ij}}}
+\newcommand\pji{\ensuremath{p_{ji}}}
+\newcommand\<{\ensuremath{\langle}}
+\renewcommand\>{\ensuremath{\rangle}}
+\newcommand\diag{\ensuremath{\operatorname{diag}}}
+\newcommand\one{\ensuremath{\mathbf{1}}}
+\newcommand\lambdamax{\ensuremath{\lambda_{\max}(\M)}}
+
+
+%% Cross-referencing utilities. Use one or the other--whichever you prefer--
+%% but comment out both lines for final version.
+%\usepackage{showlabels}
+%\usepackage{showkeys}
+
+
+\begin{document}
+%% Produces a test "layout" page, for "debugging" purposes only.
+%% Comment out for final version.
+%\layout % requires package layout (see above, on this same file)
+
+%%%%%% Title page %%%%%%%%%%%
+%% Sets page numbering to "roman style" i, ii, iii, iv, etc:
+\pagenumbering{roman}
+%
+%% No numbering in the title page:
+\thispagestyle{empty}
+%
+\begin{center}
+  {\large\textbf{\thesistitle}}
+  \vspace{.7in}
+
+  by
+  \vspace{.7in}
+
+  \thesisauthor
+  \vfill
+
+\begin{doublespace}
+  A dissertation submitted in partial fulfillment\\
+  of the requirements for the degree of\\
+  Master of Science\\
+  Department of Mathematics\\
+  New York University\\
+  \graddate
+\end{doublespace}
+\end{center}
+\vfill
+
+\noindent\makebox[\textwidth]{\hfill\makebox[2.5in]{\hrulefill}}\\
+\makebox[\textwidth]{\hfill\makebox[2.5in]{\hfill\thesisadvisor\hfill}}
+\newpage
+%%%%%%%%%%%%% Blank page %%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\vspace*{0in}
+\newpage
+
+%%%%%%%%%%%%%% Dedication %%%%%%%%%%%%%%%%%
+%% Comment out the following lines if you do not want to dedicate
+%% this to anyone...
+\vspace*{\fill}
+\begin{center}
+  \thesisdedication\addcontentsline{toc}{section}{Dedication}
+\end{center}
+\vfill
+\newpage
+%%%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%
+%% Comment out the following lines if you do not want to acknowledge
+%% anyone's help...
+\section*{Acknowledgements}\addcontentsline{toc}{section}{Acknowledgements}
+%%% 
+%%% \input{acknowledge}
+%%%
+First, I thank my advisor, Professor Jonathan Goodman, for giving me the opportunity to work on
+this problem, and helping me arrive at the following exposition. Next, I wish to thank Professor
+Helena Frydman for ﬁrst sparking my interest in Markov chains by giving lucid descriptions of their
+many interesting properties and applications. I thank Professors James Demmel and Beresford
+Parlett, for answering many questions pertaining to this problem, and Professor Leslie Greengard
+for agreeing to review this paper.
+
+Finally, I would like to thank my family, for their support of my interests in research (and
+everything else!), and especially my parents, Barbara and Ted Terry, and Benita and Bill DeMeo.
+Needless to say, without them this paper would not have been written.
+
+
+\newpage
+%%%% Abstract %%%%%%%%%%%%%%%%%%
+\section*{Abstract}\addcontentsline{toc}{section}{Abstract}
+%%%----------------------------------------------------------------
+%%%
+%%% \input{abstract}
+%%%
+\begin{center}
+\newcommand\skipsize{6pt}
+A Lanczos Procedure for Approximating Eigenvalues of Large Stochastic Matrices\\[\skipsize]
+by\\[\skipsize]
+William J. DeMeo\\[\skipsize]
+Master of Science in Mathematics\\[\skipsize]
+New York University\\[\skipsize]
+Professor Jonathan Goodman, Chair
+\end{center}
+
+The rate at which a Markov chain converges to a given probability distribution
+has long been an active area of research. Well known bounds on this rate of
+convergence involve the subdominant eigenvalue of the chain's underlying
+transition probability matrix. However, many transition probability matrices are
+so large that we are unable to store even a vector of the matrix in fast
+computer memory. Thus, traditional methods for approximating eigenvalues are
+rendered useless. 
+
+In this paper we demonstrate that, if the Markov chain is reversible, and we
+understand the structure of the chain, we can derive the coefficients of the
+traditional Lanczos algorithm without storing a single vector. We do this by
+considering the variational properties of observables on the chain's state
+space. In the process we present the classical theory which relates the
+information contained in the Lanczos coefficients to the eigenvalues of the
+Markov chain. 
+%%%----------------------------------------------------------------
+
+\newpage
+%%%% Table of Contents %%%%%%%%%%%%
+\tableofcontents
+
+\newpage
+%%%%% List of Figures %%%%%%%%%%%%%
+%% Comment out the following two lines if your thesis does not
+%% contain any figures. The list of figures contains only
+%% those figures included withing the "figure" environment.
+%% \listoffigures\addcontentsline{toc}{section}{List of Figures}
+%% \newpage
+
+%%%%% List of Tables %%%%%%%%%%%%%
+%% Comment out the following two lines if your thesis does not
+%% contain any tables. The list of tables contains only
+%% those tables included withing the "table" environment.
+%% \listoftables\addcontentsline{toc}{section}{List of Tables}
+%% \newpage
+
+%%%%% List of Algorithms %%%%%%%%%%%%%
+%% Comment out the following two lines if your thesis does not
+%% contain any algorithms. The list of tables contains only
+%% those tables included withing the "table" environment.
+%% \listofalgorithms\addcontentsline{toc}{section}{List of Algorithms}
+%% \newpage
+
+%%%%% Body of thesis starts %%%%%%%%%%%%
+\pagenumbering{arabic} % switches page numbering to arabic: 1, 2, 3, etc.
+%% Introduction. If your thesis has no introduction, or chapter 1 is
+%% meant to be the introduction, then comment out the lines below.
+\section*{Introduction}\addcontentsline{toc}{section}{Introduction}
+%%%----------------------------------------------------------------
+%%%
+%%% \input{intro}
+%%%
+The rate at which a Markov chain converges to a given probability distribution
+has long been an active area of research. This is not surprising considering
+this problem's relevance to the areas of statistics, statistical mechanics, and
+computer science. Markov Chain Monte Carlo (MCMC) algorithms provide important
+examples. These algorithms come in handy when we encounter a complicated
+probability distribution from which we want to draw random samples. In
+statistical mechanics, we might wish to estimate the phase average of a function
+on the state space. Goodman and Sokal~\cite{GoodmanSokal:1989} examine Monte
+Carlo methods in this context. Examples from statistics occur in the Bayesian
+paradigm when we are forced to simulate an unwieldy posterior distribution (see,
+e.g., Geman and Geman~\cite{Geman:1984}.  
+
+To implement the MCMC algorithm, we invent a Markov chain that converges to the
+desired distribution (this is often accomplished using the \emph{Metropolis algorithm}
+described in Chapter~\ref{cha:an-appl-conv}). Realizations of the chain will
+eventually represent samples from this distribution. Sometimes
+``eventually''---meaning all but finitely many terms of the chain---is just not 
+enough. We need more practical results. In particular, we want to know how many
+terms of the chain should be discarded before we are sampling from a
+distribution that is close (in total variation distance) to 
+%
+%
+% ------------- 03.txt -----------------------------------------------------
+%
+%
+the distribution of interest. This is the purpose of bounding convergence rates
+for Markov chains. 
+
+Often the Markov chains encountered in this context satisfy a condition known in
+the physics literature as \emph{detailed balance}. Probabilists call chains with
+this property \emph{reversible}. This simply means that the chain has the same
+probability law whether time moves forward or backward.\footnote{This is not a
+precise definition. In particular the chain must have started from its
+stationary distribution. Full rigor is postponed until
+Section~\ref{sec:general-theory}.} 
+In this paper, we consider the rate at which such chains converge to
+a \emph{stationary distribution}. This and other italicized terms are
+defined in Section~\ref{sec:general-theory}.
+
+There are a number of different methods in common use for bounding convergence
+rates of Markov chains, and a good review of these methods with many references
+can be found in~\cite{Rosenthal:1995}.  More recently developed methods
+employing logarithmic Sobolev inequalities are reviewed in~\cite{Diaconis:1996}.  
+Most of the bounds in common use involve the subdominant eigenvalue of the
+Markov chain's transition probability matrix, and thus require good
+approximations to such eigenvalues. In many applications, however, the
+transition probability matrix is so large that it becomes impossible to store
+even a single vector of the matrix in conventional computer memory. These so
+called \emph{out-of-core} problems are not amenable to traditional eigenvalue
+algorithms without modification.\footnote{By ``traditional 
+  eigenvalue algorithms'' we mean those found, for example, in Golub and Van
+  Loan~\cite{Golub:1996}. See also the book by Demmel\cite{Demmel:1997} for more 
+  recent treatment.}
+In this paper we develop such a modification for the Markov chain eigenvalue
+problem. In particular we develop a method for approximating the first few
+eigenvalues of a transition probability matrix when we know the general
+structure of the underlying Markov chain. The method does not require storage
+of large matrices or vectors. Instead we need only simulate the Markov chain,
+and conduct a statistical analysis of the simulation.
+
+Here is a brief summary of the paper. Section~\ref{sec:general-theory} contains
+a review of the relevant Markov chain theory. Readers who already know the
+basics of asymptotic theory of Markov chains might wish to skim 
+Section\ref{sec:general-theory} if only to familiarize themselves with our
+notation. Section~\ref{sec:funct-state-space} describes functions on the state 
+% 04.txt
+space of the Markov process. This section and Chapter~\ref{cha:invar-appr-invar}
+develop the context in which we formulate the new ideas of the paper. In the
+last section of Chapter~\ref{cha:invar-appr-invar},
+Section~\ref{sec:krylov-subspace}, we describe the \emph{Krylov subspace} and
+explain why this represents our best approximation to a subspace containing 
+extremal eigenvectors of the transition probability matrix (more
+  precisely, a similarity transformation of this matrix). The first section of
+Chapter~\ref{cha:lanczos-procedures} describes the \emph{Lanczos algorithm} for
+generating an orthonormal basis for the Krylov subspace. As it stands, this
+algorithm is useless for an out-of-core problem since, by
+definition of such problems, it requires too much data movement; all the
+computing time is spent swapping data between slow and fast memory (disk to ram
+to cache and back). We develop alternatives to the Lanczos algorithm and
+demonstrate that the \emph{Lanczos coefficients} of the algorithm can be
+obtained by simulations of the Markov chain, and this allows us to avoid
+the standard algorithm altogether. Following this is a chapter describing the
+Metropolis algorithm used to produce a reversible stochastic matrix. It is here
+that we experiment with the procedure described in
+Section~\ref{sec:lancz-proc-mark} and approximate the extremal eigenvalues of
+the matrix, without storing any of its vectors. Finally,
+Chapter~\ref{cha:conclusion} concludes the paper. 
+% 05.txt
+
+%%%===================================================================
+%%%-------------------------------------------------------------------
+
+%% If your thesis has different "Parts", use commands such as the following:
+\part{Theory\label{part:one}}%
+
+%%%-------------------------------------------------------------------
+%%%
+%%% \input{MarkovChains} % Chapter 2
+%%%
+\chapter{Markov Chains}
+
+\section{General Theory}
+\label{sec:general-theory}
+This review of Markov chain theory can be found in any good probability text. The present
+discussion is most similar to that of Durrett~\cite{Durret:1996}, to which we
+refer the reader desiring greater detail. 
+
+\subsection{The Basic Setup}
+
+Heuristically, a Markov chain is a stochastic process with a lack of memory property. Here
+this means that the future of the process, given its past behavior and its present state, depends only
+on its present state. This is the probabilistic analogue of a familiar property of classical particle
+systems. Given the position and velocities of all particles at time t, the equations of motion can be
+completely solved for the future evolution of the system. Thus, information describing the behavior
+of the process prior to time t is superﬂuous. To be a bit more precise, if technical, we need the
+following definitions.
+
+\begin{definition}
+%Definition 2.1.1 
+Let $(\S, \S)$ be a measurable space. A sequence $X_n$, $n\geq 0$, of random variables
+taking values in \S\ is said to be a Markov chain with respect to the filtration 
+$\sigma(X_0, \dots, X_{n})$ if for all $B \in \S$,
+\begin{equation}
+% Eqn 2.1
+\label{eq:1}
+P(X_{n+1} \in B \mid \sigma(X_0, \dots, X_{n}))
+=P(X_{n+1} \in B \mid \sigma(X_{n})).
+\end{equation}
+\end{definition}
+Equation~(\ref{eq:1}) merely states that if we know the present location or state of $X_{n}$,
+then information about earlier locations or states is irrelevant for predicting $X_{n+1}$.
+
+\begin{definition}
+%% Definition 2.1.2 
+A function $p : S \times \S \rightarrow \R$ is said to be a \emph{transition probability} if:
+\begin{enumerate}
+\item for each $x \in S$, $A \mapsto p(x, A)$ is a probability measure on $(S, \S)$.
+\item for each $A \in \S$, $x \mapsto p(x, A)$ is a measurable function.
+\end{enumerate}
+\end{definition}
+We call $X_n$ a Markov chain with transition probabilities $p_n$ if
+\begin{equation}
+% Eqn 2.2
+\label{eq:2.2}
+P(X_{n+1} \in B \mid  \sigma(X_n)) = p_n(X_n, B)
+\end{equation}
+The spaces $(S, \S)$ that we encounter below are standard Borel spaces, so the existence of the
+transition probabilities follows from the existence of regular conditional
+probabilities on Borel spaces---a standard measure theory result 
+(see e.g.\cite{Durret:1996}). %[3] page 230
+
+Suppose we are given an initial probability distribution $\mu$ on $(S, \S)$ and a sequence $p_n$ of
+transition probabilities. We can define a consistent set of finite dimensional distributions by
+\begin{equation}
+% Eqn 2.3
+\label{eq:2.3}
+P(X_j\in B_j ,0 \leq j \leq n) = \int_{B_0} \mu(dx_0) \int_{B_1} p_0(x_0, dx_1) 
+%\int_{B_2} p_1(x_1, dx_2) 
+\cdots 
+\int_{B_n} p_{n-1}(x_{n-1}, dx_n).
+\end{equation}
+Furthermore, denote our probability space by
+\[
+(\Omega, \F) = (S^\omega,\S^\omega), \quad \text{ where } \omega = \{0,1,\dots\}.
+\]
+We call this \emph{sequence space} and it is defined more explicitly by
+\[
+S^\omega  = \{(\omega_0, \omega_1, \dots) : \omega_i \in S\}\quad \text{ and }
+\quad
+\S^\omega  = \sigma(\omega : \omega_i \in A_i \in \S).
+\]
+% 07.txt
+The Markov chain that we will study on this space is simply $X_n(\omega) = \omega$, the coordinate maps.
+Then, by the Kolmogorov extension theorem, there exists a unique probability measure $P_\mu$ on
+$(\Omega, \F)$ so that the $X_n(\omega)$ have finite dimensional distributions~(\ref{eq:2.3}).
+
+If instead of $\mu$ we begin with the initial distribution $\delta_x$, i.e., point mass at $x$, then we
+denote the probability measure by $P_x$. With such measures defined for each $x$, we can in turn
+define distributions $P_\mu$, given any initial distribution $\mu$, by
+\[
+P_\mu(A) = \int \mu(dx)P_x(A).
+\]
+
+That the foregoing construction---which, recall, was derived merely from an
+initial distribution $\mu$ and a sequence $p_n$ of transition
+probabilities---satisfies Definition~(\ref{eq:2.2}) of a Markov chain is not
+obvious, and a proof can be found in~\cite{Durret:1996}.
+
+To state the converse of the foregoing, if $X_n$ is a Markov chain with
+transition probabilities $p_n$ and initial distribution $\mu$, then its finite
+dimensional distributions are given by~(\ref{eq:2.3}). Proof of this is also found
+in~\cite{Durret:1996}. 
+
+Now that we have put the theory on a firm, if abstract, foundation, we can bring
+the discussion down to earth by making the forgoing a little more
+concrete. First, we specialize our study of Markov chains by assuming that our
+chain is \emph{temporally homogeneous}, which means that the transition
+probabilities do not depend on time; i.e., 
+$p_n(\omega_n, B) = p(\omega_n, B)$. (This is the stochastic analogue of a
+conservative system.) 
+Next we assume that our state space $S$ is finite, and suppose for all states
+$i,j \in S$ that $p(i, j) \geq 0$, and $\sum_j p(i, j) = 1$ for all $i$. In
+this case, equation~(\ref{eq:2.2}) takes a more intuitive form,
+\[
+P(X_{n+1}=j \mid X_n = i) =p(i,j),
+\]
+and our transition probabilities become
+\[
+p(i,A) = \sigma_{j\in A} p(i,j).
+\]
+% 08.txt
+If $\P$ is a matrix whose $(i, j)$ element is the transition probability 
+$p(i, j)$ then P is a \emph{stochastic matrix}; that is, a matrix with elements
+$p_{ij}$ satisfying 
+\[
+\pij \geq 0, \quad \sum_j \pij =1, \quad (i, j =1, 2, \dots, d).
+\]
+We also refer to $\P$ as the transition probability matrix.
+
+Without loss of generality, we can further suppose our Markov chain is \emph{irreducible}. This
+means that, for any states $i, j$, starting in state $i$ the chain will make a
+transition to state $j$ at some future time with positive probability. This
+state of affairs is often described by saying that all states \emph{communicate}. We
+lose no generality with this assumption because any \emph{reducible} Markov chain can
+be factored into irreducible classes of states which can each be studied
+separately. 
+
+The final two conditions we place on the Markov chains considered below will cost us
+some generality. Nonetheless, there remain many examples of chains meeting these conditions
+and making the present study worthwhile. Furthermore, it may be the case that, with a little
+more work, we will be able to drop these conditions in future studies. The first condition is that
+the chain is \emph{aperiodic}. If we let $I_x = \{n \geq 1: p^n(x,x) > 0\}$, we
+call a Markov chain \emph{aperiodic} if, for any state $x$, the greatest common
+divisor of $I_x$ is 1. The second assumption is that our chain is 
+\emph{reversible}. This characterization is understood in terms of the following definition.
+
+\begin{definition}
+%% Definition 2.1.3 
+\label{def:2.1.3}
+A measure $\mu$ is called \emph{reversible} if it satisfies
+\[
+\mu(x)p(x,y) = \mu(y)p(y,x), \quad  \text{ for all $x$ and $y$.}
+\]
+We call a Markov chain \emph{reversible} if its stationary distribution (defined
+in Section~\ref{sec:convergence-theorem}) is reversible. 
+\end{definition}
+
+
+
+% ---------- 09.txt ------------------------------------------------------------
+
+\subsection{A Convergence Theorem}
+% Section 2.1.2
+\label{sec:convergence-theorem}
+In succeeding arguments, we use some results concerning the asymptotic behavior of
+Markov chains. These results require a few more definitions.
+
+\begin{definition}
+%% Definition 2.1.4
+\label{def:2.1.4}
+A measure $\pi$ is said to be a \emph{stationary measure} if
+\begin{equation}
+% Eqn 2.4
+  \label{eq:2.4}
+\sum_x \pi(x) p(x,y) = \pi(x).
+\end{equation}
+\end{definition}
+
+Equation~(\ref{eq:2.4}) says $P_\pi(X_1 = y) = \pi(y)$, 
+and by induction that $P_\pi(X_n = y) = \pi(y)$ for all $n \geq 1$. 
+If $\pi$ is a probability measure, then we call $\pi$ a stationary distribution. It
+represents an equilibrium for the chain in the sense that, if $X_0$ has
+distribution $\pi$, then so does $X_n$ for all $n$.
+
+When the Markov chain is irreducible and aperiodic, the distribution of the state at time
+$n$ converges pointwise to $\pi$ as $n \rightarrow \infty$, regardless of the
+initial state. It is convenient to state this convergence result in terms of the
+Markov chain's transition probability matrix $\P$. Before doing so, we note that
+irreducibility of a Markov chain is equivalent to irreducibility (in the usual 
+matrix theory sense) of its transition probability matrix. Furthermore, it turns
+out that a transition probability matrix of an aperiodic Markov chain falls into
+that class of matrices often called acyclic, but for simplicity we will call
+such stochastic matrices aperiodic. With this terminology, we can state the
+convergence theorem in terms of the transition probability matrix \P. 
+
+% Theorem 2.1.1
+\begin{theorem}
+\label{thm-2.1.1}
+Suppose $\P$ is irreducible, aperiodic, and has stationary distribution
+$\pi$. Then as $n\rightarrow \infty$, $p^n(i,j) \rightarrow \pi(j)$.
+\end{theorem}
+
+The notation $p^n(i,j)$ means the $(i,j)$ element of the $n$th power of $\P$.
+
+A Markov chain whose transition probability matrix satisfies the hypotheses of
+Theorem~\ref{thm-2.1.1} is called \emph{ergodic}. If we simulate an ergodic chain for
+sufficiently many steps, having 
+%
+%
+%
+% ---------------10.txt --------------------------------------------------
+%
+%
+%
+begun in any initial state, the final state is a sample point from a
+distribution that is close to $\pi$. 
+
+To make this statement more precise requires that we define ``close.''
+\begin{definition}
+%% Definition 2.1.5 
+Let $\pi$ be a probability measure on $S$. Then the \emph{total variation distance} at time
+$n$ with initial state $x$ is given by 
+\[
+\Delta_x(n) = \|\P^n(x, A) - \pi(A)\|_{TV} = \max_{A\in \S} | \P^n(x,A)-\pi(A)|.
+\]
+\end{definition}
+In what follows, we will measure rate of convergence using the function
+$\tau_x(\epsilon)$, defined as the first time after which the total variation
+distance is always less than $\epsilon$. That is, 
+\[
+\tau_x(\epsilon) = \min\{m : \Delta_x(n) \leq \epsilon \text{ for all } n\geq
+m\}.
+\]
+
+To begin our consideration of the connection between convergence rates of Markov
+chains and eigenvalues, we first note that an aperiodic stochastic matrix $\P$ has real
+eigenvalues 
+$1 = \lambda_0 > \lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_{d-1} \geq -1$, 
+where $d = |S|$ is the dimension of the state space. For an ergodic chain, the
+rate of convergence to the stationary distribution $\pi$ is bounded by a
+function of the \emph{subdominant} eigenvalue. By subdominant eigenvalue we mean that
+eigenvalue which is second largest in absolute value, and we denote this
+eigenvalue by $\lambda_{\max} = \max{\lambda_1, |\lambda_{d-1}|}$. 
+The function bounding the rate of convergence of a Markov chain is given by the
+following theorem ($\log$ denotes the natural logarithm):
+\begin{theorem}
+% Theorem 2.1.2
+\label{thm-2.1.2}
+The quantity $\tau_x(\epsilon)$ satisfies
+\begin{enumerate}
+\item 
+$\tau_x(\epsilon) \leq (1-\lambda_{\max})^{-1}(\log \pi(x)^{-1} + \log \epsilon^{-1})$;
+\item $\max_{x \in S} \tau_x(\epsilon) \geq \frac{1}{2} \lambda_{\max}(1-\lambda_{\max})^{-1} \log(2\epsilon)^{-1}$.
+\end{enumerate}
+\end{theorem}
+As this theorem shows, if we have an upper bound on the subdominant eigenvalue, then we have
+an upper bound on the function $\tau_x(\epsilon)$. In what follows, we will
+derive an approximation to the 
+% 11.txt
+subdominant eigenvalue and supply error bounds. Together, an approximation and error bounds
+for $\lambda_{\max}$  provide enough information to make Theorem~\ref{thm-2.1.2} useful.
+
+\section{Functions on the State Space}
+% Sec 2.2
+\label{sec:funct-state-space}
+Recall that $X_n(\omega) = \omega_n\in S$ denotes the state in which the Markov
+chain exists at time $n$. 
+Suppose that 
+$\Phi = \{\phi_1, \dots, \phi_p\}$ 
+is a collection of $p$ \emph{observables}, or functions defined on the state
+space $S$. Furthermore, let these observables be real valued, 
+$\phi_i : S \rightarrow \R$. 
+It is often useful to assume that none of the observables is a constant function. Suppose now that
+the state space $S$ is finite with $d$ possible states. Then, since an
+observable is simply a map of the state space, we can think of each $\phi_i$ as a
+vector of $d$ real numbers---the $d$ values that it takes on at the different states.
+
+Now assume the Markov chain is irreducible, and let $\pi$ denote its stationary distribution.
+If we start the chain from its stationary distribution---i.e., suppose $X_0$ has
+distribution $\pi$---then $X_n$ is a stationary process. 
+Furthermore, for each $i$, $\phi_i(X_n)$ is a stationary stochastic process with
+\emph{mean}
+\[
+\bE_\pi\phi_i = \sum_{x\in S} \pi(x)\phi_i(x)
+\]
+and \emph{autocovariance function}
+\begin{align}
+% Eqn 2.5
+\bC_\pi (\phi_i(X_n),  \phi_i (X_{n+s})) 
+&= \bE_\pi[(\phi_i(X_n) - \bE_\pi\phi_i)(\phi_i(X_{n+s}) - \bE_\pi\phi_i)]\\
+&= \sum_{x, y\in S} P_\pi(X_n = x, X_{n+s} = y) (\phi_i(x)- \bE_\pi\phi_i)(\phi_i(y) - \bE_\pi\phi_i).\nonumber
+\end{align}
+By the definition of conditional probability, we can write~(\ref{eq:2.4}) as follows:
+\[
+\sum_{x, y\in S} P_\pi(X_n = x) P_\pi(X_{n+s} = y\mid X_n = x) (\phi_i(x)-
+\bE_\pi\phi_i)(\phi_i(y) - \bE_\pi\phi_i).
+\]
+Equivalently,
+\[
+\sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\bE_\pi\phi_i)(\phi_i(y) - \bE_\pi\phi_i).
+\]
+Here $p^s_{xy}$ denotes the element in row $x$ and column $y$ of $\P^s$, the
+$s$th power of the transition probability matrix. 
+Similarly, we define the \emph{cross-covariance} between the function 
+$\phi_i$ at time $n$ and $\phi_j$ at time $n+s$ as
+\begin{align}
+% Eqn 2.6
+\bC_\pi (\phi_i(X_n),  \phi_j (X_{n+s})) 
+&= \bE_\pi[(\phi_i(X_n) - \bE_\pi\phi_i)(\phi_j(X_{n+s}) - \bE_\pi\phi_j)]\nonumber\\
+&= \sum_{x, y\in S} \pi(x)p^s_{xy} (\phi_i(x)-\bE_\pi\phi_i)(\phi_j(y) - \bE_\pi\phi_j).
+\end{align}
+Now let $\<\Phi\>$ denote the matrix of mean vectors whose $j$th column is 
+$\bE_\pi\phi_j\one$, where $\one = (1,\dots, 1)^t$,
+and let $\Pi = \diag(\pi(\omega_1),\dots, \pi(\omega_d))$ be the $d \times d$
+diagonal matrix with stationary probabilities $\pi(\omega)$
+on the main diagonal and zeros elsewhere. 
+Finally, denoting by $\C(s)$ the $p \times p$ covariance matrix
+whose $(i,j)$ element is $\bC_\pi(\phi_i(X_n), \phi_j(X_{n+s}))$, we have
+\begin{align*}
+\C(0) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_n) - \<\Phi\>)^t\\
+&= (\Phi - \<\Phi\>)^t\Pi (\Phi-\<\Phi\>), \\
+\C(s) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_{n+s}) - \<\Phi\>)^t\\
+&= (\Phi - \<\Phi\>)^t \Pi \P^s (\Phi - \<\Phi\>).
+\end{align*}
+
+Below, we will also find it useful to have at our disposal a new matrix that is \emph{similar} to the
+transition probability matrix. We have in mind the matrix 
+$\M = \Pi^{1/2}\P\Pi^{-1/2}$. 
+As is easily verified, this allows us to write the covariance matrix as
+\begin{align}
+\label{eq:2.7}
+\C(s) &= 
+(\Phi - \<\Phi\>)^t \Pi^{\frac{1}{2}t}\M^s\Pi^{\frac{1}{2}}(\Phi - \<\Phi\>)\nonumber\\
+&=\Psi^t \M^s \Psi,  % Eqn 2.7
+\end{align}
+%% \\Phi\Phi‘M’\\Phi\Phi (2.7)
+where we have defined $\Psi = \Pi^{\frac{1}{2}}(\Phi - \<\Phi\>)$. Recall that
+our main motivation is that for out-of-core problems traditional eigenvalue
+algorithms are inadequate. With this fact and the form~(\ref{eq:2.7}) % (2.7) 
+in 
+%
+%
+% ------------------ 13.txt ---------------------------------------------------
+%
+%
+mind, we will consider using the covariance of observables on the state space to implement the
+%% (otherwise useless) 
+Rayleigh-Ritz procedure, which we describe below. This procedure requires
+that $\M$ be symmetric. As the next fact demonstrates, 
+%% this required symmetry is the reason for our
+%% interest in the reversibility property of the Markov chain.
+this need for symmetry is the reason we insist that the Markov chain be reversible.
+\begin{fact}
+%% Fact 2.2.1 
+The matrix $\M$ is symmetric if and only if the Markov chain is reversible (i.e., iff the
+process satisfies the \emph{detailed balance} condition).
+\end{fact}
+\begin{proof}
+  \begin{align*}
+  \M \text{ is symmetric } 
+& \quad \Longleftrightarrow  \quad
+ (\Pi^{1/2}\P\Pi^{-1/2})^t = \Pi^{1/2}\P\Pi^{-1/2}\\
+& \quad \Longleftrightarrow  \quad
+ \Pi^{-\frac{1}{2}t}\P^t\Pi^{\frac{1}{2}t} = \Pi^{1/2}\P\Pi^{-1/2}\\
+& \quad \Longleftrightarrow  \quad
+ \P^t\Pi^t = \Pi\P.
+  \end{align*}
+Elementwise, the final equality is $\pi_i\pij = \pi_j\pji$. 
+According to Definition~\ref{def:2.1.3}, this states
+that $p$ is a reversible measure.
+\end{proof}
+
+% 14.txt
+
+%%%-------------------------------------------------------------------
+%%%
+%%% \input{InvariantSubspaces} % Chapter 3
+%%%
+\chapter{Invariant and Approximate Invariant Subspaces}
+\label{cha:invar-appr-invar}
+\section{Invariant Subspaces}
+
+\begin{definition}
+%% Definition 3.1.1
+A subspace $S \subseteq \R^n$ with the property that
+\[
+x \in S \quad \Longrightarrow \quad \M x \in S
+\]
+is said to be \emph{invariant} for $\M$.
+\end{definition}
+
+Recall that, having chosen observables $\<\Phi\> = (\phi_1, \dots, \phi_p)$, we
+constructed the covariance matrix 
+$\C(s) = \Psi^t \M \Psi$. 
+If the column space of $\Psi$, which we denote by $\ran(\Psi)$, is an invariant
+subspace for $\M$, the definition implies $\M\psi_j \in \ran(\Psi)$.
+That is, for each $\psi_i$ there exists a vector
+$t$ of coeﬂicients such that $\M \psi_j = \sum_{i=1}^p t_i \psi_{ij}$. 
+This is true for all $j$ and, putting each vector of
+coefficients into a matrix $\T$, we see that 
+$\M \Psi = \Psi \T$. Conversely, $\M\Psi = \Psi \T$ implies that $\M\psi_j$ is a
+linear combination of columns of $\Psi$, so $\ran(\Psi)$ is invariant. We have
+thus proved the following 
+% 15.txt
+\begin{fact}
+%% Fact 3.1.1 
+\label{fact:3.1.1}
+The subspace $\ran(\Psi)$ is invariant for $\M$ if and only if there exists 
+$\T \in \R^{p\times p}$ such that $\M\Psi = \Psi \T$.
+\end{fact}
+
+Consequently,
+\begin{fact}
+%% Fact 3.1.2
+\label{fact:3.1.2}
+$\lambda(\T) \subseteq \lambda(\M)$.
+\end{fact}
+\begin{proof}
+%Proof of 3.1.2:
+~
+\vskip-2cm
+  \begin{align*}
+\lambda \in \lambda(\T)
+& \quad \Longleftrightarrow  \quad
+(\exists v \in \R^p) \T v = \lambda v\\
+& \quad \Longleftrightarrow  \quad
+\Psi \T v = \lambda \Psi v\\
+& \quad \Longleftrightarrow  \quad
+\M \Psi v = \lambda \Psi v\\
+& \quad \Longleftrightarrow  \quad
+\lambda \in \lambda(M).
+  \end{align*}
+The second equivalence follows from Fact~\ref{fact:3.1.1}.  %3.1.1.
+\end{proof}
+%Facts~\ref{fact:3.1.1} and~\ref{fact:3.1.2} are theoretically useful. To see why
+To see why Facts~\ref{fact:3.1.1} and~\ref{fact:3.1.2} are theoretically useful,
+%consider the equation of Fact~\ref{fact:3.1.1}:
+%% \begin{align*}
+%% & \Psi \T = \M \Psi \\
+%% \Longleftrightarrow \quad & \Psi^t\Psi \T = \Psi^t \M \Psi\\
+%% \Longleftrightarrow \quad & \T = (\Psi^t\Psi)^t \Psi^t \M\Psi.
+%% \end{align*}
+%% \begin{equation*}
+%% \Psi \T = \M \Psi \quad\Longleftrightarrow \quad \Psi^t\Psi \T = \Psi^t \M \Psi
+%% \Longleftrightarrow \quad  \T = (\Psi^t\Psi)^t \Psi^t \M\Psi.
+%% \end{equation*}
+note that the equation of Fact~\ref{fact:3.1.1}, $\Psi \T = \M \Psi$, is
+equivalent to 
+$\Psi^t\Psi \T = \Psi^t \M \Psi$, which is equivalent to 
+$\T = (\Psi^t\Psi)^t \Psi^t \M\Psi$.
+In this form, we recognize that $\T = \C^{-1}(0)\C(1)$. That is, using only the
+covariance of observables on the state space, we can generate a matrix $\T$ with
+the property $\lambda(\T) \subseteq \lambda(\M)$. Recalling that 
+$\M = \Pi^{1/2}\P\Pi^{-1/2}$, 
+we see that $\M$ is similar to our original stochastic matrix $\P$, 
+and thus $\lambda(M) = \lambda(P)$.
+
+\section{Approximate Invariant Subspaces}
+% Sec 3.2
+\label{sec:appr-invar-subsp}
+%% We qualified the foregoing by stating that the facts are only theoretically
+%% useful. This
+We noted above that Facts~\ref{fact:3.1.1} and~\ref{fact:3.1.2} are
+theoretically useful. Speaking practically now,
+%% This is because 
+when choosing observables on the state space we may not be sure that
+they will satisfy the 
+%
+%
+% -------------16.txt---------------------------------------------------
+%
+%
+primary assumption underlying the two facts. %Facts 3.1.1 and 3.1.2. 
+Recall the assumption: $\ran(\Psi)$ is an invariant
+subspace for $\M$ where $\Psi = \Pi^{1/2}(\Phi - \<\Phi\>)$. It may well be the
+case that there exists $\psi_j\in \ran(\Psi)$ such that 
+$\M\psi_j \notin \ran(\Psi)$, thereby violating the assumption. 
+Even if we are lacking an invariant subspace, however, for some applications it
+is reasonable to expect that observables can be chosen to provide at least
+an \emph{approximate invariant subspace}, which is defined as follows:
+\begin{definition}
+%% Definition 3.2.1
+If the columns of $\Psi\in \R^{d\times p}$ are independent and the norm of the
+\emph{residual matrix} $\E = \M\Psi - \Psi \T$ is small for some  
+$\T \in \R^{p\times p}$, then
+$\ran(\Psi)$ defines an \emph{approximate invariant subspace}. 
+\end{definition}
+To see how an approximate invariant subspace can be useful for approximating
+eigenvalues of $\M$, we recall a theorem from Golub and Van Loan~\cite{Golub:1996}.
+\begin{theorem}
+% Theorem 3.2.1
+\label{thm:3.2.1}  
+Suppose $\M \in R^{d\times d}$ and $\T \in \R^{p\times p}$ are symmetric and let
+$\E = \M\Q - \Q\T$, where $\Q \in \R^{d\times p}$ is orthonormal 
+(i.e., $\Q^t\Q = \I$). Then there exist $\mu_1,\dots, \mu_p \in \lambda(\T)$ and
+$\lambda_1, \dots, \lambda_p \in \lambda(\M)$ such that
+\[
+|\mu_k - \lambda_k| \leq \sqrt{2}\|\E\|_2, \quad \text{ for $k = 1, \dots, p$.}
+\]
+\end{theorem}
+If the subspace $\ran(\Q)$ is an approximate invariant subspace, then the definition implies that
+there is a choice $\T$ rendering the error $\|\E\|_2$ small, and thus the
+eigenvalues of $\T$ provide a good approximation to those of $\M$.
+
+When considering the foregoing ideas, it is apparent that their application
+presents new---but hopefully less prohibitive---problems. As these problems
+are the focus of the rest of the paper, now is a good time to examine
+them. 
+
+First, the preceding theorem assumes a matrix $\Q$ whose columns form an
+orthonormal basis for the approximate invariant subspace. For our problem, 
+derivation of such a $\Q$ is tricky, and we must prepare for this. 
+
+Next, having an approximate invariant subspace at our disposal merely tells us
+that there exists some matrix $\T$ which makes the error 
+%
+%
+% ------------- 17.txt ----------------------------------------------------
+%
+%
+$\|\E\|_2$ small. We must discover the form of such a $\T$. Moreover, it is
+natural to seek that $\T$ which minimizes $\|\E\|_2$ for a given approximate
+invariant subspace. 
+
+Finally, in order to apply these ideas to realistic eigenvalue problems, we must
+find a practical way to generate %% the most appropriate
+a good approximate invariant subspace. 
+
+We now address each of these issues in turn.
+%the order raised.
+
+Recall the matrix $\Psi = \Pi^{1/2}(\Phi — \<\Phi\>)$. The columns of this
+matrix, though independent (by choice of independent observables), are not
+necessarily orthonormal. However, consider the polar decomposition 
+$\Psi = \Q \Z$, where $\Q^t\Q = \I$ and $\Z^2 = \Psi^t\Psi$ is a symmetric
+positive semidefinite matrix.\footnote{Recall that the polar decompostion is
+  derived from the singular value decomposition, $\Psi = \U\Sigma \V^t$, by
+  letting $\Q = \U \V^t$ and $\Z = \V\Sigma \V^t$.}
+%% ‘Recall that the polar decomposition is derived from the SVD, \Psi = UZJV‘, by letting Q = UV‘ and Z = VEV‘.
+Note that $\Z = (\Psi^t\Psi)^{1/2}$ is nonsingular, so $\Q$ has the form
+\[
+\Q = \Psi \Z^{-1} = \Psi(\Psi^t\Psi)^{-1/2},
+\]
+and it is clear that $\ran(\Q) = \ran(\Psi)$. 
+Perhaps $\ran(\Q)$ is a useful approximation to the invariant
+subspace for $\M$. If $\ran(Q)$ is not itself invariant, we have the error 
+matrix $\E =\M\Q - \Q\T$.  Below we show that the
+$\T$ which minimizes $\|\E\|_2$ is $\T = \Q^t\M\Q$. 
+This yields the following
+\begin{theorem}
+%Theorem 3.2.2
+\label{thm:3.2.2}  
+If $\Psi = \Q\Z$ is the polar decomposition of $\Psi$, then the matrix
+\[
+\T = \Q^t\M\Q = (\Psi^t\Psi)^{-1/2}\Psi^t \M^t \Psi (\Psi^t\Psi)^{-1/2}
+\]
+minimizes $\|\E\|_2 = \|\M\Q - \Q\T\|_2$.
+\end{theorem}
+\begin{proof}
+We prove the result by establishing the following
+\\[6pt]
+\underline{Claim:} Given $\M \in \R^{d\times d}$ suppose $Q \in  \R^{d\times d}$
+satisfies $\Q^t\Q =\I$. 
+Then,
+\[
+\min_{\T\in \R^{p\times p}} \|\M\Q - \Q\T\|_2 = \|(\I- \Q\Q^t)\M\Q\|_2,
+\]
+and $\T = \Q^t\M\Q$ is the minimizer.
+%
+%
+% -------------- 18.txt -------------------------------
+%
+%
+The claim is verified by an easy application of the Pythagorean theorem:
+For any $\T \in \R^{p\times p}$ we have
+\begin{align}
+\label{eq:3.1}
+\|\M\Q - \Q\T\|^2_2 &= \|\M\Q - \Q\Q^t\M\Q + \Q\Q^t\M\Q - \Q\T\|^2_2 \nonumber\\
+&=\|(\I - \Q\Q^t)\M\Q + \Q(\Q^t\M\Q - \T)\|^2_2 \nonumber \\
+&=\|(\I - \Q\Q^t)\M\Q\|^2_2 + \|\Q(\Q^t\M\Q - \T)\|^2_2 \\
+&=\|(\I - \Q\Q^t)\M\Q\|^2_2 \nonumber
+\end{align}
+Equality~(\ref{eq:3.1}) holds since $\I - \Q\Q^t$ projects $\M\Q$ onto the
+subspace orthogonal to 
+$\ran(Q)$. Thus, the two terms in the expression on the right are orthogonal,
+and the Pythagorean theorem yields equality. The concluding inequality
+establishes that the minimizing $\T$ is that which annihilates the 
+second term in~(\ref{eq:3.1}), that is, $\T = \Q^t\M\Q$.
+
+The second equality in Theorem~\ref{thm:3.2.2} is a consequence of the polar decomposition, in
+which $\Q = \Psi \Z^{-1} = \Psi(\Psi^t\Psi)^{-1/2}$. Thus,
+$\T = (\Psi^t\Psi)^{-1/2}\Psi^t \M^t \Psi (\Psi^t\Psi)^{-1/2}$
+is the minimizer, as claimed.
+\end{proof}
+
+\subsection{The Krylov Subspace}
+% Sec 3.3
+\label{sec:krylov-subspace}
+Suppose the columns of a matrix $\Q \in \R^{d\times p}$ give an orthonormal
+basis for an approximate invariant subspace. Then, as we have seen, 
+\begin{enumerate}
+\item 
+$\T = \Q^t\M\Q$ minimizes $\|\E\|_2 = \|\M\Q - \Q\T\|_2$ and
+\item there exist $\mu_1, \dots, \mu_p\in \lambda(\T)$ and 
+$\lambda_1,\dots, \lambda_p \in \lambda(\M)$ such that
+\[
+\|\mu_k-\lambda_k\| \leq \sqrt{2}\|\E\|_2, \quad \text{ for $k=1,\dots, p$.}
+\]
+\end{enumerate}
+%
+%
+% ---------------- 19.txt --------------------------------------------
+%
+%
+Given an approximate invariant subspace $\ran(\Q)$ of dimension $p$, these facts
+tell us what matrix we should use to approximate $p$ elements of the spectrum of
+$\M$. Now all we lack is a description of $\ran(\Q)$. 
+That is, we have not specified which approximate invariant subspace would best
+suit our objective of approximating the subdominant eigenvalue
+$\lambda_{\max}(\M)$. For this purpose the following definition is useful:
+\begin{definition}
+%% Definition 3.3.1
+The \emph{Raleigh quotient} of a symmetric matrix $\M$ and a nonzero vector $x$ is
+\[
+\rho(x, \M) = \frac{x^t\M x}{x^tx}.
+\]
+\end{definition}
+We will denote Raleigh quotient by $\rho(x)$ when the context makes clear what
+matrix is involved. 
+
+To find the approximate invariant subspace most appropriate for our problem, we
+choose each dimension successively, providing justification at each step. 
+We start with one observable $\phi$ on the state space, and let 
+$\psi_1 = \Pi^{1/2}(\phi -\E_\pi\phi)$. That is, $\psi_1$ is a centered (mean
+zero) observable whose $i$th coordinate is weighted by $\sqrt{\pi(i)}$. 
+Notice that the definition 
+%% (which comes directly from the definition of ^tII
+%% following equation (2.7)) is such that 1/)1 is a constant vector if 
+(which comes from the definition of $\Psi$ following Equation~(\ref{eq:2.7})) 
+is such that $\psi_1$ is a constant vector if and only if $\phi$ is oonstant on the
+state space, in which case $\psi_1$ is the constant zero function. 
+%% This fact
+%% provides one reason observables that are constant on the state space are not
+%% interesting. 
+(Observables that are constant on the state space are not interesting.) 
+Second, recall that the row sums of the matrix $\P$ are all one, therefore the
+eigenvector corresponding to the eigenvalue $\lambda_0(\P) = 1$ is the constant
+vector.  By definition of $\M = \Pi^{1/2}\P\Pi^{-1/2}$, we see that the constant
+vector is also the eigenvector corresponding to $\lambda_0$.  This will play an
+important role in what follows, as it allows us to focus %primarily 
+on the subdominant eigenvalue 
+$\lambda_{\max}(\M) = \max\{\lambda_1(\M), |\lambda_{d-1}(\M)|\}$
+rather than on $\lambda_0(M)$ (which we already know is 1).
+
+Now, notice that
+\begin{equation}
+  \label{eq:3.2}
+|\rho(\psi_1,\M)| \leq \max |\rho(x,\M)| = \lambda_{\max}(\M)
+\end{equation}
+% 20.txt
+where the max is taken over all nonconstant vectors. Since our interest 
+centers on 
+$\lambda_{\max}(\M)$, 
+we would like a $\psi_1$ that makes the left hand side of~(\ref{eq:3.2}) large. 
+This would be achieved if $\psi_1$ were to lie in the space spanned by, say, the
+first two eigenvectors of the Markov chain (sometimes referred 
+to as the \emph{slowest modes} of the process). However, this subspace spans
+only two dimensions of the entire $d$-dimensional space, and it is more likely
+that $\psi_1$ only comes close, at best, to lying in the subspace of
+interest. Now, given $\psi_1$, a judicious choice for the second dimension $\psi_2$, and
+hence $\Psi_2 = [\psi_1, \psi_2]$, would be that which makes 
+$\max_{a\neq 0} |\rho(\Psi_2 a)|$ as large as possible. To establish that 
+this is indeed the right objective, note the following:
+\begin{align}
+\label{eq:3.3}
+\max_{a\neq 0}|\rho(\Psi_2a,\M)| &= \max_{a\neq 0} \left|\frac{a^t \Psi^t_2 \M \Psi_2 a}{a^t \Psi^t_2 \Psi_2 a}\right|\nonumber\\
+&= \max_{x\in \ran(\Psi_2)}|\rho(x,\M)|\nonumber\\
+&= \max|\rho(x,\M)|\\
+&= \lambdamax\nonumber
+\end{align}
+Again, the max on the right side of~(\ref{eq:3.3}) is over nonconstant vectors. 
+In other words, we wish to chose
+$\Psi_2 = [\psi_1, \psi_2]$ so that there is a vector $a \in \R^2$ making 
+$|\rho(\Psi_2 a,\M)|$ close to $\lambdamax$.
+
+Now, $\rho(\psi_1)$ changes most rapidly in the direction of the gradient
+$\nabla \rho(\psi_1)$.
+\begin{equation}
+  \label{eq:3.4}
+\nabla \rho(\psi_1) = \left(\frac{\partial \rho(\psi_1)}{\partial \psi_1(1)}, \dots,
+\frac{\partial \rho(\psi_1)}{\partial \psi_1(d)}\right)
+ = \frac{2}{\psi_1^t\psi_1} (\M\psi_1 - \rho(\psi_1)\psi_1).
+\end{equation}
+So, to maximize the left hand side of~(\ref{eq:3.3}), $\Psi_2$ should be chosen
+so that the subspace $\ran(\Psi_2)$ contains the gradient vector.
+That is, we must choose $\psi_2$ so that
+\begin{equation}
+\label{eq:3.5}
+\nabla \rho(\psi_1) \in \ran\{\psi_1, \psi_2\} = \ran(\Psi_2).
+\end{equation}
+Clearly, Equation~(\ref{eq:3.4}) implies 
+$\nabla \rho(\psi_1) \in \ran\{\psi_1, \M\psi_1\}$.
+Thus, if $\ran\{\psi_1, \psi_2\} = \ran\{\psi_1, \M\psi_1\}$, 
+then~(\ref{eq:3.5}) is satisfied.
+%
+%
+% ------------ 21.txt ----------------------------------------------
+%
+%
+In general, having chosen $\Psi_k = [\psi_1, \dots,  \psi_k]$ so that
+$\ran\{\psi_1, \psi_2, \dots, \psi_k\} = \ran\{\psi_1, \M\psi_1, \dots,
+\M\psi_k\}$,
+we must chose $\psi_{k+1}$ so that for any nonzero vector $a\in \R^k$,
+\begin{equation}
+\label{eq:3.6}
+\nabla \rho(\Psi_ka) \in \ran\{\psi_1, \psi_2, \dots, \psi_k\}.
+\end{equation}
+Now,
+\[
+\nabla \rho(\Psi_ka)   
+ = \frac{2}{a^t\Psi_k^t\Psi_ka} (\M\Psi_k - \rho(\Psi_ka)\Psi_ka).
+\]
+and therefore,
+\[
+\nabla \rho(\Psi_ka)  \in 
+\ran(\M\Psi_k) \cup \ran(\Psi_k) = \ran\{\psi_1, \M\psi_1, \dots, \M^k\psi_1\}.
+\]
+Thus, the requirement~(\ref{eq:3.6}) is satisfied when 
+\[
+\ran\{\psi_1, \psi_2, \dots, \psi_k\} = \ran\{\psi_1, \M\psi_1, \dots,
+\M^k\psi_1\}.
+\]
+
+In conclusion, the $p$-dimensional approximate invariant subspace that is most suitable
+for our objective is
+\[
+\sK(\M, \psi_1, p) = \ran\{\psi_1, \M\psi_1, \dots, \M^{p-1}\psi_1\}.
+\]
+This is known as the \emph{Krylov subspace}. Therefore, to answer the problem posed at the outset
+of this section, if we take the columns of $\Q$ to be an orthonormal basis for 
+$\sK(\M,\psi_1, p)$, then the eigenvalues of $\T = \Q^t\M\Q$ should provide good
+estimates of $p$ extremal eigenvalues of $\M$. 
+%
+%
+% --------------- 22.txt ---------------------------------------
+%
+%
+
+
+%%%-------------------------------------------------------------------
+%%%
+%%% \input{LanczosProcedures} % Chapter 4
+%%%
+\chapter{Lanczos Procedures}
+\label{cha:lanczos-procedures}
+The following will review the usual procedure for generating an orthonormal basis for
+$\sK(\M, \psi_1, p)$, 
+and conclude by showing that, for our problem, we can find the matrix 
+$\Q^t\M\Q$
+without actually carrying out this procedure. Note that this conclusion is essential since the procedure
+requires matrix vector multiplication---an operation we have assumed impossible for large enough $d$.
+
+\section{The General Lanczos Algorithm}
+% Sec 4.1
+\label{sec:gener-lancz-algor}
+Let $\psip{k} =  \M^k \psi$ and consider the $d\times d$ matrix
+\[
+\Psi = [\psi, \M\psi, \dots, \M^{d-1}\psi] = [\psip{0}, \psip{1}, \dots, \psip{d-1}]
+\]
+Notice that $\M\Psi = [\psip{1}, \psip{2}, \dots, \psip{d-1}, \M^d \psi]$,
+and assuming for the moment that $\Psi$ is nonsingular,
+we can compute the vector $h = -\Psi^{-1}\M^d \psi$. Thus,
+\begin{equation}
+\label{eq:10000}
+\M\Psi = \Psi [e_2,\dots,e_d,-h],  
+\end{equation}
+where $e_j$ is the column vector with 1 in
+the $j$th position and zeros elsewhere. We define $H = [e_2,\dots,e_d,-h]$,
+so~(\ref{eq:10000}) becomes $\M\Psi = \Psi H$.
+%
+%
+% ----------------- 23.txt ----------------------------------------------
+%
+%
+Equivalently,
+\begin{equation}
+  \label{eq:4.1}
+H = 
+\begin{pmatrix}
+0 & 0      & \cdots & 0 & -h_1 \\
+1 & 0      & \cdots & 0 & -h_2\\
+  & \ddots &        &   & \vdots \\
+  &        & \ddots & 0 & -h_{d-1}\\
+  &        &        & 1 & -h_{d}
+\end{pmatrix} = \Psi^{-1} \M \Psi.
+\end{equation}
+$\H$ is a \emph{companion matrix} which means that its characteristic polynomial
+is $p(x) = x^d + \sum_{i=1}^d h_i x^{i-1}$.
+Since $\H$ is similar to $\M$, finding the eigenvalues of $\M$ is equivalent to
+finding the roots of $p(x)$. However, this is of little practical use since
+finding $h$, constructing $p(x)$, and finding its roots is 
+probably a harder problem than the one we started with. Instead, the value of decomposition (4.1)
+derives from its \emph{upper Hessenberg form}. We exploit this property below.
+
+Let $\Psi = \Q\mR$ be the QR decomposition of $\Psi$. Since $\Psi$ is assumed nonsingular,
+\[
+\Psi_d^{-1}\M \Psi_d = (\mR^{-1}\Q^t)\M(\Q\mR) = \H
+\]
+Therefore, $\Q^t\M\Q = \mR\H\mR^{-1}$.  Let $\T \mR\H\mR^{-1}$.  Then, since $\mR$
+and $\mR^{-1}$ are both upper triangular and $\H$ is upper Hessenberg $\T = \mR\H\mR^{-1}$ is also upper
+Hessenberg. Furthermore, since $\M$ is symmetric, it is clear that 
+$\T^t =\Q^t\M\Q = T$. Thus, $\T$ is both upper Hessenberg and symmetric. Therefore,
+$\T$ is tridiagonal and we can write it as follows:
+\begin{equation}
+  \label{eq:4.2}
+\T = 
+\begin{pmatrix}
+\alpha_1 & \beta_1 &      0 & \cdots & 0 \\
+\beta_1  & \alpha_2 & \ddots &        & \vdots\\
+         & \ddots & \ddots & \ddots   &\\
+\vdots   &       &  \ddots & \ddots & \beta_{d-1}\\
+0  &   \cdots    &   & \beta_{d-1} &\alpha_d
+\end{pmatrix}.
+\end{equation}
+%
+%
+% ------------ 24.txt ----------------------------------------------
+%
+%
+Equating columns $j$ on both sides of $\M\Q = \Q\T$ yields
+\begin{equation}
+\label{eq:4.3}
+\M q_j = \beta_{j-1}q_{j-1}+\alpha_j q_j + \beta_j q_{j+1}
+\end{equation}
+Since the columns of $\Q$ are orthonormal, multiplying both sides 
+of~(\ref{eq:4.3})
+by $q_j$ and $q_{j+1}$ yields
+$\alpha_j = q_j^t \M q_j$ and $\beta_j = q_{j+1}^t \M q_j$.
+The foregoing justifies what is called the \emph{Lanczos algorithm}, which is performed as follows:
+         \begin{algorithm}
+           \caption{The Lanczos algorithm for partial reduction to symmetric
+             tridiaganal form.}
+           \begin{algorithmic}
+             \STATE $q_1 = \psi/\|\psi\|_2$, $\beta_0 = 0$, $q_0= 0$
+             \FOR{$j = 1, \dots, p$}
+             \STATE $z \leftarrow \M q_j$
+             \STATE $\alpha_j \leftarrow q_j^tz$
+             \STATE $z \leftarrow z - \alpha_j q_j - \beta_{j-1} q_{j-1}$
+             \STATE $\beta_j \leftarrow \|z\|_2$
+             \IF{$\beta_j=0$}
+             \STATE return
+             \ENDIF
+             \STATE $q_{j+1} = z/\beta_j$
+             \ENDFOR
+           \end{algorithmic}
+         \end{algorithm}
+The $q_j$ computed by the Lanczos algorithm are often called the \emph{Lanczos vectors}. If the
+loop in the algorithm is terminated because $\beta_{k}= 0$, this indicates that
+an exact invariant subspace has been computed, and is given by 
+$\ran\{q_1, \dots, q_k\}$. Otherwise, we usually halt the algorithm after 
+$p$ steps, in which case the algorithm converges to approximations of at most
+  $p$ eigenvalues.\footnote{A Detailed discussion of such convergence (and
+    misconvergence) is given in~\cite{Demmel:1997}.}
+
+Note that Equation~(\ref{eq:4.3}) results from the equation $\M\Q = \Q\T$. The latter equation holds
+since, starting with $d$ vectors in our subspace, $\Q$ is a $d \times d$ matrix
+whose columns form an orthonormal basis for all of $\R^d$, which is clearly an
+invariant subspace. The Lanczos algorithm above, however, 
+%
+%
+% ------------ 25.txt ---------------------------------------------------------
+%
+%
+proceeds for only $p$ steps, producing a $d \times p$ matrix $\Q$, whose columns
+form an orthonormal basis for the \emph{approximate} invariant subspace 
+$\sK(\M, \psi, p)$, and a $p \times p$ matrix $\T, = \Q^t\M\Q$. In that case,
+$\|\M\Q - \Q\T_p\|_2 = \|\E\|_2$ is nonzero and gives the error bound described
+in Theorem~\ref{thm:3.2.1}. Now, writing the full $d \times d$ matrix $\T$
+of~(\ref{eq:4.2}) as
+\begin{equation}
+  \label{eq:4.4}
+\T = 
+\left( \begin{array}{c|c}
+\T_p & \T_{pu}^t \\
+ \hline
+\T_{pu} & \T_{u}
+\end{array}
+\right)
+=
+\left( \begin{array}{cccc|cccc}
+\alpha_1 & \beta_1 &      &                 & & && \\
+\beta_1 & \ddots  & \ddots&                 & & && \\
+        & \ddots  & \ddots  & \beta_{p-1}    &          & && \\
+        &         & \beta_{p-1}  & \alpha_{p} & \beta_{p}& && \\
+\hline
+        &         &             & \beta_{p}  & \alpha_{p+1} & \beta_{p+1} && \\
+        &         &             &           & \beta_{p+1}  & \ddots & \ddots &\\
+        &         &             &           &             & \ddots & \ddots &\beta_{d-1} \\
+        &         &             &           &             &        & \beta_{d-1} &\alpha_{d}
+\end{array}
+\right)
+\end{equation}
+allows us to describe the error bound $\|\E\|_2$ in terms of the submatrix
+$\T_{pu}$, and hence in terms of $\beta_p$.
+\begin{theorem}
+%Theorem 4.1.1
+\label{thm:4.1.1}
+If $\T_p$ and $\T_{pu}$ are the matrices appearing in~(\ref{eq:4.4}), and if the $p$
+columns of $\Q$ are computed by the 
+Lanczos algorithm, then there exist $\mu_1, \dots, \mu_p \in \lambda(\T_p)$ and 
+$\lambda_1, \dots, \lambda_p \in \lambda(\M)$
+such that
+\[
+|\mu_k - \lambda_k| \leq \|\T_{pu}\|_2 = \beta_p, \quad \text{ for $k=1,\dots,p$.}
+\]
+\end{theorem}
+For a proof, see~\cite[Page 365]{Demmel:1997}.
+%
+%
+% --------------- 26.txt -------------------------
+%
+%
+\section{A Lanczos Procedure for Markov Chains}
+% Sec 4.2
+\label{sec:lancz-proc-mark}
+Notice that the Lanczos algorithm requires the computation of $\M q_j$. Throughout this
+paper we have assumed that $\M \in \R^{d\times d}$, and that $d$ is so large as
+to make the matrix vector multiplication $\M q_j$ impossible. Now, the Lanczos
+algorithm constructs an orthonormal basis for the Krylov subspace. For our
+purposes, this construction is not essential. What is essential is that we find
+a way to generate the Lanczos coeficients $\alpha_i$, $\beta_j$, $(j = 1,\dots, p)$, and
+whence the matrix $\T$, without performing the operation $\M q_j$ required by the
+Lanczos algorithm. We now address this problem.
+
+Begin with the centered and weighted observable 
+$\psi = \Pi^{1/2} (\phi - \bE_\pi\phi)$,
+and let $q_1 = \psi/\|\psi\|_2$.
+To simplify notation, let $\phi(n) = \phi(X_n)$. 
+The form of the first Lanczos coeﬂicient $\alpha_1$ is straight
+forward:
+\[
+\alpha_1 = q_1^t \M q_1  = \frac{\psi^t\M\psi}{\psi^t\psi}.
+\]
+and now the special properties of the Markov chain setting play an important
+role. Indeed, we have
+\begin{align}
+\label{eq:4.5}
+\psi^t\M\psi &= (\phi - \bE_\pi\phi)^t\Pi^{\frac{1}{2}t}\M\Pi^{\frac{1}{2}}(\phi- \bE_\pi \phi)\nonumber\\
+&= \bC_\pi (\phi(n), \phi(n + 1)).
+\end{align}
+and
+\begin{align}
+\label{eq:4.6}
+\psi^t\psi &= (\phi - \bE_\pi\phi)^t\Pi(\phi- \bE_\pi \phi)\nonumber\\
+&= \Var_\pi(\phi(n)).
+\end{align}
+Recall that the definition of $\M$ implies 
+$\Pi^{\frac{1}{2}t}\M\Pi^{\frac{1}{2}}= \Pi \P$, and this justifies 
+Equation~(\ref{eq:4.5}). Putting
+%
+%
+% -------------- 27.txt ------------------------------
+%
+%
+these equations together, we have a nice form for $\alpha_1$:
+\[
+\alpha_1= \frac{\bC_\pi (\phi(n), \phi(n + 1))}{\Var_\pi(\phi(n))}.
+\]
+The next Lanczos coefficient, $\beta_1$, is only slightly more complicated.
+\begin{align}
+\label{eq:4.7}
+\beta_1 &= \|\M q_1 - \alpha_1 q_1\|_2 \nonumber\\
+&= \bigl[(\M q_1 - \alpha_1 q_1)^t(\M q_1 - \alpha_1 q_1)\bigr]^{1/2}\nonumber\\
+&= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
+\end{align}
+Again recalling the definition $\M =\Pi^{1/2}\P\Pi^{1/2}$, a simple manipulation verifies
+$\Pi^{\frac{1}{2}t}\M^s\Pi^{\frac{1}{2}} = \Pi \P^s$,
+whereby it follows that
+\begin{align*}
+q_1^t\M^2 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^2(\phi- \bE_\pi \phi)}
+{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\[8pt]
+&= \frac{\bC_\pi (\phi(n), \phi(n + 2))}{\Var_\pi(\phi(n))}.
+\end{align*}
+Inserting the last expression into Equation~(\ref{eq:4.7}) gives
+\[
+\beta_1 = \left[\frac{\bC_\pi (\phi(n), \phi(n + 2))}{\Var_\pi(\phi(n))}
+-\left( \frac{\bC_\pi (\phi(n), \phi(n + 1))}{\Var_\pi(\phi(n))}\right)^2
+\right]^{1/2}.
+\]
+Notice that we can estimate these expressions of $\alpha_1$ and $\beta_1$ by
+running simulations of the Markov chain. 
+To do so, we run the Markov chain starting from a random initial state, compute the value of
+the observable at each step of the chain and, from the data, compute estimates of the covariances
+and variance of the observable.
+
+Before generalizing this for the $j$th Lanczos coefficient, we consider one more coeﬂicient
+in detail. Recall that the second basis element $q_2$ in the Lanczos algorithm is given by 
+$q_2 = (\M q_1 — \alpha_1 q_1)/\beta_1$. 
+From this we can derive an expression for $\alpha_2$ which, while not as neat as those
+%
+%
+% ----------------- 28.txt ----------------------------------------------------------
+%
+%
+for $\alpha_1$ and $\beta_1$, is nonetheless tractable.
+\begin{align}
+\label{eq:4.8}
+\alpha_2 &= q_2^t \M q_2 \nonumber\\
+&= \frac{1}{\beta_1^2}(\M q_1 - \alpha_1 q_1)^t\M (\M q_1 - \alpha_1 q_1)\nonumber\\
+&= \frac{1}{\beta_1^2}(q_1^t\M^3 q_1 - 2\alpha_1 q_1^t\M^2 q_1 + \alpha_1^2q_1^t\M q_1 )\nonumber\\
+&= \frac{1}{\beta_1^2}(q_1^t\M^3 q_1 - 2\alpha_1 \beta_1^2 + \alpha_1^3 )
+%&= \bigl[q_1^t\M^2 q_1 - \alpha^2_1\bigr]^{1/2}.
+\end{align}
+Equation~(\ref{eq:4.8}) follows from Equation~(\ref{eq:4.7}), which can be
+written as $q_1^t\M^2 q_1 = \alpha_1^2 + \beta_1^2$.  
+The preceding paragraphs define all but one of the quantities in the last
+exression of~(\ref{eq:4.8}). The one remaining
+is $q_1^t\M^3 q_1$, which can also be expressed in terms of covariances of $\phi$,
+and the analysis is almost identical to that for $q_1^t\M^2q_1$:
+\begin{align*}
+q_1^t\M^3 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^3(\phi- \bE_\pi \phi)}
+{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\[8pt]
+&= \frac{\bC_\pi (\phi(n), \phi(n + 3))}{\Var_\pi(\phi(n))}.
+\end{align*}
+To generalize the foregoing for higher order Lanczos coeﬂicients requires a recurrence
+relation between $(\alpha_{j+1}, \beta_j)$ and $(\alpha_{j}, \beta_{j-1})$. 
+As we will see, such a relation involves higher order
+Lanczos vectors $q_j$---vectors we do not wish to compute. Recall that the only ``vector'' we can
+handle is our initial observable. Therefore, we must also establish a recurrence
+among the $q_j$'s, thus making them available inductively from our observable vector.
+
+To begin with the $\beta_j$'s, recall that 
+$\beta_j = \|\M q_j - \alpha_jq_j - \beta_{j-1}q_{j-1}\|_2$. 
+Whence,
+\begin{align}
+\label{eq:4.9}
+\beta_j^2 &= (\M q_j - \alpha_jq_j - \beta_{j-1}q_{j-1})^t(\M q_j - \alpha_jq_j - \beta_{j-1}q_{j-1})\nonumber\\
+&= q_j^t\M^2 q_j - \alpha_j^2 - \beta^2_{j-1}.
+\end{align}
+Some simple algebra and the definitions $\alpha_j = q_j^t\M q_j$ and
+$\beta_{j-1} = q_j^t \M q_{j-1}$ prove equality~(\ref{eq:4.9}).  The
+%
+%
+% -------------- 29.txt ------------------------------------------------------
+%
+%
+recurrence for $\alpha_{j+1}$ is equally straight forward, though the final form
+is not as neat as the expression above. Indeed,
+\begin{align}
+\label{eq:4.10}
+\alpha_{j+1} &= q_{j+1}^t \M q_{j+1} \nonumber\\
+&= \frac{1}{\beta_j^2}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M 
+  (\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})\nonumber\\
+&= \frac{1}{\beta_j^2}(q_j^t\M^3 q_j 
+    - 2\alpha_j q_j^t\M^2 q_j 
+    - 2\beta^2_{j-1} q_{j-1}^t\M^2 q_j 
+    + \alpha_1^3
+    + 2\alpha_j \beta^2_{j-1} + \beta^2_{j-1}).
+\end{align}
+From~(\ref{eq:4.9}), $\alpha_j^2 +\beta_j^2 + \beta^2_{j-1}$,
+and upon plugging this into~(\ref{eq:4.10}), we arrive at 
+\begin{equation}
+\label{eq:4.11}
+\alpha_{j+1}= \frac{1}{\beta_j^2}(q_j^t\M^3 q_j 
+    - \alpha_j^3
+    - 2\alpha_j\beta^2_{j}
+    - 2\beta_{j-1}q_{j-1}^t\M^2q_j + \beta^2_{j-1}).
+\end{equation}
+
+The expressions above involve the higher order Lanczos vectors $q_j$. In the present context,
+these vectors will not be readily available. However, another recursion---this time relating forms
+involving $q_{j+1}$ to forms involving $q_j$ and $q_{j-1} $---will make these
+expressions accessible by induction on our initial observable. The general forms
+of interest are $q_{j+1}^t\M^k q_{j+1}$ and $q^t_{j+1}\M^k q_j$. Again, we 
+begin with the simpler of the two:
+\begin{align*}
+  q_{j+1}^tM^kq_j &= 
+ \frac{1}{\beta_j}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k q_j\\
+ \frac{1}{\beta_j}(q_j^t\M^{k+1} q_j - \alpha_j q_j^t\M^{k} q_j -\beta_{j-1} q_j^t\M^k).
+\end{align*}
+The second is,
+\begin{align}
+\label{eq:4.12}
+  q_{j+1}^tM^kq_{j+1} 
+&=  \frac{1}{\beta_j^2}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k 
+  (\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})\nonumber\\
+&=  \frac{1}{\beta_j^2}(q_j^t\M^{k+2} q_j + \alpha^2_jq_j^t\M^{k} q_j 
+  + \beta^2_{j-1} q_{j-1}^t\M^k q_{j-1} - 2\alpha_jq_j^t\M^{k+1} q_j \nonumber\\
+& \qquad    
+    + 2\alpha_j \beta_{j-1}q_j^t\M^k q_{j-1}
+    - 2\beta_{j-1}q_j^t \M^{k+1}q_{j-1}).
+\end{align}
+The point of all this is that each pair of coeﬂicients $(\alpha_{j+1}, \beta_j)$
+can be expressed as a function of the covariance between 
+$\phi(n)$ and $\phi(n+ m)$, for $m = 0, \dots, 2j+1$. Since the expressions
+are based on four recurrence relations, they become quite complicated as $j$ gets large. However,
+defining these recursions in a computer program is trivial, as we demonstrate
+in Section~\ref{sec:computations} % Sec 5.4
+by applying the foregoing to a particular problem.
+%
+%
+% ----------------- 30.txt ------------------------------------------------------
+%
+%
+
+
+
+
+
+%%%===================================================================
+%%%-------------------------------------------------------------------
+\part{Application\label{part:two}}%
+%%%-------------------------------------------------------------------
+%%%
+%%% \input{Application} % Chapter 5
+%%%
+\chapter{Convergence to Gibbs measure on the Ising lattice}
+%Chapter 5
+\label{cha:an-appl-conv}
+
+\section{Physical Motivation}
+% Sec 5.1
+\label{sec:physical-motivation}
+Before considering the details of the Metropolis algorithm, it helps to
+understand the setting in which it was developed. To do so we consider a
+typical example, the \emph{Ising model}. This is a model of a system consisting
+of $n$ ``sites,'' each site taking values in 
+%% $\{-1, +1\}$. 
+$\{0, 1\}$. 
+It might 
+help to imagine these sites as equally spaced points on a line or a circle,
+though we are not restricted to such cases. 
+%% Then our state space $S$ consists of
+%% all possible $n$-dimensional permutations of $-1$'s and $+1$'s. 
+The state space $S$ consists of
+all possible $n$-dimensional permutations of $0$'s and $1$'s. 
+%% Thus, $S = \{-1, +1\}^n$ and $|S| = 2^n$. We can think of each
+Thus, $S = \{0, 1\}^n$ and $|S| = 2^n$. We can think of each
+site as a node existing in one of two possible positions, say ``on'' or
+``off.'' Each state $i \in S$ is %represented by 
+a unique permutation $\sigma_i$ of of $0$'s and $1$'s. 
+Let $\sigma_n(k)$ denote the position %(on or off) 
+of the $k$th node when the system is in state $i$. 
+An observable $\phi = \phi(\sigma_i)$ on this space is a function of
+the permutations $\sigma_i$, $i\in \{1,\dots, 2^n\}$.
+%
+%
+% ---------------- 31.txt ------------------------------------------------------
+%
+%
+
+The \emph{energy} of the system, when in state $i$, is defined by the Hamiltonian
+\[
+H(\sigma_i) = - \sum_{\<j k\>} \sigma_i(j)\sigma_i(k)
+\]
+where the sum runs over all neart neighbor pairs. In statistical mechanics one is often concerned
+with the \emph{Gibbs measure} of state $i$, which is defined by
+\begin{equation}
+\label{eq:5.1}
+\pi(\sigma_i)= Z^{-1} \exp\{-\beta H(\sigma_i)\}
+\end{equation}
+where $Z^{-1}$ is a normalizing constant, sometimes called the \emph{partition function}. 
+For the Ising model, we put  
+\begin{equation*}
+Z = \sum_{i=1}^{2^n}\exp\{-\beta H(\sigma_i)\}
+\end{equation*}
+so that $\pi$ is a probability measure. 
+Now, letting $k$ denote the so called \emph{Boltzman constant}, if a
+classical mechanical system is in thermal equilibrium with its surroundings with
+absolute temperature $T$, and is in state $i$ with energy $H(\sigma_i)$, then the
+probability density in phase-space of the point representing state $i$ is given by
+(\ref{eq:5.1}) with $\beta = (kT)^{-1}$. A fundamental result of ergodic theory 
+implies that we can also interpret $\pi(\sigma_i)$ as the proportion of time the
+system spends in state $i$. If the system is observed at a random time, the
+expected value $\bE_\pi\phi$ of any observable $\phi$ is thus 
+\begin{equation}
+\label{eq:5.2}
+\bE_\pi\phi = 
+\sum_{i=1}^{2^n}\phi(\sigma_i) \pi(\sigma_i) = 
+%% \frac{\sum_{i=1}^{2^n}\phi(\sigma_i) \exp\{-\beta H(\sigma_i)\}}
+%% {\sum_{i=1}^{2^n} \exp\{-\beta H(\sigma_i)\}}
+Z^{-1}\sum_{i=1}^{2^n}\phi(\sigma_i) \exp\{-\beta H(\sigma_i)\}.
+\end{equation}
+
+Perhaps the number of sites $n$ in our Ising model is so large that it is
+impractical or impossible to evaluate~(\ref{eq:5.2}).
+We might instead consider importance sampling and generate states with
+the probability density $\pi$ given in~(\ref{eq:5.1}).
+Then $\phi$ is itself an unbiased estimator of~(\ref{eq:5.2}).
+
+If evaluation of~(\ref{eq:5.2}) is difficult, there is no reason to believe that
+evaluation of~(\ref{eq:5.1}) is any easier. However, Metropolis and his
+collaborators~\cite{Metropolis:1953} contrived a method for producing an ergodic 
+%
+%
+% ------------------ 32.txt --------------------------------------------------
+%
+%
+Markov chain with transition probability matrix K whose elements $k(x,y)$ satisfy
+\[
+\sum_x \pi(x) k(x,y) = \pi(x)
+\]
+By 
+%Definition 2.1.4 
+Definition~\ref{def:2.1.4}
+this means that the Markov chain has stationary distribution $\pi$. Since the
+chain is ergodic, we know that it will eventually converge to the desired
+distribution. So, our main 
+problem---the rate at which such a Markov chain will converge---is of primary
+concern in applications of the Metropolis algorithm. Moreover, as we will see
+below, the Metropolis algorithm ensures that the Markov chain has the desired
+stationary distribution by requiring that the chain satisfy the stronger
+condition of reversibility, or ``detailed balance.'' Therefore, Markov chains
+produced by the Metropolis algorithm satisfy the assumptions of this paper,
+and our theory and methods can be used to bound convergence rates of such chains. 
+
+\section{Description of the Metropolis Algorithm}
+% Sec 5.2 
+\label{sec:descr-metr-algor}
+The following explains how the Metropolis Algorithm is carried out. The exposition is
+similar to that given in Hammersley and Handscomb's book 
+\emph{Monte Carlo Methods} \cite{Hammersley:1964}. We refer the reader desiring
+more details to~\cite[Section 9.3]{Hammersley:1964}.
+
+To begin, choose an arbitrary symmetric Markov chain; that is, a Markov chain whose
+transition probability matrix P is symmetric. The matrix P is called the 
+\emph{proposition matrix}, and its elements
+%, $p(i,j)$,
+satisfy, for all $i$ and $j$ in $S$,
+\begin{equation}
+\label{eq:5.4}
+p(i,j) \geq 0, \quad p(i,j) = p(j,i), \quad \sum_m p(i,m)=1.
+\end{equation}
+Using P, we will derive a new transition probability matrix K with elements
+$k(i,j)$ satisfying
+\begin{equation}
+\label{eq:5.5}
+\sum_i \pi(i)k(i,j) = \pi(j)
+\end{equation}
+For $i\neq j$ define
+\begin{equation}
+\label{eq:5.6}
+k(i,j) = 
+\begin{cases}
+p(i,j)\pi(j)/\pi(i), & \text{ if $\pi(j)/\pi(i) < 1$,}\\
+p(i,j), & \text{ if $\pi(j)/\pi(i) \geq 1$.}
+\end{cases}
+\end{equation}
+%
+%
+% ----------------- 33.txt ----------------------------------------------
+%
+%
+For $i=j$ define
+\begin{equation*}
+k(i,j) = 
+p(i,i) + \sum_{j\in J_i}\bigl(1 - \frac{\pi(j)}{\pi(i)}\bigr)p(i,j), 
+\end{equation*}
+where $J_i = \{j : j\neq i, \pi(j)/\pi(i) < 1\}$.
+Notice that $\pi(i) > 0$ implies $k(i,j) \geq 0$, and
+\begin{align}
+\label{eq:5.7}
+\sum_j k(i,j) 
+&= p(i,i) + 
+\sum_{j\in J_i}\left\{\bigl(1 - \frac{\pi(j)}{\pi(i)}\bigr)p(i,j)
++ \frac{p(i,j)\pi(j)}{\pi(i)}\right\} 
++ \sum_{j\in J_i^c}p(i,j)
+\nonumber\\
+&= p(i,i) + 
+\sum_{j\in J_i}p(i,j)
++ \sum_{j\in J_i^c}p(i,j).
+\end{align}
+Equation~(\ref{eq:5.7}) shows that for each $i$ we have $\sum_j k(i,j) = 1$
+(the row sums of K are 1), which confirms that K is a stochastic matrix.
+
+Next we check that K satisfies the following \emph{detailed balance} condition:
+\begin{equation}
+\label{eq:detailed-balance}
+\pi(i)k(i,j) = \pi(j)k(j,i).
+\end{equation}
+Obviously this holds when $i=j$, so assume $i\neq j$.
+
+First suppose $\pi(i) = \pi(j)$.
+In this case, the definition~(\ref{eq:5.6}) and symmetry of P imply that
+\[
+k(i,j) = p(i,j) = p(j,i) = k(j,i).
+\]
+Therefore, when $\pi(i) = \pi(j)$ the detailed balance
+condition~(\ref{eq:detailed-balance}) clearly holds.
+
+Now suppose that $\pi(i) > \pi(j)$. Then the second case in definition (\ref{eq:5.6}) implies
+$k(j,i) =p(j,i)$, while the first case gives
+\[
+k(i,j) = p(i,j)\pi(j)/\pi(i) =  p(j,i)\pi(j)/\pi(i) = k(j,i)\pi(j)/\pi(i),
+\]
+and we see that 
+$\pi(i)k(i,j) = \pi(j)k(j,i)$ holds.
+Finally, a symmetric argument shows that if $\pi(j) > \pi(i)$,
+then detailed balance is again satisfied.
+
+To complete the justification of the Metropolis algorithm, we note
+detailed balance~(\ref{eq:detailed-balance})
+implies that $\pi$ is indeed the stationary distribution for a Markov 
+chain with transition probability matrix K; that is, (\ref{eq:5.5}) is
+satisfied. Indeed, by the detailed balance condition and the fact that
+the row sums of K are 1, we have
+\begin{equation*}
+\sum_i \pi(i)k(i,j)
+=\sum_i \pi(j)k(j,i)
+=\pi(j)\sum_i k(j,i)
+ = \pi(j).
+\end{equation*}
+
+
+We now summarize the tasks performed when implementing the Metropolis algorithm.
+First, pick as a proposition matrix any symmetric stochastic matrix and denote
+it by P. Begin 
+%
+%
+% ----------- 34.txt --------------------------------------------------------
+%
+the simulation of the Markov chain in state $i$, and then take one step of the
+proposition Markov chain to arrive in state $j$. That is, choose state $j$
+according to the probability mass function $p(i, \cdot)$. 
+Next, compute $\pi(j)/\pi(i)$. 
+If $\pi(j)/\pi(i) \geq 1$, accept $j$ as the new state. If $\pi(j)/\pi(i) < 1$,
+then with probability $\pi(j)/\pi(i)$ accept $j$ as the new state; otherwise
+(with probability $1- \pi(j)/\pi(i)$), take $i$ as the new state. Performing
+each of these tasks produces one step of the Markov chain represented by the 
+transition probability matrix K.
+
+
+\section{The Ising Model}
+% Sec. 5.3 
+\label{sec:ising-model}
+Returning to the Ising model considered in
+Section~\ref{sec:physical-motivation}, we consider how the Metropolis 
+algorithm is applied to such a model. Again, start the simulated chain in state
+$X_0 = i$ and let $X_1 = j$ be a state chosen according to 
+$p(i, \cdot)$, where $p(i,j) = p(j,i)$. Next, compute 
+\[
+\pi(\sigma_j)/\pi(\sigma_i) = \exp\{-\beta[H(\sigma_j) - H(\sigma_i)]\}
+\]
+Suppose the energy $H(\sigma_j)$ of the new state satisfies 
+$H(\sigma_j) \leq H(\sigma_i)$.
+Then $\pi(\sigma_j)/\pi(\sigma_i)$ is at least 1 and we move to state $j$.
+On the other hand, if
+$H(\sigma_j) > H(\sigma_i)$,
+then $\pi(\sigma_j)/\pi(\sigma_i)< 1$ and we take
+\begin{equation}
+\label{eq:5.8}
+X_1 = 
+\begin{cases}
+j & \text{ with probability $e^{-\beta\Delta H}$},\\
+i & \text{ with probability $1-e^{-\beta\Delta H}$}.
+\end{cases}
+\end{equation}
+where $\Delta H = H(\sigma_j) - H(\sigma_i)$ is the change in energy from state $j$ to state $i$.
+
+There are many ways to choose a proposition matrix P. The simplest derives from the
+so called \emph{Glauber dynamics}, which proceeds as follows: choose one of the
+$n$ sites at random with probability $1/n$---let $s$ denote the chosen
+site---and change the position of this site; i.e., subtract its value from 1.
+%multiply its value by $-1$. 
+The resulting state $j$ is the 
+%permutation of 
+%-1’s and +1’s
+% 0's and 1's 
+binary string
+given by
+\begin{equation*}
+\sigma_j(k) = 
+\begin{cases}
+1-\sigma_i(k) & \text{ if $k =s$},\\
+\sigma_i(k) & \text{ if $k =s$},
+\end{cases}\quad (k = 1, \dots, d).
+\end{equation*}
+%
+%
+% -------------- 35.txt ---------------------------------------------------------
+%
+%
+The procedure we employ below involves a slight variation: choose site $s$ at
+random uniformly from the $n$ possible sites. However, instead of changing the
+value of the chosen site with absolute certainty, as in Glauber dynamics, we
+``flip the switch'' with probability $1/2$. 
+Therefore, when $k \neq s$
+we have $\sigma_j(k) = \sigma_i(k)$, and when $k = s$,
+\begin{equation*}
+\sigma_j(s) = 
+\begin{cases}
+1-\sigma_i(s) & \text{ with probability 1/2},\\
+\sigma_i(s) & \text{ with probability 1/2}.
+\end{cases}
+\end{equation*}
+The advantage of this procedure is that the proposition matrix, before altering
+it with the Metropolis algorithm, is a bit more interesting than that produced
+by traditional Glauber dynamics. For, it has 1/2 along the main diagonal and is
+thus aperiodic and converges to a stationary distribution. Glauber dynamics has
+period 2, so its proposition matrix does not satisfy the hypotheses of our
+convergence theorem (Theorem~\ref{thm-2.1.2}). Keep in mind, however, that any
+proposition matrix modified by the Metropolis algorithm satisfies our hypotheses.
+\section{Computations}
+% Sec 5.4
+\label{sec:computations}
+\subsection{Computer Programs}
+Writing a computer program to simulate realizations of the Markov chain described
+above (i.e. with transition matrix K) is straight forward, and we do so using
+Matlab and the program {\tt ising.m} which appears in the Appendix.
+
+When performing simulations in the present context, there are a few important
+aspects to consider. First, our program begins with a ``hot start,'' which means
+that the initial state is picked by assigning each site to the value 0 or 1, each
+with probability 1/2.\footnote{We cannot simply draw our initial state
+from the stationary distribution since the point of this work
+is to deal with cases for which samples from the stationary distribution are not
+immediately attainable. Furthermore, we are trying to determine how long it will
+take for observations from the simulated chain to represent samples from the
+stationary distribution.}
+%% figure out how long it will take for observations from the simulated chain to represent samples from
+%% the stationary distribution. 
+%% Perhaps we should instead have picked our initial state
+%% from the stationary distribution. On the contrary, this would defeat the
+%% whole purpose of our analysis.  
+%% Recall that the method has been developed to deal with
+%% cases for which 
+%
+%
+% ----------------- 36.txt --------------------------------------------
+%
+%
+%% sampl from the stationary distribution are not quickly attainable. Furthermore, we are trying to
+%% figure out how long it will take for observations from the simulated chain to represent samples from
+%% the stationary distribution. 
+
+%% sampl from the stationary distribution are not quickly attainable. Furthermore, we are trying to
+%% figure out how long it will take for observations from the simulated chain to represent samples from
+%% the stationary distribution. 
+%% Second, t
+
+The method we have developed depends solely on covariances
+of our observable, which we estimate from the data produced by the
+simulations. However, such estimates require that the data come from the
+stationary distribution. Therefore, we must discard a number of observations
+before using the data to estimate covariances. The number of observations 
+to discard depends on how long must we wait 
+before we can expect the data to represent samples from the stationary distribution.
+%% until we have data from the stationary distribution,
+%% and we are back where we started — almost.
+When employing our procedure, we can discard a
+conservative (very large) number of observations and perform our analysis, deriving a bound on
+the convergence time. Then, in all future studies, we will know how much data should be discarded
+before samples can be assumed to have come from the stationary distribution.
+
+In considering what observable to use on the state space described above, perhaps the
+most obvious is simply the number of nodes in the ``on'' position (i.e., the
+number of 1's). Recalling that $\sigma_j(k)\in \{0,1\}$ denotes the position of
+the $k$th node when the system is in state $j$, this observable is simply the
+sum $\phi(j) = \sum_k\sigma_j(k)$. 
+%% where X is the indicator function. 
+The program {\tt ising.m} simulates the Markov chain, computes the
+values of this observable (and its square) and writes these data to a file
+called {\tt phi.dat}. 
+The program then computes the first few Lanczos coefficients using covariances
+produced by Matlab, so that we can check them against the results we get from the
+{\tt lanczos.c} program, which we now describe.
+
+The lanczos.c program (listed, along with its dependencies, in the Appendix) implements
+the recursive relations described in Section~\ref{sec:lancz-proc-mark} % Sec 4.2
+to compute the Lanczos coefficients by the new
+method. It accepts input from the user specifying any observable, any number of
+iterations, and any 
+%
+%
+% ---------------  37.txt  -----------------------------------------------
+%
+%
+number of desired Lauczos coefiicients. That is, the observable could have come from a simulation
+of any reversible Markov chain and not just our special Metropolis chain. The output of this
+program is a matrix T containing the maximum number of Lanczos coefficients (up
+to the number requested by the user) before an approximate invariant subspace
+was reached. The eigenvalues of the nonzero part of this matrix, in accordance
+with the theory developed above, should provide a close approximation to the
+eigenvalues of the Markov chain's stochastic matrix.
+
+\subsection{Results}
+% Sec. 5.4.2 
+\begin{table}
+\centering
+\label{tab:1}
+\caption{Estimates of $\lambda_{\max}(\K) = 0.998746$ using $\phi_1$.}
+\vskip4mm
+\begin{tabular}{r|c|c|c|c}
+simulation \# & $\alpha_1$ & $\beta_1$ & $\lambda_{\max}(\T_2)$& $\beta_2$\\
+\hline
+1& 0.995107& 0.006960& 0.995220& 0.600243\\
+2& 0.995099& 0.005891& 0.994863& 0.477393\\
+3& 0.994862& 0.009671& 0.994925& N/A\\
+4& 0.995321& 0.009319& 0.995654& N/A\\
+5& 0.994787& 0.004872& 0.405446& 0.994742
+\end{tabular}
+\end{table}
+Table~\ref{tab:1} shows the results of 5 simulations each of 100,000 iterations (discarding the first
+5,000 observations) for the one dimensional Ising lattice with 10 nodes and $\beta= 1$. Displayed is
+the estimate of the first Lanczos coefficient $\alpha_1$ (which is the
+eigenvalue estimate after one step; i.e., $\lambda_{\max}(\T_1)$), along with its
+error bound $\beta_1$. Appearing in the third column is the largest eigenvalue,
+$\lambda_0(T_2)$, of the $2 \times 2$ matrix $\T_2$, and $\beta_2$ appears in the
+fourth column when it is was computable. When it was not computable, it was
+%% probably 
+because an approximate invariant subspace was reached 
+at the first step, so $\beta_2$ involved expressions which were close to machine
+epsilon and thus could not be computed accurately. Table~\ref{tab:2}  shows the same
+information when using a second observable, 
+$\phi_2 = \phi_1^2$ (i.e., the number of 1's squared).
+
+\begin{table}
+\centering
+\label{tab:2}
+\caption{Estimates of $\lambda_{\max}(K) = 0.998746$ using $\phi_2$}
+\vskip4mm
+\begin{tabular}{r|c|c|c|c}
+simulation \# & $\alpha_1$ & $\beta$ & $\lambda_{\max}(\T_2)$& $\beta_2$\\
+\hline
+1& 0.994262& 0.006142& 0.994222& N/A\\
+2& 0.994333& 0.002974& 0.994332& N/A\\
+3& 0.994307& 0.008892& 0.994374& 0.726320\\
+4& 0.994436& 0.012884& 0.994685& 0.361404\\
+5& 0.993789& 0.006909& 0.993820& 0.788710
+\end{tabular}
+\end{table}
+The true value of the subdominant eigenvalue for this problem is $\lambda_{\max}(\K) = 0.998746$,
+and the next largest is $\lambda_2(\K) = 0.993303$. These were computed directly
+from the transition matrix 
+%
+%
+% ---------- 38.txt ----------------------------------------------
+%
+%
+using the Matlab program {\tt tpm.m} listed in the Appendix. They should be very accurate, and it
+takes the Matlab routine {\tt eig()} just over 20 minutes of cpu time on a Sun
+Ultra Sparc to find all the eigenvalues of K.
+
+As montioned in Section~\ref{sec:gener-lancz-algor} (see
+Theorem~\ref{thm:4.1.1}), the $\beta$ coefficients provide conservative error 
+bounds on the eigenvalue estimates from the previous Lanczos
+step. Unfortunately, for this example $\beta$ appears to be too conservative as
+it does not even allow us to bound our estimates away from 1. Furthermore, it  
+seems that the estimates generated by the method above fall systematically below
+the true value of the subdominant eigenvalue. In every simulation, an
+approximate invariant subspace (to machine tolerance) was reached after
+computing at most 2 pairs of Lanczos coefficients. For $\phi_1$ we see that 
+it was reached after computing only one pair on simulations 3 and 4, similarly
+for $\phi_2$ on simulations 1 and 2. These observations indicate that the chosen
+observable is close to the slowest mode (or 
+eigenfunction) of the process. That is, we should observe fast convergence to an approximate
+invariant space. However, the space found might contain only the second slowest mode of the
+process and, in that case, our eigenvalue estimates would be closer to the third largest eigenvalue,
+instead of the second largest.\footnote{Recall from above that we won't
+converge to the eigenspace corresponding to the largest eigenvalue 
+(which is always 1), unless we choose a nearly constant observable function.}
+
+The matrix T was produced by the program {\tt lanczos.c} and its eigenvalues were computed
+by Matlab, both operations taking a few seconds. Granted, comparing a few seconds to the 20
+minutes it takes Matlab to compute all the eigenvales is not really fair, 
+since calling Matlab's {\tt eig()} routine is not always the
+%
+%
+% --------- 39.txt -----------------------------------------------------
+%
+%
+optimal traditional method for computing only a few eigenvalues of K. However, recall that
+the primary motivation for the new method are those examples where the matrix K is so large
+that we can't store even a single column vector in fast memory. Once we start
+swapping data to and from slow memory, traditional algorithms can become
+intractable, and such examples are easy to come by. For instance, if the Ising
+model described has 1000 nodes, it produces a $2^{1000}\times 2^{1000}$
+transition probability matrix.
+%
+%
+% 40.txt
+%
+%
+
+
+%%%-------------------------------------------------------------------
+%%%
+%%% \input{Conclusion}
+%%%
+\chapter{Conclusion}
+% Chapter 6
+\label{cha:conclusion}
+We conclude with some remarks about the special situations in which our
+method is useful.
+%few aspects of the cases to which the foregoing applies.
+We are interested in the subdominant eigenvalue of a large transition probability matrix. Our
+method can be used to approximate these eigenvalues when the following conditions are satisfied:
+\begin{itemize}
+\item 
+The Markov chain is reversible (satisfies detailed balance).
+\item
+We can simulate realizations of the chain as well as functions of these
+realizations (observables on the state space).
+\end{itemize}
+When these conditions hold, we can avoid the traditional Lanczos algorithm, and
+estimate the values of the Lanczos coeﬂicients via the variational properties of
+observables on the state space. 
+There are a number of ideas in this paper that could be expanded upon in future
+studies.  Perhaps most obvious would be to try to find analogous techniques for
+nonreversible (i.e. nonsymmetric) Markov chains. This is a considerable problem
+since the Lanczos methods described above are no longer applicable. Perhaps the
+\emph{Arnoldi algorithm} (see \cite[Algorithm 6.9]{Demmel:1997}), or the
+\emph{nonsymmetric Lanczos algorithm} could also be modified to exploit
+special properties of stochastic matrices. %%  (as we have done with the Lanczos
+%% algorithm in the symmetric case). 
+%
+%
+% 41.txt
+%
+%
+
+When applying the Lanczos algorithm, we usually choose a single starting vector (in the
+present context, an observable), perform the algorithm for a number of steps, and gather results.
+Then we do the same with a new starting vector and compare the results to those obtained with
+the first vector. Proceeding in this way for a number of starting vectors, we can provide statistical
+evidence that we have, indeed, located the eigenvalues of interest. However, when there are two
+observables, $\phi_1$ and $\phi_2$, of particular interest, perhaps we would
+benefit from considering both observables simultaneously. Future studies might
+develop an algorithm which incorporates both observables, 
+again via $\psi_i = \Pi^{1/2}(\phi_i - \bE_{\pi}\phi_i)$. %% In this case, a
+The Lanczos algorithm would then be based on the space 
+\[
+\sK^*(M,\psi_1, \psi_2, p) =  \ran\{\psi_1, \psi_2, \M\psi_1, 
+\M\psi_2, \dots, \M^{p-1}\psi_1, \M^{p-1}\psi_2\}
+\]
+The Lanczos coefficients would then involve not only the autocovariances,
+%$\bC_\pi(\phi_i(n), \phi_i(n+m))$
+but also the cross-covariances, 
+$\bC_\pi(\phi_i(n), \phi_j(n+m))$, defined in (2.6) above.
+
+\newpage
+
+%%%%% Appendices start %%%%%%%%%%%%%%%%
+%% Comment out the following line if your thesis has no appendix
+\singlespacing
+\appendix
+%%%-------------------------------------------------------------------
+%%%
+%%% \input{Appendix}
+%%%
+\begin{center}
+  {\Large Appendix: computer programs}
+\end{center}
+
+{\small 
+\begin{verbatim}
+% Matlab code ising.m
+%
+% Written by William J. DeMeo on 12/15/97
+% last modified 2013.10.19
+% Inputs:
+%         d = number of nodes of the ising lattice (e.g. d=100)
+%         n = number of iterations (e.g. n=1000)
+%         beta = Annealing schedule (e.g. beta = 2,
+%            when beta -> 0 will always go to nee state
+%            when beta -> infty will never go to state of higher energy)
+%
+X = zeros(d,1);
+Energy = zeros(n,1);
+Ave=0;
+
+% Initialize using hot start
+for i=1:d,
+  if rand < .5
+    X(i) = -1;
+  else
+    X(i) = 1;
+  end
+end
+
+% Initialize at state of high energy (not used)
+if 0
+  X(1:2:d-1)=1;
+  X(2:2:d)=—1;
+end
+
+% Initialize energy
+H=0;
+for i=1:(d-1)
+  H = H - X(i)*X(i+1);
+end
+
+% Initialize observable
+phi = zeros(n+1,1);
+
+for i=1:d
+  if X(i) == 1
+    phi(1)= phi(1)+1;
+  end
+end
+
+for j=1:n
+  site=0;
+  while site==0
+    site = round(rand*d);
+  end
+  % Compute new energy (with new X(site) = -X(site)):
+  if site == 1
+    Hnew = H + 2*X(1)*X(2);
+  elseif site == d
+    Hnew = H + 2*X(d)*X(d-1);
+  else
+    Hnew = H + 2*X(site)*(X(site-1) + X(site+1));
+  end
+
+  % Change to new state in two ways:
+  % with probability 1/2, flip the switch
+  if rand < .5
+    if (Hnew <= H) | (rand < exp(-beta*(Hnew-H)))
+      X(site) = -X(site);
+      H = Hnew;
+      % Compute new value of observable
+      if X(site) == 1
+        phi(j+1) = phi(j) + 1;
+      else
+        phi(j+1) = phi(j) -1;
+      end
+    else phi(j+1)=phi(j);
+    end
+  else phi(j+1)=phi(j);
+  end
+  Energy(j) = H;
+end
+plot(Energy)
+
+% A second observable
+phi2 = zeros(n+1,1);
+for i=1:n+1
+  phi2(i) = phi(i)*phi(i);
+end
+
+% Write first observable to phi.dat:
+fid = fopen('phi.dat','w');
+fprintf(fid,'%f\n',phi);
+fclose(fid);
+
+% Write second observable to phi2.dat:
+fid = fopen('phi2.dat','w');
+fprintf(fid,'%f\n',phi2);
+fc1ose(fid);
+
+% Compute a few Lanczos coefficients by new method
+START=1001;
+V1=zeros(2);
+C1=zeros(2);
+C2=zeros(2);
+C3=zeros(2);
+
+V1 = cov(phi(START:n+1),phi(START:n+1));
+V1 = V1(1,1);
+C1 = cov(phi(START:n),phi(START+1:n+1));
+C1 = C1(1,2);
+C2 = cov(phi(START:n-1),phi(START+2:n+1));
+C2 = C2(1,2);
+C3 = cov(phi(START:n-2),phi(START+3:n+1));
+C3 = C3(1,2);
+
+alpha1 = C1/V1;
+beta1 = sqrt(C2/V1 -(C1/V1)^2);
+alpha2 = (1/(beta1^2))*(C3/V1 - 2*alpha1*(C2/V1) + alpha1^3);
+
+T1 = [alphal beta1; beta1 alpha2]
+V1 = cov(phi2(START:n+1),phi2(START:n+1));
+V1 = V1(1,1);
+C1 = cov(phi2(START:n),phi2(START+1:n+1));
+C1 = C1(1,2);
+C2 = cov(phi2(START:n-1),phi2(START+2:n+1));
+C2 = C2(1,2);
+C3 = cov(phi2(START:n-2),phi2(START+3:n+1));
+C3 = C3(1,2);
+
+alpha1 = C1/V1;
+beta1 = sqrt(C2/V1 - (C1/V1)^2);
+alpha2 = (1/(beta1^2))#(C3/V1 - 2*alpha1*(C2/V1) + alpha1^3);
+
+T2 = [alpha1 beta1; beta1 alpha2]
+
+fid = fopen('Tmats.dat','v');
+fprintf(fid,'%f\n',T1);
+fprintf(fid,'%f\n',T2);
+fclose(fid);
+
+%%% end ising.m
+
+\end{verbatim}}
+
+\vskip2cm
+%
+%
+% -------------- 45.txt ------------------------------------------
+%
+%
+{\small 
+\begin{verbatim}
+% Matlab code tpm.m for generating transition probability matrix
+% and computing its eigenvalues directly
+%
+% Written by William J. DeMeo on 1/10/98
+%
+% Inputs:
+%        d = number of nodes of the ising lattice (e.g. d=10)
+%     beta = Annealing schedule (e.g. beta - 2,
+%            when beta -> 0 will always go to new state
+%            when beta -> infty will never go to state of higher energy)
+
+disp('bui1ding proposition matrix...')
+
+states = 2^d;
+A = 0;
+for i=0:(d-1)
+  E=eye(2^i);
+  A = [A E; E A];
+end
+
+B = .5*eye(states);
+A = B + .5*(1/d)*A;
+% our modified Glauber dynamics requires the B and the .5*(1/d)
+
+disp('...done')
+
+% display pattern of nonzero entries
+% spy(A)
+
+% check that all row sums are 1
+check=O;
+for i=1:states
+  check = check + (not(sum(A(i,1:states))<.99));
+end
+% if not all rows sum to 1, print check = (# of rows with sum=1)
+if not(check==states)
+  check
+  error('Row sums are not all 1')
+end
+
+% construct matrix of states
+E = zeros(d,states);
+flip=-1;
+for i=1:d
+  for j=1:2^(i-1):states
+    flip = -1*flip;
+    for k=0:2^(i-1)
+      E(i,j+k) = flip;
+      end
+  end
+end
+E=E';
+
+% display first 64 states
+% E(1:64,:)
+
+% compute energy of each state
+H = zeros(states,1);
+for i=1:states
+  for j=1:d-1
+    H(i) = H(i) - E(i,j)*E(i,j+1);
+  end
+end
+
+disp('building Hetropolis transition matrix...')
+
+for i=1:states
+  for j=i+1:states
+    if not(A(i,j)==0)
+      if(H(j)>H(i))
+        alt = A(i,j)*(1-exp(-beta*(H(j)-H(i))));
+        A(i,i) = A(i,i)+a1t;
+        A(i,j) = A(i,j)-alt;
+      elseif(H(j)<H(i))
+        alt = A(j,i)*(1-exp(-beta*(H(i)-H(j))));
+        A(j,j) = A(j,j)+a1t:
+        A(j,i) = A(j,i)-alt;
+      end
+    end
+  end
+end
+
+disp('...done')
+
+check=0;
+for i=1:states
+  check = check + (not(sum(A(i,1:states))<.99));
+end
+
+% if not all rows sum to 1, print check = (# of rows with aum=1)
+
+if not(check==states)
+  check
+  error('Row sums are not all 1')
+end
+
+disp('computing eigenvalues of tpm...')
+cput = cputime;
+evals = eig(A);
+ecput = tputime - cput;
+disp('the CPU time (in secs) for computing eigenvalues of tpm: ')
+ecput
+
+%%% end tpm.m
+\end{verbatim}}
+
+\vskip2cm
+
+% 50.txt
+
+
+{\small 
+\begin{verbatim}
+
+
+
+
+/*************************************************************
+ * lanczos.c main program for computing Lanczos coefficients *
+ *                                                           *
+ * Created by William J. DeMeo on 1/7/98                     *
+ * Last modified 2013.10.19                                  *
+ ************************************************************/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include "prototypes.h"
+
+/* Machine constants on dino (Sun Ultra 1 at Courant) */
+#define MACHEPS 1.15828708535533604981e-16
+#define SQRTEPS 1.07623746699106147048e-08
+#define MAX_NAME 100
+
+void read_name(char *);
+
+/* Prototypes from the file functions.c */
+double alpha(int j);
+double betasq(int j);
+double form1(int j, int k);
+double form2(int j, int k);
+double moment(double *data, long n, 
+              double *ave, double *var, double *cov, long k);
+
+/* external variables to be used by functions */
+double *phi,*cov, *var, *ave;
+
+main()
+{
+
+  char *filename;
+  FILE *ofp;
+  double temp=O, *T;
+  long i, j, nrow, nlanc, START;
+  int flag=O;
+
+  filename = cmalloc(MAX_NAME);
+
+  printf("\nName of file containing observed values: ");
+  read_name(filename);
+  printf("\nTota1 number of observations in file (iterations): ");
+  scanf("%u",&nrow);
+  printf("\nNumber of leading observations to discard: ");
+  scanf("%u",&START);
+  printf("\nNumber of Lanczos coefficients desired: ");
+  scanf("%u",&nlanc);
+  while(2*nlanc > nrow-START)
+    {
+      printf("\nNot enough data for that many coefficients.\n");
+      printf("\nEnter a smaller number of Lanczos coefficients: ");
+      scanf("%u",&nlanc);
+    }
+
+  phi = dmalloc(nrow);
+  cov=dmalloc(2*nlanc);
+  var=dmalloc(1);
+  ave=dmalloc(1);
+  T = dmalloc(nlanc*nlanc); 
+  for(i=0;i<nlanc;i++) 
+    T[i]=(double) 0;
+
+  /* observable phi is stored contiguously column-wise by MATLAB */
+  matlabread(phi, nrow, 1, filename);
+
+  /* send the observable, offset by START */
+  moment(phi+START,nrow-START,ave, var, cov,2*nlanc-1);
+
+  /* First column of T */
+  T[0] = alpha(1);
+  if((temp=betasq(1))>MACHEPS*10)
+    {
+      T[1]=sqrt(temp);
+
+      /* General column of T */
+      j=2:
+      for(i=1; i<nlanc-1, flag==O;)
+	{
+	  T[i*nlanc+i-1]=sqrt(betasq(i));
+	  T[i*nlanc+i] = alpha(i+1);
+	  if((temp = betasq(i+1))>MACHEPS*10)
+	    {
+	      T[i*nlanc+i+1] = sqrt(temp);
+	      i++;
+	    }
+	  else
+	    flag=1;
+	}
+
+      /* Last column */
+      if(flag!=1 && ((temp= betasq(nlanc-1))>MACHEPS*10))
+	{
+	  T[nlanc*nlanc-2] = sqrt(temp);
+	  T[nlanc*nlanc-1] = alpha(nlanc);
+	  printf("\nbeta(1) = %1f\nbeta(%d) = %lf (last beta)",
+		 T[1],(nlanc-1),T[nlanc*nlanc-2]);
+	}
+      else
+	{
+	  printf("\nApproximate invariant space reached at step %d.",i);
+	  printf("\nbeta(1) = %lf\nbeta(%d) = %lf (last accurate beta)".
+		 T[1],i,T[i*nlanc+i-1]);
+	  printf("\nbeta(%d)^2: %lf (first spurious resu1t)",i+1,temp);
+	}
+      printf("\nThe matrix T is: \n");
+      matprint(T,nlanc,nlanc);
+    }
+  else
+    {
+      printf("\nmain(): Approximate invariant space reached at first step.");
+      printf("\nalpha(1) - %lf\nbeta(1)^2: %lf (first spurious result)", 
+             T[O], temp);
+    }
+  ofp = fopen("Tmat.m","v");
+  check(ofp);
+  matlabwrite(T,nlanc,nlanc,ofp);
+  fclose(ofp);
+}
+
+void read_name(char *name)
+{
+  int c, i = 0;
+  while ((c = getchar()) != EOF && c != ' ' && c != '\n')
+    name[i++] = c;
+  name[i] = '\0';
+}
+
+/** end lanczos.c **/
+
+
+\end{verbatim}}
+
+\vskip2cm
+
+
+{\small 
+\begin{verbatim}
+
+
+/***************************************************
+ * functions.c -- functions required by lanczos.c  *
+ *                                                 *
+ * Created by William J. DeMeo on 1/7/98           *
+ * Last modified 2013/10/19                        *
+ ***************************************************/
+
+#include <math.h>
+#define START 1000
+#define ITER 10000
+
+/* Machine constants on dino (Sun Ultra 1 at Courant) */
+#define MACHEPS 1.15828708535533604981e-16
+#define SQRTEPS 1.07623746699106147048e-O8
+
+double alpha(int j);
+double betasq(int j);
+double form1(int j, int k);
+double form2(int j, int k);
+double moment(double *data, long n, 
+              double *ave, double *var, double *cov, int k);
+
+/* external variables to be used by functions */
+double *phi,*cov, *var, *ave;
+
+double alpha(int j)
+{
+  /* alpha is never called with j < 1 */
+  if(j==1)
+    return form1(1,1);
+  else if(j>1)
+    return
+      ((double)1/betasq(j-1)) * (form1(j-1,3) - pow(alpha(j-1),3)
+       - 2 * (alpha(j-1)*betasq(j-1) + sqrt(betasq(j-2))*form2(j-1,2))
+       + betasq(j-2));
+}
+
+
+double betasq(int j)
+{
+  if(j==0)
+    return (double)O;
+  else if(j>0)
+    return (form1(j,2) - pow(alpha(j),2) - betasq(j-1));
+}
+
+
+double form1(int j, int k)
+{
+  double form14, alpha1, alpha1sq, form12, form13;
+  if(j==0)
+    return (double)0;
+  else if(j==1)
+    {
+      /* printf("\nvar = %lf, cov(%d) = %lf \n",*var,k,cov[k]); */
+      return (cov[k])/(*var); /* the only real value */
+    }
+  else if(j>1)
+    {
+      return 
+	((double)1/betasq(j-1))
+	* ( form1(j-1,k+2) + pow(alpha(j-1),2) * form1(j-1,k)
+	    + 2*(alpha(j-1) * sqrt(betasq(j-2)) * form2(j-1,k)
+		 - alpha(j-1)*form1(j-1,k+1)
+		 - sqrt(betasq(j—2))*form2(j-1,k+1) )
+	    + betasq(j-2)*form1(j-2,k));
+    }
+}
+
+
+double form2(int j, int k)
+{
+/* form2 is never called with j < 1 */
+  if(j==1)
+    return (double)0;
+  else if(j>1)
+    return
+      (pov(betasq(j-1),-.5)) 3
+      (form1(j-1,k+1) - alpha(j-1)*form1(j-1,k)
+       - sqrt(betasq(j-2)) * form2(j—1,k));
+}
+
+/* moment() function for computing var and cov(k)
+   arguments:
+   data = a nxi array of doubles
+   n = length of data[]
+   ave =(on exit)= the average of data[]
+   var =(on exit)= the variance of data[]
+   cov =(on exit)= the covariance of data[i] and data[i+j] for i-1,...,k
+   k = the max lag for cov above
+*/
+double moment(double *data, long n, 
+              double *ave, double *var, double *cov, int k)
+{
+  /* Centered about data[0] algorithm: */
+  long i,j;
+  double ave1, ave2;
+  
+  *ave=O;*var=0; ave1=ave2=O;
+  for(j=0;j<=k;j++)
+    cov[j]=0;
+
+  for(i=1;i<n;i++)
+    {
+      *ave += (data[i] - data[0]);
+      *var += (data[i] - data[0])*(data[i] - data[0]);
+    }
+  *var /= (double)(n-1);
+  *var -= (((*ave)/(double)n) * ((*ave)/(double)(n-1)));
+  /* *ave = ((*ave)/(double)n) + data[0]; (the true average; not needed)*/
+
+  for(j=0;j<=k;j++)
+    {
+      for(i=0;i<(n-j);i++)
+	{
+	  ave1 += (data[i] - data[0]);
+	  ave2 += (data[i+j] - data[0]);
+	  cov[j] += (data[i] - data[0])*(data[i+j] - data[0]);
+
+	}
+
+      ave1/=(double)(n-j); ave2/=(double)(n-j);
+      cov[j] = ((cov[j] - (double)(n-j)*ave1*ave2)/(double)(n-j-1));
+    }
+
+}
+
+/*** end funccions.c ***/
+
+\end{verbatim}
+}
+
+
+
+%%%-------------------------------------------------------------------
+%%%
+%%% BIBLIOGRAPHY
+%%%
+
+
+%% Note: If your thesis has more than one appendix, NYU requires a "list of
+%% appendices" page before the body of the thesis. I don't provide the tools
+%% to create that here, so you're on your own for that one... Sorry.
+%\input{app2}
+%%%% Input bibliography file %%%%%%%%%%%%%%%
+%\input{biblio}
+
+%% \bibliographystyle{plainurl}
+%% \bibliography{wjd}
+\def\cprime{$'$} \def\cprime{$'$}
+  \def\ocirc#1{\ifmmode\setbox0=\hbox{$#1$}\dimen0=\ht0 \advance\dimen0
+  by1pt\rlap{\hbox to\wd0{\hss\raise\dimen0
+  \hbox{\hskip.2em$\scriptscriptstyle\circ$}\hss}}#1\else {\accent"17 #1}\fi}
+\begin{thebibliography}{1}
+
+\bibitem{Demmel:1997}
+J.~Demmel.
+\newblock {\em Applied Numerical Linear Algebra}.
+\newblock Society for Industrial and Applied Mathematics, 1997.
+
+\bibitem{Diaconis:1996}
+P.~Diaconis and L.~Saloff-Coste.
+\newblock Logarithmic sobolev inequalities for finite markov chains.
+\newblock {\em The Annals of Applied Probability}, 6:695--750, 1996.
+
+\bibitem{Durret:1996}
+R.~Durrett.
+\newblock {\em Probability: Theory and Examples}.
+\newblock Duxbury Press, second edition, 1996.
+
+\bibitem{Geman:1984}
+S.~Geman and D.~Geman.
+\newblock Stochastic relaxation. gibbs distributions and the bayesian
+  restoration of images.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  6:721--741, 1984.
+
+\bibitem{Golub:1996}
+G.~Golub and Charles Van~Loan.
+\newblock {\em Matrix Computations}.
+\newblock Johns Hopkins University Press, third edition, 1996.
+
+\bibitem{GoodmanSokal:1989}
+G.~Goodman and A.~Sokal.
+\newblock Multigrid monte carlo method. conceptual foundations.
+\newblock {\em Physical Review D}, 40:2035--2071, 1989.
+
+\bibitem{Hammersley:1964}
+J.~M. Hammersley and D.~C. Handscomb.
+\newblock {\em Monte Carlo Methods}.
+\newblock Chapman and Hall, 1964.
+
+\bibitem{Metropolis:1953}
+N.~Metropolis, A.~W. Rosenbluth, M.~N. Rosenbluth, A.~H. Teller, and E.~Teller.
+\newblock Equations of state calculations by fast computing machines.
+\newblock {\em J. Chem. Phys.}, 21:1087--1092, 1953.
+
+\bibitem{Rosenthal:1995}
+J.~Rosenthal.
+\newblock Convergence rates for markov chains.
+\newblock {\em Siam Review}, 37:387--405, 1995.
+
+\end{thebibliography}
+
+\end{document}
+
+\end{document}

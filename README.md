@@ -5,8 +5,8 @@ MSThesis
 **Author:** William DeMeo<br/>
 **Advisor:** Jonathan Goodman<br/>
 **Institution:** Courant Institute of Mathematical Sciences, NYU<br/>
-**Description:** A thesis submitted in partial fulfillment of the requirements for the degree of
-Master of Science, Department of Mathematics,  New York University.
+**Description:** A dissertation submitted in partial satisfaction of the requirements for the degree of
+Master of Science in Mathematics in the Graduate Division of the New York University.
 
 
 Files in the repository

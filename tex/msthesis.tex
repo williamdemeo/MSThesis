@@ -187,8 +187,62 @@
 %%%% Input bibliography file %%%%%%%%%%%%%%%
 %\input{biblio}
 
-\bibliographystyle{plainurl}
-\bibliography{wjd}
+%% \bibliographystyle{plainurl}
+%% \bibliography{wjd}
+\def\cprime{$'$} \def\cprime{$'$}
+  \def\ocirc#1{\ifmmode\setbox0=\hbox{$#1$}\dimen0=\ht0 \advance\dimen0
+  by1pt\rlap{\hbox to\wd0{\hss\raise\dimen0
+  \hbox{\hskip.2em$\scriptscriptstyle\circ$}\hss}}#1\else {\accent"17 #1}\fi}
+\begin{thebibliography}{1}
+
+\bibitem{Demmel:1997}
+J.~Demmel.
+\newblock {\em Applied Numerical Linear Algebra}.
+\newblock Society for Industrial and Applied Mathematics, 1997.
+
+\bibitem{Diaconis:1996}
+P.~Diaconis and L.~Saloff-Coste.
+\newblock Logarithmic sobolev inequalities for finite markov chains.
+\newblock {\em The Annals of Applied Probability}, 6:695--750, 1996.
+
+\bibitem{Durret:1996}
+R.~Durrett.
+\newblock {\em Probability: Theory and Examples}.
+\newblock Duxbury Press, second edition, 1996.
+
+\bibitem{Geman:1984}
+S.~Geman and D.~Geman.
+\newblock Stochastic relaxation. gibbs distributions and the bayesian
+  restoration of images.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  6:721--741, 1984.
+
+\bibitem{Golub:1996}
+G.~Golub and Charles Van~Loan.
+\newblock {\em Matrix Computations}.
+\newblock Johns Hopkins University Press, third edition, 1996.
+
+\bibitem{GoodmanSokal:1989}
+G.~Goodman and A.~Sokal.
+\newblock Multigrid monte carlo method. conceptual foundations.
+\newblock {\em Physical Review D}, 40:2035--2071, 1989.
+
+\bibitem{Hammersley:1964}
+J.~M. Hammersley and D.~C. Handscomb.
+\newblock {\em Monte Carlo Methods}.
+\newblock Chapman and Hall, 1964.
+
+\bibitem{Metropolis:1953}
+N.~Metropolis, A.~W. Rosenbluth, M.~N. Rosenbluth, A.~H. Teller, and E.~Teller.
+\newblock Equations of state calculations by fast computing machines.
+\newblock {\em J. Chem. Phys.}, 21:1087--1092, 1953.
+
+\bibitem{Rosenthal:1995}
+J.~Rosenthal.
+\newblock Convergence rates for markov chains.
+\newblock {\em Siam Review}, 37:387--405, 1995.
+
+\end{thebibliography}
 
 \end{document}
 

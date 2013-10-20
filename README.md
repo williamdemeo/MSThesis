@@ -1,11 +1,11 @@
 MSThesis
 ========
 
-**Masters Thesis:** Approximating eigenvalues of large stochastic matrices
-**Author:** William DeMeo
-**Advisor:** Jonathan Goodman
-**Institution:** Courant Institute of Mathematical Sciences, NYU
-**Date:** January 1999
+**Masters Thesis:** Approximating eigenvalues of large stochastic matrices<br/>
+**Author:** William DeMeo<br/>
+**Advisor:** Jonathan Goodman<br/>
+**Institution:** Courant Institute of Mathematical Sciences, NYU<br/>
+**Date:** January 1999<br/>
 **Description:** A thesis submitted in partial fulfillment of the requirements for the degree of
 Master of Science, Department of Mathematics,  New York University.
 

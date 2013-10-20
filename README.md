@@ -11,7 +11,7 @@ Master of Science in Mathematics in the Graduate Division of the New York Univer
 
 Files in the repository
 -----------------------
-The main document is **msthesis.pdf**.  It is the only file you need if you want to read the thesis.  
+The main document is [msthesis.pdf](https://github.com/williamdemeo/MSThesis/raw/master/msthesis.pdf).  It is the only file you need if you want to read the thesis.  
 
 The other files in the repository are the LaTeX source code (msthesis.tex) and the computer programs (in the src directory) for running the simulations described in the thesis.
 

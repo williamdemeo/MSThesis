@@ -11,13 +11,15 @@ Master of Science in Mathematics in the Graduate Division of the New York Univer
 
 Files in the repository
 -----------------------
-The LaTeX file msthesis.tex should compile with the command 
+The thesis is in the file **msthesis.pdf**.  
+
+All of the LaTeX source code is contained in a single file, **msthesis.tex**, which can be compiled with the following command:
 
     pdflatex msthesis.tex
     
-and produce as output the file msthesis.pdf, assuming you have a resonably good installation of the TeXLive package or its equivalent. 
+This command will produce the file msthesis.pdf, assuming you have a resonably good installation of the TeXLive package or its equivalent. 
 
-The computer program files are in the src directory.  I have not tested them recently.  If you try them and encounter a problem, *please [submit an issue](https://github.com/williamdemeo/MSThesis/issues)*.
+The computer program files are in the **src** directory.  I have not tested them recently.  If you try them and encounter a problem, *please [submit an issue](https://github.com/williamdemeo/MSThesis/issues)*.
 
 
 Abstract

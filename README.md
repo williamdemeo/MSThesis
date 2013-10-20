@@ -5,7 +5,6 @@ MSThesis
 **Author:** William DeMeo<br/>
 **Advisor:** Jonathan Goodman<br/>
 **Institution:** Courant Institute of Mathematical Sciences, NYU<br/>
-**Date:** January 1999<br/>
 **Description:** A thesis submitted in partial fulfillment of the requirements for the degree of
 Master of Science, Department of Mathematics,  New York University.
 
@@ -18,7 +17,7 @@ The LaTeX file msthesis.tex should compile with the command
     
 and produce as output the file msthesis.pdf, assuming you have a resonably good installation of the TeXLive package or its equivalent. 
 
-The computer program files are in the src directory.  I have not tested them recently.  If you try them and encounter a problem, *please submit an [issue](https://github.com/williamdemeo/MSThesis/issues)*.
+The computer program files are in the src directory.  I have not tested them recently.  If you try them and encounter a problem, *please [submit an issue](https://github.com/williamdemeo/MSThesis/issues)*.
 
 
 Abstract

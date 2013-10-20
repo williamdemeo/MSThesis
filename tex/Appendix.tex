@@ -1,5 +1,6 @@
-
-\singlespacing
+\begin{center}
+  {\Large Appendix: computer programs}
+\end{center}
 
 {\small 
 \begin{verbatim}
@@ -11,8 +12,8 @@
 %         d = number of nodes of the ising lattice (e.g. d=100)
 %         n = number of iterations (e.g. n=1000)
 %         beta = Annealing schedule (e.g. beta = 2,
-%                when beta -> 0 will always go to nee state
-%                when beta -> infty will never go to state of higher energy)
+%            when beta -> 0 will always go to nee state
+%            when beta -> infty will never go to state of higher energy)
 %
 X = zeros(d,1);
 Energy = zeros(n,1);
@@ -292,7 +293,8 @@ double alpha(int j);
 double betasq(int j);
 double form1(int j, int k);
 double form2(int j, int k);
-double moment(double *data, long n, double *ave, double *var, double *cov, long k);
+double moment(double *data, long n, 
+              double *ave, double *var, double *cov, long k);
 
 /* external variables to be used by functions */
 double *phi,*cov, *var, *ave;
@@ -331,7 +333,7 @@ main()
   for(i=0;i<nlanc;i++) 
     T[i]=(double) 0;
 
-  /* observable phi is stored contiguously column-wise (e.g. by MATLAB) */
+  /* observable phi is stored contiguously column-wise by MATLAB */
   matlabread(phi, nrow, 1, filename);
 
   /* send the observable, offset by START */
@@ -379,7 +381,8 @@ main()
   else
     {
       printf("\nmain(): Approximate invariant space reached at first step.");
-      printf("\nalpha(1) - %1f\nbeta(1)^2: %lf (first spurious result)", T[O], temp);
+      printf("\nalpha(1) - %lf\nbeta(1)^2: %lf (first spurious result)", 
+             T[O], temp);
     }
   ofp = fopen("Tmat.m","v");
   check(ofp);
@@ -426,7 +429,8 @@ double alpha(int j);
 double betasq(int j);
 double form1(int j, int k);
 double form2(int j, int k);
-double moment(double *data, long n, double *ave, double *var, double *cov, int k);
+double moment(double *data, long n, 
+              double *ave, double *var, double *cov, int k);
 
 /* external variables to be used by functions */
 double *phi,*cov, *var, *ave;
@@ -471,7 +475,7 @@ double form1(int j, int k)
 	    + 2*(alpha(j-1) * sqrt(betasq(j-2)) * form2(j-1,k)
 		 - alpha(j-1)*form1(j-1,k+1)
 		 - sqrt(betasq(j—2))*form2(j-1,k+1) )
-	    + betasq(j-2)*form1(j-2,k)):
+	    + betasq(j-2)*form1(j-2,k));
     }
 }
 
@@ -497,7 +501,8 @@ double form2(int j, int k)
    cov =(on exit)= the covariance of data[i] and data[i+j] for i-1,...,k
    k = the max lag for cov above
 */
-double moment(double *data, long n, double *ave, double *var, double *cov, int k)
+double moment(double *data, long n, 
+              double *ave, double *var, double *cov, int k)
 {
   /* Centered about data[0] algorithm: */
   long i,j;
@@ -514,7 +519,7 @@ double moment(double *data, long n, double *ave, double *var, double *cov, int k
     }
   *var /= (double)(n-1);
   *var -= (((*ave)/(double)n) * ((*ave)/(double)(n-1)));
-  /* *ave = ((*ave)/(double)n) + data[0]; <- that's the true average (not needed)*/
+  /* *ave = ((*ave)/(double)n) + data[0]; (the true average; not needed)*/
 
   for(j=0;j<=k;j++)
     {
@@ -534,8 +539,6 @@ double moment(double *data, long n, double *ave, double *var, double *cov, int k
 
 /*** end funccions.c ***/
 
-
-
-
-\end{verbatim}}
+\end{verbatim}
+}
 

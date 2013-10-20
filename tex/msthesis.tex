@@ -134,6 +134,7 @@
 %%%% Table of Contents %%%%%%%%%%%%
 \tableofcontents
 
+\newpage
 %%%%% List of Figures %%%%%%%%%%%%%
 %% Comment out the following two lines if your thesis does not
 %% contain any figures. The list of figures contains only
@@ -152,8 +153,8 @@
 %% Comment out the following two lines if your thesis does not
 %% contain any algorithms. The list of tables contains only
 %% those tables included withing the "table" environment.
-\listofalgorithms\addcontentsline{toc}{section}{List of Algorithms}
-\newpage
+%% \listofalgorithms\addcontentsline{toc}{section}{List of Algorithms}
+%% \newpage
 
 %%%%% Body of thesis starts %%%%%%%%%%%%
 \pagenumbering{arabic} % switches page numbering to arabic: 1, 2, 3, etc.
@@ -174,10 +175,8 @@
 
 %%%%% Appendices start %%%%%%%%%%%%%%%%
 %% Comment out the following line if your thesis has no appendix
+\singlespacing
 \appendix
-\begin{center}
-  {\Large Appendix: computer programs}
-\end{center}
 \input{Appendix}
 
 

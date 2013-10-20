@@ -85,8 +85,8 @@ by $q_j$ and $q_{j+1}$ yields
 $\alpha_j = q_j^t \M q_j$ and $\beta_j = q_{j+1}^t \M q_j$.
 The foregoing justifies what is called the \emph{Lanczos algorithm}, which is performed as follows:
          \begin{algorithm}
-           \caption{Lanczos algorithm for partial reduction to symmetric
-             tridiaganal form}
+           \caption{The Lanczos algorithm for partial reduction to symmetric
+             tridiaganal form.}
            \begin{algorithmic}
              \STATE $q_1 = \psi/\|\psi\|_2$, $\beta_0 = 0$, $q_0= 0$
              \FOR{$j = 1, \dots, p$}
@@ -225,7 +225,7 @@ $\Pi^{\frac{1}{2}t}\M^s\Pi^{\frac{1}{2}} = \Pi \P^s$,
 whereby it follows that
 \begin{align*}
 q_1^t\M^2 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^2(\phi- \bE_\pi \phi)}
-{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\
+{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\[8pt]
 &= \frac{\bC_\pi (\phi(n), \phi(n + 2))}{\Var_\pi(\phi(n))}.
 \end{align*}
 Inserting the last expression into Equation~(\ref{eq:4.7}) gives
@@ -266,7 +266,7 @@ is $q_1^t\M^3 q_1$, which can also be expressed in terms of covariances of $\phi
 and the analysis is almost identical to that for $q_1^t\M^2q_1$:
 \begin{align*}
 q_1^t\M^3 q_1  &= \frac{(\phi - \bE_\pi\phi)^t\Pi \P^3(\phi- \bE_\pi \phi)}
-{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\
+{(\phi - \bE_\pi\phi)^t\Pi (\phi- \bE_\pi \phi)} \\[8pt]
 &= \frac{\bC_\pi (\phi(n), \phi(n + 3))}{\Var_\pi(\phi(n))}.
 \end{align*}
 To generalize the foregoing for higher order Lanczos coeﬂicients requires a recurrence

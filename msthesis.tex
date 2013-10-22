@@ -94,7 +94,7 @@
 \newcounter{conjecture}
 \newtheorem{conjecture}[conjecture]{Conjecture}
 \newtheorem*{problem}{Problem}
-\newtheorem*{fact}{Fact}
+\newtheorem{fact}{Fact}[chapter]
 \newtheorem{case}{Case}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
@@ -413,8 +413,8 @@ following definitions.
 
 \begin{definition}
 %Definition 2.1.1 
-Let $(\S, \S)$ be a measurable space. A sequence $X_n$, $n\geq 0$, of random variables
-taking values in \S\ is said to be a Markov chain with respect to the filtration 
+Let $(S, \S)$ be a measurable space. A sequence $X_n$, $n\geq 0$, of random variables
+taking values in $S$ is said to be a Markov chain with respect to the filtration 
 $\sigma(X_0, \dots, X_{n})$ if for all $B \in \S$,
 \begin{equation}
 % Eqn 2.1
@@ -438,7 +438,7 @@ We call $X_n$ a Markov chain with transition probabilities $p_n$ if
 \begin{equation}
 % Eqn 2.2
 \label{eq:2.2}
-P(X_{n+1} \in B \mid  \sigma(X_n)) = p_n(X_n, B)
+P(X_{n+1} \in B \mid  \sigma(X_n)) = p_n(X_n, B).
 \end{equation}
 The spaces $(S, \S)$ that we encounter below are standard Borel spaces, so the existence of the
 transition probabilities follows from the existence of regular conditional
@@ -502,7 +502,7 @@ P(X_{n+1}=j \mid X_n = i) =p(i,j),
 \]
 and our transition probabilities become
 \[
-p(i,A) = \sigma_{j\in A} p(i,j).
+p(i,A) = \sum_{j\in A} p(i,j).
 \]
 % 08.txt
 If $\P$ is a matrix whose $(i, j)$ element is the transition probability 
@@ -522,7 +522,7 @@ be factored into irreducible classes of states which can each be studied
 separately. 
 
 The final two conditions we place on the Markov chains considered below will cost us
-some generality. Nonetheless, there remain many examples of chains meeting these conditions
+some generality. Nonetheless, there are many examples of chains meeting these conditions
 and making the present study worthwhile. Furthermore, it may be the case that, with a little
 more work, we will be able to drop these conditions in future studies. The first condition is that
 the chain is \emph{aperiodic}. If we let $I_x = \{n \geq 1: p^n(x,x) > 0\}$, we
@@ -626,7 +626,7 @@ where $d = |S|$ is the dimension of the state space. For an ergodic chain, the
 rate of convergence to the stationary distribution $\pi$ is bounded by a
 function of the \emph{subdominant} eigenvalue. By subdominant eigenvalue we mean that
 eigenvalue which is second largest in absolute value, and we denote this
-eigenvalue by $\lambda_{\max} = \max{\lambda_1, |\lambda_{d-1}|}$. 
+eigenvalue by $\lambda_{\max} = \max\{\lambda_1, |\lambda_{d-1}|\}$. 
 The function bounding the rate of convergence of a Markov chain is given by the
 following theorem ($\log$ denotes the natural logarithm):
 \begin{theorem}
@@ -703,9 +703,9 @@ on the main diagonal and zeros elsewhere.
 Finally, denoting by $\C(s)$ the $p \times p$ covariance matrix
 whose $(i,j)$ element is $\bC_\pi(\phi_i(X_n), \phi_j(X_{n+s}))$, we have
 \begin{align*}
-\C(0) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_n) - \<\Phi\>)^t\\
+\C(0) &= \bE(\Phi(X_n) - \<\Phi\>)(\Phi(X_n) - \<\Phi\>)^t\\
 &= (\Phi - \<\Phi\>)^t\Pi (\Phi-\<\Phi\>), \\
-\C(s) &= \E(\Phi(X_n) - \<\Phi\>)(\Phi(X_{n+s}) - \<\Phi\>)^t\\
+\C(s) &= \bE(\Phi(X_n) - \<\Phi\>)(\Phi(X_{n+s}) - \<\Phi\>)^t\\
 &= (\Phi - \<\Phi\>)^t \Pi \P^s (\Phi - \<\Phi\>).
 \end{align*}
 
@@ -753,7 +753,7 @@ process satisfies the \emph{detailed balance} condition).
   \end{align*}
 Elementwise, the final equality is $\pi_i\pij = \pi_j\pji$. 
 According to Definition~\ref{def:2.1.3}, this states
-that $p$ is a reversible measure.
+that $\pi$ is a reversible measure.
 \end{proof}
 
 % 14.txt
@@ -768,9 +768,9 @@ that $p$ is a reversible measure.
 
 \begin{definition}
 %% Definition 3.1.1
-A subspace $S \subseteq \R^n$ with the property that
+A subspace $V \subseteq \R^n$ with the property that
 \[
-x \in S \quad \Longrightarrow \quad \M x \in S
+v\in V \quad \Longrightarrow \quad \M v \in V
 \]
 is said to be \emph{invariant} for $\M$.
 \end{definition}
@@ -813,7 +813,7 @@ $\lambda(\T) \subseteq \lambda(\M)$.
 \Psi \T v = \lambda \Psi v\\
 & \quad \Longleftrightarrow  \quad
 \M \Psi v = \lambda \Psi v\\
-& \quad \Longleftrightarrow  \quad
+& \quad \Longrightarrow  \quad
 \lambda \in \lambda(M).
   \end{align*}
 The second equivalence follows from Fact~\ref{fact:3.1.1}.  %3.1.1.
@@ -869,7 +869,7 @@ an \emph{approximate invariant subspace}, which is defined as follows:
 If the columns of $\Psi\in \R^{d\times p}$ are independent and the norm of the
 \emph{residual matrix} $\E = \M\Psi - \Psi \T$ is small for some  
 $\T \in \R^{p\times p}$, then
-$\ran(\Psi)$ defines an \emph{approximate invariant subspace}. 
+$\ran(\Psi)$ defines an \emph{approximate invariant subspace} for $\M$. 
 \end{definition}
 To see how an approximate invariant subspace can be useful for approximating
 eigenvalues of $\M$, we recall a theorem from Golub and Van Loan~\cite{Golub:1996}.
@@ -881,7 +881,7 @@ $\E = \M\Q - \Q\T$, where $\Q \in \R^{d\times p}$ is orthonormal
 (i.e., $\Q^t\Q = \I$). Then there exist $\mu_1,\dots, \mu_p \in \lambda(\T)$ and
 $\lambda_1, \dots, \lambda_p \in \lambda(\M)$ such that
 \[
-|\mu_k - \lambda_k| \leq \sqrt{2}\|\E\|_2, \quad \text{ for $k = 1, \dots, p$.}
+|\mu_k - \lambda_k| \leq \sqrt{2}\|\E\|_2, \quad \text{ for } \quad k = 1, \dots, p.
 \]
 \end{theorem}
 If the subspace $\ran(\Q)$ is an approximate invariant subspace, then the definition implies that
@@ -915,7 +915,7 @@ a good approximate invariant subspace.
 We now address each of these issues in turn.
 %the order raised.
 
-Recall the matrix $\Psi = \Pi^{1/2}(\Phi — \<\Phi\>)$. The columns of this
+Recall the matrix $\Psi = \Pi^{1/2}(\Phi - \<\Phi\>)$. The columns of this
 matrix, though independent (by choice of independent observables), are not
 necessarily orthonormal. However, consider the polar decomposition 
 $\Psi = \Q \Z$, where $\Q^t\Q = \I$ and $\Z^2 = \Psi^t\Psi$ is a symmetric
@@ -1381,7 +1381,7 @@ and variance of the observable.
 
 Before generalizing this for the $j$th Lanczos coefficient, we consider one more coefficient
 in detail. Recall that the second basis element $q_2$ in the Lanczos algorithm is given by 
-$q_2 = (\M q_1 — \alpha_1 q_1)/\beta_1$. 
+$q_2 = (\M q_1 - \alpha_1 q_1)/\beta_1$. 
 From this we can derive an expression for $\alpha_2$ which, while not as neat as those
 %
 %
@@ -1832,7 +1832,7 @@ before using the data to estimate covariances. The number of observations
 to discard depends on how long must we wait 
 before we can expect the data to represent samples from the stationary distribution.
 %% until we have data from the stationary distribution,
-%% and we are back where we started — almost.
+%% and we are back where we started - almost.
 When employing our procedure, we can discard a
 conservative (very large) number of observations and perform our analysis, deriving a bound on
 the convergence time. Then, in all future studies, we will know how much data should be discarded
@@ -2067,7 +2067,7 @@ end
 % Initialize at state of high energy (not used)
 if 0
   X(1:2:d-1)=1;
-  X(2:2:d)=—1;
+  X(2:2:d)=-1;
 end
 
 % Initialize energy
@@ -2525,7 +2525,7 @@ double form2(int j, int k)
     return
       (pov(betasq(j-1),-.5)) 3
       (form1(j-1,k+1) - alpha(j-1)*form1(j-1,k)
-       - sqrt(betasq(j-2)) * form2(j—1,k));
+       - sqrt(betasq(j-2)) * form2(j-1,k));
 }
 
 /* moment() function for computing var and cov(k)

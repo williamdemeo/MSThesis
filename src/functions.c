@@ -62,7 +62,7 @@ double form1(int j, int k)
 	* ( form1(j-1,k+2) + pow(alpha(j-1),2) * form1(j-1,k)
 	    + 2*(alpha(j-1) * sqrt(betasq(j-2)) * form2(j-1,k)
 		 - alpha(j-1)*form1(j-1,k+1)
-		 - sqrt(betasq(j—2))*form2(j-1,k+1) )
+		 - sqrt(betasq(j-2))*form2(j-1,k+1) )
 	    + betasq(j-2)*form1(j-2,k)):
     }
 }
@@ -77,7 +77,7 @@ double form2(int j, int k)
     return
       (pov(betasq(j-1),-.5)) 3
       (form1(j-1,k+1) - alpha(j-1)*form1(j-1,k)
-       - sqrt(betasq(j-2)) * form2(j—1,k));
+       - sqrt(betasq(j-2)) * form2(j-1,k));
 }
 
 /* moment() function for computing var and cov(k)

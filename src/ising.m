@@ -25,7 +25,7 @@ end
 % Initialize at state of high energy (not used)
 if 0
   X(1:2:d-1)=1;
-  X(2:2:d)=—1;
+  X(2:2:d)=-1;
 end
 
 % Initialize energy

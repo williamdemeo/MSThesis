@@ -928,8 +928,8 @@ Note that $\Z = (\Psi^t\Psi)^{1/2}$ is nonsingular, so $\Q$ has the form
 \Q = \Psi \Z^{-1} = \Psi(\Psi^t\Psi)^{-1/2},
 \]
 and it is clear that $\ran(\Q) = \ran(\Psi)$. 
-Perhaps $\ran(\Q)$ is a useful approximation to the invariant
-subspace for $\M$. If $\ran(Q)$ is not itself invariant, we have the error 
+Perhaps $\ran(\Q)$ is a useful approximation to an invariant
+subspace for $\M$. If $\ran(\Q)$ is not itself invariant, we have the error 
 matrix $\E =\M\Q - \Q\T$.  Below we show that the
 $\T$ which minimizes $\|\E\|_2$ is $\T = \Q^t\M\Q$. 
 This yields the following
@@ -957,7 +957,7 @@ and $\T = \Q^t\M\Q$ is the minimizer.
 % -------------- 18.txt -------------------------------
 %
 %
-The claim is verified by an easy application of the Pythagorean theorem:
+The claim is verified by an easy application of the Pythagorean Theorem:
 For any $\T \in \R^{p\times p}$ we have
 \begin{align}
 \label{eq:3.1}
@@ -968,7 +968,7 @@ For any $\T \in \R^{p\times p}$ we have
 \end{align}
 Equality~(\ref{eq:3.1}) holds since $\I - \Q\Q^t$ projects $\M\Q$ onto the
 subspace orthogonal to 
-$\ran(Q)$. Thus, the two terms in the expression on the right are orthogonal,
+$\ran(\Q)$. Thus, the two terms in the expression on the right are orthogonal,
 and the Pythagorean theorem yields equality. The concluding inequality
 establishes that the minimizing $\T$ is that which annihilates the 
 second term in~(\ref{eq:3.1}), that is, $\T = \Q^t\M\Q$.
@@ -1041,7 +1041,7 @@ rather than on $\lambda_0(M)$ (which we already know is 1).
 Now, notice that
 \begin{equation}
   \label{eq:3.2}
-|\rho(\psi_1,\M)| \leq \max |\rho(x,\M)| = \lambda_{\max}(\M)
+|\rho(\psi_1)| \leq \max |\rho(x)| = \lambda_{\max}(\M)
 \end{equation}
 % 20.txt
 where the max is taken over all nonconstant vectors. Since our interest 
@@ -1059,15 +1059,15 @@ $\max_{a\neq 0} |\rho(\Psi_2 a)|$ as large as possible. To establish that
 this is indeed the right objective, note the following:
 \begin{align}
 \label{eq:3.3}
-\max_{a\neq 0}|\rho(\Psi_2a,\M)| &= \max_{a\neq 0} \left|\frac{a^t \Psi^t_2 \M \Psi_2 a}{a^t \Psi^t_2 \Psi_2 a}\right|\nonumber\\
-&= \max_{x\in \ran(\Psi_2)}|\rho(x,\M)|\nonumber\\
-&= \max|\rho(x,\M)|\\
+\max_{a\neq 0}|\rho(\Psi_2a)| &= \max_{a\neq 0} \left|\frac{a^t \Psi^t_2 \M \Psi_2 a}{a^t \Psi^t_2 \Psi_2 a}\right|\nonumber\\
+&= \max_{x\in \ran(\Psi_2)}|\rho(x)|\nonumber\\
+&= \max|\rho(x)|\\
 &= \lambdamax\nonumber
 \end{align}
 Again, the max on the right side of~(\ref{eq:3.3}) is over nonconstant vectors. 
 In other words, we wish to chose
 $\Psi_2 = [\psi_1, \psi_2]$ so that there is a vector $a \in \R^2$ making 
-$|\rho(\Psi_2 a,\M)|$ close to $\lambdamax$.
+$|\rho(\Psi_2 a)|$ close to $\lambdamax$.
 
 Now, $\rho(\psi_1)$ changes most rapidly in the direction of the gradient
 $\nabla \rho(\psi_1)$.
@@ -1161,8 +1161,9 @@ we can compute the vector $h = -\Psi^{-1}\M^d \psi$. Thus,
 \M\Psi = \Psi [e_2,\dots,e_d,-h],  
 \end{equation}
 where $e_j$ is the column vector with 1 in
-the $j$th position and zeros elsewhere. We define $H = [e_2,\dots,e_d,-h]$,
-so~(\ref{eq:10000}) becomes $\M\Psi = \Psi H$.
+the $j$th position and zeros elsewhere. We define 
+$\H = [e_2,\dots,e_d,-h]$,
+so~(\ref{eq:10000}) becomes $\M\Psi = \Psi \H$.
 %
 %
 % ----------------- 23.txt ----------------------------------------------
@@ -1171,7 +1172,7 @@ so~(\ref{eq:10000}) becomes $\M\Psi = \Psi H$.
 Equivalently,
 \begin{equation}
   \label{eq:4.1}
-H = 
+\H = 
 \begin{pmatrix}
 0 & 0      & \cdots & 0 & -h_1 \\
 1 & 0      & \cdots & 0 & -h_2\\
@@ -1240,6 +1241,7 @@ The foregoing justifies what is called the \emph{Lanczos algorithm}, which is pe
              \ENDFOR
            \end{algorithmic}
          \end{algorithm}
+
 The $q_j$ computed by the Lanczos algorithm are often called the \emph{Lanczos vectors}. If the
 loop in the algorithm is terminated because $\beta_{k}= 0$, this indicates that
 an exact invariant subspace has been computed, and is given by 
@@ -1460,14 +1462,14 @@ expressions accessible by induction on our initial observable. The general forms
 of interest are $q_{j+1}^t\M^k q_{j+1}$ and $q^t_{j+1}\M^k q_j$. Again, we 
 begin with the simpler of the two:
 \begin{align*}
-  q_{j+1}^tM^kq_j &= 
+  q_{j+1}^t\M^kq_j &= 
  \frac{1}{\beta_j}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k q_j\\
- \frac{1}{\beta_j}(q_j^t\M^{k+1} q_j - \alpha_j q_j^t\M^{k} q_j -\beta_{j-1} q_j^t\M^k).
+&=  \frac{1}{\beta_j}(q_j^t\M^{k+1} q_j - \alpha_j q_j^t\M^{k} q_j -\beta_{j-1} q_j^t\M^k).
 \end{align*}
 The second is,
 \begin{align}
 \label{eq:4.12}
-  q_{j+1}^tM^kq_{j+1} 
+  q_{j+1}^t\M^kq_{j+1} 
 &=  \frac{1}{\beta_j^2}(\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})^t\M^k 
   (\M q_j - \alpha_j q_j - \beta_{j-1} q_{j-1})\nonumber\\
 &=  \frac{1}{\beta_j^2}(q_j^t\M^{k+2} q_j + \alpha^2_jq_j^t\M^{k} q_j 

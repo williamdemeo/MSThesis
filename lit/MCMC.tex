@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\begin{document}
+
+\begin{center} 
+Lecture Notes on Monte Carlo Methods \\
+Fall Semester, 2005 \\
+Courant Institute of Mathematical Sciences, NYU \\
+Jonathan Goodman, goodman@cims.nyu.edu \\ 
+\vspace{.6cm}
+\large 
+Chapter 2:  Dynamic sampling and Markov chain Monte Carlo.
+\normalsize
+\end{center}
+
+A variety of techniques collectively 
+called\footnote{The practice predates the name by several decades.} 
+{\em Markov chain Monte Carlo} (MCMC) or {\em dynamic sampling} allow sampling of 
+comlex high dimensional distributions not accessablt by simple samplers.
+With technical ideas to follow, the rough idea is that if $f$ is the invariant law 
+of a nondegenerate Markov chain $X(t)$, then the law of $X(t)$ converges to $f$ as 
+$t \to \infty$.
+We do not have a direct simple way to sample $f$, so we choose a starting state 
+$X(0)$ in an arbitrary way and {\em run} the chain.
+Regardless of the distribution of $X(0)$, the law of $X(t)$ will converge to $f$
+as $t\to\infty$.
+Moreover, for large enough $s$, the samples $X(t)$ and $X(t+s)$ ``decorrelate''
+(become independent, actually) so as to become effectively distinct samples of $f$.
+Therefore we can estimate $A = E_f[V(X)]$ using
+\begin{equation}
+\widehat{A} = \frac{1}{n} \sum_{t=1}^n V(X(t)) \; .
+\end{equation}
+Regardless of the choice of $X(0)$, we have $\widehat{A} \to A$ as $n \to\infty$.
+This is called the {\em ergodic theorem} for Markov chains, in anology to ergodic
+theorems in statistical mechanics.
+It is remarkable that there are many distributions that are impractical to sample
+directly but easy (or at least possible) to sample with MCMC.
+
+A rejection sampler is inefficient if its acceptence probability is low.
+A dynamic sampler can be inefficient because of large long lasting correlations
+between $X(t)$.
+The {\em autocorrelation time} is the minimum $s$ before $X(t)$ and $X(t+s)$ 
+are effectively independent samples from the point of view of error bars.
+A {\em rapidly mixing} chain has small autocorrelation time.
+There are tricks for inventing rapidly mixing chains in various situations
+(e.g. Multigrid Monte Carlo, many more in Alan Sokal's notes or Jun Liu's book).
+We will discuss error bars and autocorrelation time estimates for dynamic Monte Carlo.
+
+
+
+\end{document}
